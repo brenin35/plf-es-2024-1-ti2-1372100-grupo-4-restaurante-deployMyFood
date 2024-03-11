@@ -1,19 +1,20 @@
-# Nome do projeto
+# Cardapio Digital
 
-Escreva um ou dois parágrafos resumindo o objetivo do seu projeto.
+Este projeto visa desenvolver uma alternativa para a população facilmente poder realizar todos os passos de um pedido em um restaurante, da seleção do prato, até sua avaliação.
 
 ## Integrantes
 
-* Nome completo do aluno 1
-* Nome completo do aluno 2
-* Nome completo do aluno 3
-* Nome completo do aluno 4
-* Nome completo do aluno 5
+Arthur George Souza Cardenas
+Breno de Oliveira Brandão
+Daniel Pena Baeta
+Leonardo Vieira Machado
+Nicolas Almeida Prado da Silva
+Pedro Henrique de Vasconcellos Franco
 
 ## Professor
 
-* Nome completo do professor 1
-* Nome completo do professor 2
+Eveline Alonso Veloso
+Juliana Amaral Baroni de Carvalho
 
 ## Instruções de utilização
 
