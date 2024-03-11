@@ -4,17 +4,17 @@ Este projeto visa desenvolver uma alternativa para a população facilmente pode
 
 ## Integrantes
 
-Arthur George Souza Cardenas
-Breno de Oliveira Brandão
-Daniel Pena Baeta
-Leonardo Vieira Machado
-Nicolas Almeida Prado da Silva
-Pedro Henrique de Vasconcellos Franco
+*Arthur George Souza Cardenas
+*Breno de Oliveira Brandão
+*Daniel Pena Baeta
+*Leonardo Vieira Machado
+*Nicolas Almeida Prado da Silva
+*Pedro Henrique de Vasconcellos Franco
 
 ## Professor
 
-Eveline Alonso Veloso
-Juliana Amaral Baroni de Carvalho
+*Eveline Alonso Veloso
+*Juliana Amaral Baroni de Carvalho
 
 ## Instruções de utilização
 
