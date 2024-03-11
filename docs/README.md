@@ -1,23 +1,20 @@
-# TITULO DO PROJETO
+# Cardápio Digital
 
 
-**Nome completo do Aluno 1, email do aluno 1**
+Arthur George Souza Cardenas
+Breno de Oliveira Brandão
+Daniel Pena Baeta
+Leonardo Vieira Machado
+Nicolas Almeida Prado da Silva
+Pedro Henrique de Vasconcellos Franco
 
-**Nome completo do Aluno 2, email do aluno 2**
-
-**Nome completo do Aluno 3, email do aluno 3**
-
-**Nome completo do Aluno 4, email do aluno 4**
-
-**Nome completo do Aluno 5, email do aluno 5**
 
 ---
 
 Professores:
 
-** Prof. Nome do Prof 1 **
-
-** Prof. Nome do Prof 2 **
+Eveline Alonso Veloso
+Juliana Amaral Baroni de Carvalho
 
 ---
 
@@ -27,47 +24,40 @@ _Instituto de Informática e Ciências Exatas – Pontifícia Universidade Cató
 
 ---
 
-_**Resumo**. Escrever aqui o resumo. O resumo deve contextualizar rapidamente o trabalho, descrever seu objetivo e, ao final, 
-mostrar algum resultado relevante do trabalho (até 10 linhas)._
+Projeto de um cardápio digital para agilizar os passos dos pedidos em restaurantes da seleção do prato ate seu pagamento.
 
 ---
 
-
 ## 1. Introdução
 
-_Apresente uma frase introdutória definindo o que será apresentado._
+Este projeto visa desenvolver uma alternativa para a população facilmente poder realizar todos os passos de um pedido em um restaurante, da seleção do prato, até sua avaliação.
 
 ### 1.1 Contextualização
 
-_Na **contextualização**, o aluno deve dizer do que se trata o trabalho, em que área ou contexto se insere.
-A **contextualização** deve ser desenvolvida de algo mais genérico para algo mais específico. 
-A citação de pesquisas quantitativas é bem aceita aqui (corretamente referenciadas)._
+O cardápio digital apresentou um aumento significativo de uso desde a pandemia, como uma alternativa até então não muito explorada, e, grande  parte da população já apresenta preferência por eles.
 
 ### 1.2 Problema
 
-_Em seguida o aluno deve caminhar a contextualização para descrever o **problema** que o trabalho trata. 
-O **problema** pode ser algo vivido em uma empresa específica. Neste caso, o aluno deve rapidamente apresentar 
-o cenário de problema da empresa. A empresa só deve ser citada explicitamente se o aluno tiver autorização 
-para tal._
+Um dos principais problemas enfrentados por restaurantes em geral é a margem de erro inerente às atividades humanas. Erros na anotação de pedidos, demora no atendimento com o restaurante cheio e a complexidade no fechamento de contas, são fatores que contribuem para a insatisfação do cliente.. Esse desafio é muito comum no setor e reflete a necessidade de modernização dos processos. Foi possível observar os problemas citados no caso específico de um restaurante de uma pousada familiar, Villa Rica Pousada Boutique. A perspectiva de clientes que frequentam diversos restaurantes reforça essa realidade, indicando uma tendência generalizada no setor que demanda atenção e soluções inovadoras e mais eficientes.
 
 ### 1.3 Objetivo geral
 
-_O aluno deve escrever um pequeno parágrafo ou frase com o **objetivo geral** do trabalho. 
-O objetivo deve ser bem direto, específico e definido com verbos de ação (elaborar, propor, avaliar, comparar, desenvolver, etc.). No caso específico deste projeto, o objetivo deste trabalho é desenvolver um sistema para automação de processos para um problema específico._
+O objetivo deste trabalho é desenvolver um sistema de cardápio digital automatizado que otimize o processo de anotação e fechamento de pedidos.
 
 #### 1.3.1 Objetivos específicos
 
-_Apresente também alguns (pelo menos 2) **objetivos específicos** dependendo de onde você vai querer 
-concentrar sua prática investigativa, ou como você irá aprofundar seu trabalho._
+Solucionar problemas de atraso do atendimento
+Facilitar o processo de pedido do cliente
 
 ### 1.4 Justificativas
 
-_Mostre também as **justificativas** para o 
-desenvolvimento do seu trabalho e, caso deseje, destaque alguma contribuição do trabalho._
+Através de depoimentos dos donos do restaurante da pousada Villa Rica e também após análise de diversas reclamações sobre atrasos de pedidos nos restaurantes no Reclame Aqui e concluímos que a existência de uma aplicação pode agilizar os processos deles na preparação de um pedido, evitando atrasos.
 
 ## 2. Participantes do processo
 
-_Apresente aqui os perfis dos usuários-chave do sistema. Diversas são as informações que podem ser relevantes para a definição dos perfis dos usuários, tais como idade, gênero, aspectos culturais, nível de educação, entre outros. A pesquisa de mercado pode ser uma ferramenta poderosa para se identificar e caracterizar os perfis de usuários. Apresente claramente o papel a ser desempenhado por cada usuário._
+Gerentes de restaurante: Gerenciam a implementação e utilização do sistema, treinando a equipe para otimizar os processos de atendimento.
+Clientes: Usuários finais do sistema, que se beneficiam de uma experiência de pedido mais eficiente e satisfatória.
+Equipe do restaurante: Utiliza o sistema para receber pedidos de forma mais organizada e precisa, contribuindo para a eficiência na preparação dos pratos.
 
 ## 3. Modelagem do processo de negócio
 
