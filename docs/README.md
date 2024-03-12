@@ -1,24 +1,24 @@
 # Cardápio Digital
 
 
-Arthur George Souza Cardenas
-Breno de Oliveira Brandão
-Daniel Pena Baeta
-Leonardo Vieira Machado
-Nicolas Almeida Prado da Silva
-Pedro Henrique de Vasconcellos Franco
+* Arthur George Souza Cardenas
+* Breno de Oliveira Brandão
+* Daniel Pena Baeta
+* Leonardo Vieira Machado
+* Nicolas Almeida Prado da Silva
+* Pedro Henrique de Vasconcellos Franco
 
 
 ---
 
 Professores:
 
-Eveline Alonso Veloso
-Juliana Amaral Baroni de Carvalho
+* Eveline Alonso Veloso
+* Juliana Amaral Baroni de Carvalho
 
 ---
 
-_Curso de Engenharia de Software
+_Curso de Engenharia de Software_
 
 _Instituto de Informática e Ciências Exatas – Pontifícia Universidade Católica de Minas Gerais (PUC MINAS), Belo Horizonte – MG – Brasil_
 
@@ -63,7 +63,9 @@ Equipe do restaurante: Utiliza o sistema para receber pedidos de forma mais orga
 
 ### 3.1. Análise da situação atual
 
-_Apresente uma descrição textual de como os sistemas atuais resolvem o problema que se propõe a resolver.  Caso sua proposta seja inovadora e não existam processos claramente definidos, **apresente como as tarefas que o seu sistema pretende implementar são executadas atualmente**, mesmo que não se utilize tecnologia computacional._
+O processo de pedido em restaurantes ainda segue um modelo tradicional e manual. O cliente recebe o cardápio físico, faz sua escolha e chama o garçom para anotar o pedido em papel. O garçom então leva o pedido para a cozinha, onde é preparado e depois entregue ao cliente. Após o consumo, o cliente solicita a conta, que é novamente anotada pelo garçom e calculada.
+
+Esse processo pode ser lento, especialmente em restaurantes lotados, e está sujeito a erros de anotação, pedidos incompletos ou atrasos na entrega. Além disso, exige a constante interação entre cliente e garçom, o que pode ser inconveniente em alguns casos.
 
 ### 3.2. Descrição geral da proposta
 
