@@ -69,7 +69,9 @@ Esse processo pode ser lento, especialmente em restaurantes lotados, e está suj
 
 ### 3.2. Descrição geral da proposta
 
-_Apresente aqui uma descrição da sua proposta abordando seus limites e suas ligações com as estratégias e objetivos do negócio. Apresente aqui as oportunidades de melhorias._
+Com o intuito da diminuição de erros na produção, aumento da agilidade na casa, ainda disponibilizamos um cardápio digital que permitirá o cliente fazer 100% do pedido e pagamento diretamente do celular!
+
+Afirmado isto, os clientes que já conhecem a casa ou já sabem o que vão pedir, costumam sempre utilizar o cardápio digital, logo os garçons terão mais espaço para serem "vendedores" e atingir cada vez mais um público maior e mais satisfeito e bem atendido no restaurante. Contudo, serão aumentadas as vendas, devido a organizaçãoda casa e possibilitar receber mais clientes sem perder qualidade de venda (onde todos são bem atendidos e sem atrasos), além de muito mais agilidade. 
 
 ### 3.3. Modelagem dos processos
 
