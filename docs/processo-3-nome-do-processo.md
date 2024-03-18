@@ -2,8 +2,7 @@
 
 _O processo de avaliação permite que o usuario avalie separadamente cada prato, selecionando uma nota geral e podendo escrever uma breve descrição sobre o prato_
 
-![Processo-avaliar](https://github.com/ICEI-PUC-Minas-PPLES-TI/plf-es-2024-1-ti2-1372100-grupo-4-restaurante/assets/129969591/60fbae29-7633-456a-a21d-49c2b206d4e0)
-
+![Processo-avaliar](https://github.com/ICEI-PUC-Minas-PPLES-TI/plf-es-2024-1-ti2-1372100-grupo-4-restaurante/assets/129969591/7e48c4a3-37b5-4757-b43c-d04b21a961d7)
 
 
 #### Detalhamento das atividades
