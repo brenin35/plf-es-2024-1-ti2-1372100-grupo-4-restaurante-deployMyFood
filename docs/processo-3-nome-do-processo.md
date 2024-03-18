@@ -1,9 +1,9 @@
-### 3.3.3 Processo 3 – NOME DO PROCESSO
+### 3.3.3 Processo 3 – AVALIAÇÃO DE PRATOS
 
-_Apresente aqui o nome e as oportunidades de melhoria para o processo 3. 
-Em seguida, apresente o modelo do processo 3, descrito no padrão BPMN._
+_O processo de avaliação permite que o usuario avalie separadamente cada prato, selecionando uma nota geral e podendo escrever uma breve descrição sobre o prato_
 
-![Exemplo de um Modelo BPMN do PROCESSO 3](images/process.png "Modelo BPMN do Processo 3.")
+![Processo-avaliar](https://github.com/ICEI-PUC-Minas-PPLES-TI/plf-es-2024-1-ti2-1372100-grupo-4-restaurante/assets/129969591/60fbae29-7633-456a-a21d-49c2b206d4e0)
+
 
 
 #### Detalhamento das atividades
