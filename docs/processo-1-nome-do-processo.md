@@ -1,9 +1,8 @@
-### 3.3.1 Processo 1 – NOME DO PROCESSO
+### 3.3.1 Processo 1 – Cadastro de Prato
 
-_Apresente aqui o nome e as oportunidades de melhoria para o processo 1. 
-Em seguida, apresente o modelo do processo 1, descrito no padrão BPMN._
+_O processo 1 permite que o gerente insira novos pratos no menu. O processo de cadastro é simples e rápido, permitindo que o gerente atualize o menu com frequência e ofereça novos sabores aos seus clientes._
 
-![Exemplo de um Modelo BPMN do PROCESSO 1](images/process.png "Modelo BPMN do Processo 1.")
+![Cadastro Prato](https://github.com/ICEI-PUC-Minas-PPLES-TI/plf-es-2024-1-ti2-1372100-grupo-4-restaurante/assets/103607467/e8b08a0c-cf2a-4ed2-a83b-e388885368c9)
 
 #### Detalhamento das atividades
 
