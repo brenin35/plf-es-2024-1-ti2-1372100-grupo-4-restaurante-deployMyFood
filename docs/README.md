@@ -46,7 +46,7 @@ O objetivo deste trabalho é desenvolver um sistema de cardápio digital automat
 
 #### 1.3.1 Objetivos específicos
 
-Solucionar problemas de atraso do atendimento, facilitar o processo de pedido do cliente, realizar o cadastro de prato ,pedido do cliente pelo cardápio de modo prático, avaliação de prato pelo cliente para recolher opiniões e realizar o pagamento
+Realizar o cadastro de prato, pedido do cliente pelo cardápio de modo prático, avaliação de prato pelo cliente para recolher opiniões e realizar o pagamento
 
 ### 1.4 Justificativas
 
