@@ -34,7 +34,7 @@ Este projeto visa desenvolver uma alternativa para a população facilmente pode
 
 ### 1.1 Contextualização
 
-O cardápio digital apresentou um aumento significativo de uso desde a pandemia segundo a CNN Brasil,em que os cardápios em QR Code salvaram os restaurantes, como uma alternativa até então não muito explorada, grande  parte da população já apresenta preferência por eles por conta da praticidade e segurança que trazia naquela época.
+O cardápio digital apresentou um aumento significativo de uso desde a pandemia segundo a reportagem [1.1] da CNN Brasil,em que os cardápios em QR Code salvaram os restaurantes, como uma alternativa até então não muito explorada, grande  parte da população já apresenta preferência por eles por conta da praticidade e segurança que trazia naquela época.
 
 ### 1.2 Problema
 
