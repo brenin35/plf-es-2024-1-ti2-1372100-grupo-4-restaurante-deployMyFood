@@ -1,4 +1,4 @@
-x### 3.3.4 Processo 4 – PAGAMENTO
+### 3.3.4 Processo 4 – PAGAMENTO
 
 _O processo do pagamento permite o pagamento dos pedidos diretamente no sistema, sem a necessidade de um funcionario, onde o cliente consegue selecionar o metodo que deseja e inserir as informações diretamente pelo celular_
 
