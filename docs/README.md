@@ -55,7 +55,9 @@ Através de depoimentos dos donos do restaurante da pousada Villa Rica e também
 ## 2. Participantes do processo
 
 Gerentes de restaurante: Gerenciam a implementação e utilização do sistema, treinando a equipe para otimizar os processos de atendimento.
+<br>
 Clientes: Usuários finais do sistema, que se beneficiam de uma experiência de pedido mais eficiente e satisfatória.
+<br>
 Equipe do restaurante: Utiliza o sistema para receber pedidos de forma mais organizada e precisa, contribuindo para a eficiência na preparação dos pratos.
 
 ## 3. Modelagem do processo de negócio
