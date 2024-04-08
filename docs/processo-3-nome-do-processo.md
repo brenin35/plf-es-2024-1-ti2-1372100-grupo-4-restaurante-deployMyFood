@@ -17,7 +17,7 @@ _O processo de avaliação permite que o usuario avalie separadamente cada prato
 
 | **Comandos**         |  **Destino**                   | **Tipo** |
 | ---                  | ---                            | ---               |
-| Selecionar Prato | Atividade 2  | (default/cancel/  ) |
+| Selecionar Prato | Atividade 2  |                     |
 
 
 
