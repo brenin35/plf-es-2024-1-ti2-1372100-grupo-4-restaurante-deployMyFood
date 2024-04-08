@@ -8,7 +8,7 @@ _O processo de avaliação permite que o usuario avalie separadamente cada prato
 #### Detalhamento das atividades
 
 
-**Selecionar prato que gostaria de avaliar**
+**Atividade 1 - Selecionar prato que gostaria de avaliar**
 
 | **Campo**       | **Tipo**         | **Restrições** | **Valor default** |
 | ---             | ---              | ---            | ---               |
@@ -21,7 +21,7 @@ _O processo de avaliação permite que o usuario avalie separadamente cada prato
 
 
 
-**Avaliar prato**
+**Atividade 2 - Avaliar prato**
 
 | **Campo**       | **Tipo**         | **Restrições** | **Valor default** |
 | ---             | ---              | ---            | ---               |
