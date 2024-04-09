@@ -53,7 +53,7 @@ _* **Tabela** - campo formado por uma matriz de valores_
 
 | **Comandos**         |  **Destino**                   | **Tipo** |
 | ---                  | ---                            | ---               |
-| Pagamento com dinheiro | Fim do processo 4  |  |
+| Pagamento com dinheiro | Entregar dinheiro/Fim do processo 4  |  |
 
 
 **Atividade 2 - Pagamento com cartão**
