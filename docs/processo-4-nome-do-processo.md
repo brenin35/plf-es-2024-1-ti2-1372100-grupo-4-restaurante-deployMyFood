@@ -36,26 +36,41 @@ _* **Link** - campo que armazena uma URL_
 
 _* **Tabela** - campo formado por uma matriz de valores_
 
-**Atividade 1 - Selecionar método de pagamento**
+**Atividade 1 - Pagamento via pix**
 
 | **Campo**       | **Tipo**         | **Restrições** | **Valor default** |
 | ---             | ---              | ---            | ---               |
-| Pagamento | Seleção múltipla  |                |                   |
+| Pagamento via pix | Seleção múltipla  |                |                   |
 
 
 | **Comandos**         |  **Destino**                   | **Tipo** |
 | ---                  | ---                            | ---               |
-| Copiar código pix | Fim do processo 1  |  |
+| Copiar código pix para realizar pagamento | Fim do processo 1  |  |
 
 
-**Nome da atividade 2**
+**Atividade 2 - Pagamento com cartão**
 
 | **Campo**       | **Tipo**         | **Restrições** | **Valor default** |
 | ---             | ---              | ---            | ---               |
-| [Nome do campo] | [tipo de dados]  |                |                   |
+| Numero cartão | Número  | Minimo e máximo 16 digitos               |                   |
+|                 |                  |                |                   |
+
+| **Campo**       | **Tipo**         | **Restrições** | **Valor default** |
+| ---             | ---              | ---            | ---               |
+| Nome no cartão | Caixa de texto  |               |                   |
+|                 |                  |                |                   |
+
+| **Campo**       | **Tipo**         | **Restrições** | **Valor default** |
+| ---             | ---              | ---            | ---               |
+| Data de validade | Data  | Caixa de texto               | Maior que data atual                  |
+|                 |                  |                |                   |
+
+| **Campo**       | **Tipo**         | **Restrições** | **Valor default** |
+| ---             | ---              | ---            | ---               |
+| Código de segurança | Número  |  Minimo e máximo 3 digitos             |                   |
 |                 |                  |                |                   |
 
 | **Comandos**         |  **Destino**                   | **Tipo**          |
 | ---                  | ---                            | ---               |
-| [Nome do botão/link] | Atividade/processo de destino  | (default/cancel/  ) |
+| Realizar pagamento | Fim do processo 1  |  |
 |                      |                                |                   |
