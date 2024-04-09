@@ -17,9 +17,7 @@ _O processo do pagamento permite o pagamento dos pedidos diretamente no sistema,
 | **Comandos**         |  **Destino**                   | **Tipo** |
 | ---                  | ---                            | ---               |
 | Pagamento via pix | Realizar pagamento/Fim do processo 4  |  |
-| ---                  | ---                            | ---               |
 | Pagamento via cartão | Atividade 2  |  |
-| ---                  | ---                            | ---               |
 | Pagamento com dinheiro | Entregar dinheiro/Fim do processo 4  |  |
 
 
