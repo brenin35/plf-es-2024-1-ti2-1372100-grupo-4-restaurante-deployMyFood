@@ -40,15 +40,12 @@ _* **Tabela** - campo formado por uma matriz de valores_
 
 | **Campo**       | **Tipo**         | **Restrições** | **Valor default** |
 | ---             | ---              | ---            | ---               |
-| [Pagamento] | [Seleção múltipla]  |                |                   |
+| Pagamento | Seleção múltipla  |                |                   |
 
 
 | **Comandos**         |  **Destino**                   | **Tipo** |
 | ---                  | ---                            | ---               |
-| [Nome do botão/link] | Atividade/processo de destino  | (default/cancel/  ) |
-| ***Exemplo:***       |                                |                   |
-| entrar               | Fim do Processo 1              | default           |
-| cadastrar            | Início do proceso de cadastro  |                   |
+| Copiar código pix | Fim do processo 1  |  |
 
 
 **Nome da atividade 2**
