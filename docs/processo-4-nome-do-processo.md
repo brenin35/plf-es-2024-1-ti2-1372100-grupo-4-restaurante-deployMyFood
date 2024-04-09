@@ -17,12 +17,8 @@ _O processo do pagamento permite o pagamento dos pedidos diretamente no sistema,
 | **Comandos**         |  **Destino**                   | **Tipo** |
 | ---                  | ---                            | ---               |
 | Pagamento via pix | Realizar pagamento/Fim do processo 4  |  |
-
-| **Comandos**         |  **Destino**                   | **Tipo** |
 | ---                  | ---                            | ---               |
 | Pagamento via cartão | Atividade 2  |  |
-
-| **Comandos**         |  **Destino**                   | **Tipo** |
 | ---                  | ---                            | ---               |
 | Pagamento com dinheiro | Entregar dinheiro/Fim do processo 4  |  |
 
@@ -32,16 +28,10 @@ _O processo do pagamento permite o pagamento dos pedidos diretamente no sistema,
 | **Campo**       | **Tipo**         | **Restrições** | **Valor default** |
 | ---             | ---              | ---            | ---               |
 | Numero cartão | Número  | Minimo e máximo 16 digitos               |                   |
-
-| **Campo**       | **Tipo**         | **Restrições** | **Valor default** |
 | ---             | ---              | ---            | ---               |
 | Nome no cartão | Caixa de texto  |               |                   |
-
-| **Campo**       | **Tipo**         | **Restrições** | **Valor default** |
 | ---             | ---              | ---            | ---               |
 | Data de validade | Data  | Caixa de texto               | Maior que data atual                  |
-
-| **Campo**       | **Tipo**         | **Restrições** | **Valor default** |
 | ---             | ---              | ---            | ---               |
 | Código de segurança | Número  |  Minimo e máximo 3 digitos             |                   |
 
@@ -54,12 +44,8 @@ _O processo do pagamento permite o pagamento dos pedidos diretamente no sistema,
 | **Campo**       | **Tipo**         | **Restrições** | **Valor default** |
 | ---             | ---              | ---            | ---               |
 | Valor pago | Número  |                |                   |
-
-| **Campo**       | **Tipo**         | **Restrições** | **Valor default** |
 | ---             | ---              | ---            | ---               |
 | Valor troco | Número  |                |                   |
-
-| **Campo**       | **Tipo**         | **Restrições** | **Valor default** |
 | ---             | ---              | ---            | ---               |
 | Mesa | Seleção única  |                |                   |
 
