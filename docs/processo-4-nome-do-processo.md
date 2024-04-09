@@ -47,7 +47,7 @@ _O processo do pagamento permite o pagamento dos pedidos diretamente no sistema,
 
 | **Comandos**         |  **Destino**                   | **Tipo**          |
 | ---                  | ---                            | ---               |
-| Realizar pagamento | Fim do processo 4  |  |
+| Realizar pagamento | Fim do processo 4  | default |
 
 **Atividade 3 - Registrar pagamento no sistema**
 
