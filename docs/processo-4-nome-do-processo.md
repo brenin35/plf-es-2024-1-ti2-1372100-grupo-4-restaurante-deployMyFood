@@ -36,16 +36,24 @@ _* **Link** - campo que armazena uma URL_
 
 _* **Tabela** - campo formado por uma matriz de valores_
 
-**Atividade 1 - Pagamento via pix**
+**Atividade 1 - Selecionar método de pagamento**
 
 | **Campo**       | **Tipo**         | **Restrições** | **Valor default** |
 | ---             | ---              | ---            | ---               |
-| Pagamento via pix | Seleção única  |                |                   |
+| Método de pagamento | Seleção única  |                |                   |
 
 
 | **Comandos**         |  **Destino**                   | **Tipo** |
 | ---                  | ---                            | ---               |
-| Copiar código pix para realizar pagamento | Fim do processo 1  |  |
+| Pagamento via pix | Realizar pagamento/Fim do processo 4  |  |
+
+| **Comandos**         |  **Destino**                   | **Tipo** |
+| ---                  | ---                            | ---               |
+| Pagamento via cartão | Atividade 2  |  |
+
+| **Comandos**         |  **Destino**                   | **Tipo** |
+| ---                  | ---                            | ---               |
+| Pagamento com dinheiro | Fim do processo 4  |  |
 
 
 **Atividade 2 - Pagamento com cartão**
@@ -68,7 +76,7 @@ _* **Tabela** - campo formado por uma matriz de valores_
 
 | **Comandos**         |  **Destino**                   | **Tipo**          |
 | ---                  | ---                            | ---               |
-| Realizar pagamento | Fim do processo 1  |  |
+| Realizar pagamento | Fim do processo 4  |  |
 
 **Atividade 3 - Registrar pagamento no sistema**
 
@@ -87,4 +95,4 @@ _* **Tabela** - campo formado por uma matriz de valores_
 
 | **Comandos**         |  **Destino**                   | **Tipo** |
 | ---                  | ---                            | ---               |
-| Registrar pagamento em dinheiro | Fim do processo 1  |  |
+| Registrar pagamento em dinheiro | Fim do processo 4  | default |
