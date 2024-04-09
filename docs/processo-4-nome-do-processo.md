@@ -36,14 +36,12 @@ _* **Link** - campo que armazena uma URL_
 
 _* **Tabela** - campo formado por uma matriz de valores_
 
-**Nome da atividade 1**
+**Atividade 1 - Selecionar método de pagamento**
 
 | **Campo**       | **Tipo**         | **Restrições** | **Valor default** |
 | ---             | ---              | ---            | ---               |
-| [Nome do campo] | [tipo de dados]  |                |                   |
-| ***Exemplo:***  |                  |                |                   |
-| login           | Caixa de Texto   | formato de e-mail |                |
-| senha           | Caixa de Texto   | mínimo de 8 caracteres |           |
+| [Pagamento] | [Seleção múltipla]  |                |                   |
+
 
 | **Comandos**         |  **Destino**                   | **Tipo** |
 | ---                  | ---                            | ---               |
