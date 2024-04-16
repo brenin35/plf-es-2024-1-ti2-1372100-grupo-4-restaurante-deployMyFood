@@ -2,9 +2,7 @@
 
 ### 4.1. Modelo de dados
 
-_Apresente o modelo de dados por meio de um modelo relacional que contemple todos os conceitos e atributos apresentados na modelagem dos processos._ 
-
-![Exemplo de um modelo relacional](images/modeloRelacional.png "Exemplo de Modelo Relacional.")
+![Restaurante](https://github.com/ICEI-PUC-Minas-PPLES-TI/plf-es-2024-1-ti2-1372100-grupo-4-restaurante/assets/103607467/a676742d-102c-46a8-8d80-b5f4ec34ca7d)
 ---
 
 ### 4.2. Tecnologias
