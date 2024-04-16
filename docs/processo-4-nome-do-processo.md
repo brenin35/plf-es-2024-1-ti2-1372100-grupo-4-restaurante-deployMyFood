@@ -27,7 +27,7 @@ _O processo do pagamento permite o pagamento dos pedidos diretamente no sistema,
 | ---             | ---              | ---            | ---               |
 | Numero cartão | Número  | Minimo e máximo 16 digitos               |                   |
 | Nome no cartão | Caixa de texto  |Nome válido|                   |
-| Data de validade | Data  | Caixa de texto               | Maior que data atual                  |
+| Data de validade | Data  | Maior que data atual               |                   |
 | Código de segurança | Número  |  Minimo e máximo 3 digitos             |                   |
 
 | **Comandos**         |  **Destino**                   | **Tipo**          |
