@@ -11,14 +11,14 @@ _O processo do pagamento permite o pagamento dos pedidos diretamente no sistema,
 
 | **Campo**       | **Tipo**         | **Restrições** | **Valor default** |
 | ---             | ---              | ---            | ---               |
-| Método de pagamento | Seleção única  |                |                   |
+| Método de pagamento | Seleção única  |Selecionar método válido|                   |
 
 
 | **Comandos**         |  **Destino**                   | **Tipo** |
 | ---                  | ---                            | ---               |
 | Pagamento via pix | Realizar pagamento/Fim do processo 4  |  |
 | Pagamento via cartão | Atividade 2  |  |
-| Pagamento com dinheiro | Entregar dinheiro/Fim do processo 4  |  |
+| Pagamento com dinheiro | Entregar dinheiro  |  |
 
 
 **Atividade 2 - Pagamento com cartão**
@@ -26,23 +26,23 @@ _O processo do pagamento permite o pagamento dos pedidos diretamente no sistema,
 | **Campo**       | **Tipo**         | **Restrições** | **Valor default** |
 | ---             | ---              | ---            | ---               |
 | Numero cartão | Número  | Minimo e máximo 16 digitos               |                   |
-| Nome no cartão | Caixa de texto  |               |                   |
+| Nome no cartão | Caixa de texto  |Nome válido|                   |
 | Data de validade | Data  | Caixa de texto               | Maior que data atual                  |
 | Código de segurança | Número  |  Minimo e máximo 3 digitos             |                   |
 
 | **Comandos**         |  **Destino**                   | **Tipo**          |
 | ---                  | ---                            | ---               |
-| Realizar pagamento | Fim do processo 4  | default |
+| Realizar pagamento | Fim do processo de pagamento  | default |
 
 **Atividade 3 - Registrar pagamento no sistema**
 
 | **Campo**       | **Tipo**         | **Restrições** | **Valor default** |
 | ---             | ---              | ---            | ---               |
-| Valor pago | Número  |                |                   |
-| Valor troco | Número  |                |                   |
-| Mesa | Seleção única  |                |                   |
+| Valor pago | Número  |Valor positivo|                   |
+| Valor troco | Número  |Valor positivo|                   |
+| Mesa | Seleção única  |Mesa válida|                   |
 
 
 | **Comandos**         |  **Destino**                   | **Tipo** |
 | ---                  | ---                            | ---               |
-| Registrar pagamento em dinheiro | Fim do processo 4  | default |
+| Registrar pagamento em dinheiro | Fim do processo de pagamento  | default |
