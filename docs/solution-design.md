@@ -2,7 +2,8 @@
 
 ### 4.1. Modelo de dados
 
-![Restaurante](https://github.com/ICEI-PUC-Minas-PPLES-TI/plf-es-2024-1-ti2-1372100-grupo-4-restaurante/assets/103607467/a676742d-102c-46a8-8d80-b5f4ec34ca7d)
+![RestauranteModificado drawio](https://github.com/ICEI-PUC-Minas-PPLES-TI/plf-es-2024-1-ti2-1372100-grupo-4-restaurante/assets/129969591/3b629291-65b0-424e-b3b8-fe91f7465920)
+
 ---
 
 ### 4.2. Tecnologias
