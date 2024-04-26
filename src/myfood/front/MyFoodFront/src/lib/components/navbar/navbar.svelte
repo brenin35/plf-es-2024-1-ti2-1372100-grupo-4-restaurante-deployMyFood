@@ -1,5 +1,5 @@
 <script lang="ts">
-  import ButtonNav from "./buttonnav.svelte";
+  import ButtonNav from "$lib/components/navbar/ButtonNav.svelte";
   import { CirclePlus } from "lucide-svelte";
   import type { ComponentType } from "svelte";
   import type { Icon } from "lucide-svelte";
