@@ -1,10 +1,10 @@
 <script>
-  import Navbar from "$lib/components/navbar/Navbar.svelte";
+  import Navbar from "$lib/components/navbar/navbar.svelte";
 </script>
 
 <svelte:head>
-  <title>Home</title>
-  <meta name="description" content="Svelte demo app" />
+  <title>MyFood</title>
+  <meta name="description" content="TI-2 MyFood project" />
 </svelte:head>
 
 <Navbar />
