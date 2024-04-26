@@ -1,14 +1,14 @@
 <script>
 	import Header from './Header.svelte';
 	import './styles.css';
-	import "../app.css";
+	import "../app.pcss";
 </script>
 
 <div class="app">
-	<Header />
+	<Header></Header>
 
 	<main>
-		<slot />
+		<slot></slot>
 	</main>
 
 	<footer>
