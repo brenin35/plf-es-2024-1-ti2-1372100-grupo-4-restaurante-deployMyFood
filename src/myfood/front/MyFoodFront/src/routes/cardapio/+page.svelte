@@ -9,6 +9,7 @@
 
   function adicionarPrato(event) {
     pratos = [...pratos, event.detail];
+    console.log(pratos);
   }
 </script>
 
