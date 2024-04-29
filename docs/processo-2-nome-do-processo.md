@@ -47,7 +47,8 @@ _O processo 2 permite que o cliente realize o pedido de itens pelo menu digital.
 
 | **Campo**       | **Tipo**         | **Restrições** | **Valor default** |
 | ---             | ---              | ---            | ---               |
-| Pedidos | Tabela: Área de texto / Número  |     Número positivo          |                   |
+| Pedidos  |  Área de texto  |     Not null           |                   |
+| Pedidos  | Número  |     Número positivo           |                   |
 
 | **Comandos**         |  **Destino**                   | **Tipo**          |
 | ---                  | ---                            | ---               |
@@ -58,7 +59,8 @@ _O processo 2 permite que o cliente realize o pedido de itens pelo menu digital.
 
 | **Campo**       | **Tipo**         | **Restrições** | **Valor default** |
 | ---             | ---              | ---            | ---               |
-| Pedidos  | Tabela: Área de texto / Número  |     Número positivo           |                   |
+| Pedidos  |  Área de texto  |     Not null           |                   |
+| Pedidos  | Número  |     Número positivo           |                   |                |
 
 | **Comandos**         |  **Destino**                   | **Tipo**          |
 | ---                  | ---                            | ---               |
