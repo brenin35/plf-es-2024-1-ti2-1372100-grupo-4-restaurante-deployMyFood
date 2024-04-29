@@ -5,26 +5,11 @@
 
   export let data: PageData;
 
-  export let nome: string;
-  export let preco: number;
-  export let descricao: string;
-  export let img: string;
+  let pratos = [];
 
-  let pratos = [
-    {
-      nome: "",
-      descricao: "",
-      preco: 20,
-      img: "",
-    },
-    {
-      nome: "",
-      descricao: "",
-      preco: 20,
-      img: "",
-    },
-  ];
-
+  function adicionarPrato(event) {
+    pratos = [...pratos, event.detail];
+  }
 </script>
 
 <div class="p-4 sm:ml-64">
@@ -35,7 +20,7 @@
       </div>
     </div>
     <div class="flex justify-center gap-2">
-      <ModalCriar {nome} {preco} {descricao} {img}/>
+      <ModalCriar on:adicionar={adicionarPrato} />
       <!-- {#each $categoriasUnicas as categoria}
 				<Button on:click={() => setFilter(categoria)}>{categoria}</Button>
 			{/each} -->
