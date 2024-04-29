@@ -1,5 +1,4 @@
 <script>
-  import Navbar from "$lib/components/navbar/navbar.svelte";
 </script>
 
 <svelte:head>
@@ -7,4 +6,3 @@
   <meta name="description" content="TI-2 MyFood project" />
 </svelte:head>
 
-<Navbar />
