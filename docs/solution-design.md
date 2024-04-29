@@ -2,7 +2,7 @@
 
 ### 4.1. Modelo de dados
 
-![RestauranteModificado drawio(1)](https://github.com/ICEI-PUC-Minas-PPLES-TI/plf-es-2024-1-ti2-1372100-grupo-4-restaurante/assets/129969591/cdd22fe4-4afe-4dd4-bd05-9a99db38841b)
+![Restaurante drawio](https://github.com/ICEI-PUC-Minas-PPLES-TI/plf-es-2024-1-ti2-1372100-grupo-4-restaurante/assets/63589918/b51bdd6c-cd5e-40f7-a9e0-ed97b8d49160)
 
 ---
 
