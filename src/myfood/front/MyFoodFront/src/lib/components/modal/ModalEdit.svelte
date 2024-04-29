@@ -51,7 +51,7 @@
 					<Input id="name" value="{nome}" class="col-span-3" />
 				</div>
 				<div class="grid grid-cols-4 items-center gap-4">
-					<Label for="category" class="text-right">Categoria</Label>
+					<Label for="category" class="text-right">Descricao</Label>
 					<Input id="category" value="{descricao}" class="col-span-3" />
 				</div>
 				<div class="grid grid-cols-4 items-center gap-4">
