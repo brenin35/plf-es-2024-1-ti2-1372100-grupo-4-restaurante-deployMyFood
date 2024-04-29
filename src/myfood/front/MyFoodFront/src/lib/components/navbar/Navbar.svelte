@@ -1,6 +1,6 @@
 <script lang="ts">
-	import ButtonNav from '$lib/components/navbar/ButtonNav.svelte';
-  import { CirclePlus } from "lucide-svelte";
+  import ButtonNav from "$lib/components/navbar/ButtonNav.svelte";
+  import { SquareMenu } from "lucide-svelte";
   import type { ComponentType } from "svelte";
   import type { Icon } from "lucide-svelte";
 
@@ -8,10 +8,7 @@
     label: string;
     href: string;
     icon: ComponentType<Icon>;
-  }[] = [
-    { label: "Botao inicial", href: "/", icon: CirclePlus },
-    { label: "Botao exemplo", href: "/", icon: CirclePlus },
-  ];
+  }[] = [{ label: "Cardapio", href: "/cardapio", icon: SquareMenu }];
   let navmobile: HTMLElement;
 
   function openNav() {
@@ -60,8 +57,8 @@
     </a>
     <ul class="space-y-2 font-medium">
       {#each itens as item}
-          <ButtonNav href={item.href} label={item.label} Icon={item.icon} />
-        {/each}
+        <ButtonNav href={item.href} label={item.label} Icon={item.icon} />
+      {/each}
     </ul>
   </div>
 </aside>
