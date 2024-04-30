@@ -14,13 +14,11 @@
     const novoNomeElement = document.getElementById("name");
     const novaDescricaoElement = document.getElementById("category");
     const novoPrecoElement = document.getElementById("price");
-    const novoImgElement = document.getElementById("imagem");
 
     if (novoNomeElement && novaDescricaoElement && novoPrecoElement) {
       const novoNome = (novoNomeElement as HTMLInputElement).value;
       const novaDescricao = (novaDescricaoElement as HTMLInputElement).value;
       const novoPreco = (novoPrecoElement as HTMLInputElement).value;
-      const novoImg = (novoImgElement as HTMLInputElement).value;
 
       let produtos = JSON.parse(localStorage.getItem("produtos") || "[]");
 
