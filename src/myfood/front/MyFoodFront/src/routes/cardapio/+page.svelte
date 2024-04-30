@@ -1,15 +1,20 @@
 <script lang="ts">
-  import ModalCriar from "./../../lib/components/modal/ModalCriar.svelte";
-  import ModalEdit from "./../../lib/components/modal/ModalEdit.svelte";
-  import type { PageData } from "./$types";
+  import { onMount } from "svelte";
+  import ModalCriar from "$lib/components/modal/ModalCriar.svelte";
+  import ModalEdit from "$lib/components/modal/ModalEdit.svelte";
 
-  export let data: PageData;
+  type Prato = {
+    nome: string;
+    preco: number;
+    descricao: string;
+    imagem: string;
+  };
 
-  let pratos = JSON.parse(localStorage.getItem("produtos") ?? "[]");
+  let pratos: Prato[] = [];
 
-  function atualizarPratos() {
+  onMount(() => {
     pratos = JSON.parse(localStorage.getItem("produtos") ?? "[]");
-  }
+  });
 </script>
 
 <div class="p-4 sm:ml-64">
@@ -21,16 +26,12 @@
     </div>
     <div class="flex justify-center gap-2">
       <ModalCriar />
-      <!-- {#each $categoriasUnicas as categoria}
-				<Button on:click={() => setFilter(categoria)}>{categoria}</Button>
-			{/each} -->
     </div>
     <div
       class="grid grid-cols-1 gap-3 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-3"
     >
       {#each pratos as item}
         <ModalEdit
-          on:produtoAdicionado={atualizarPratos}
           nome={item.nome}
           preco={item.preco}
           descricao={item.descricao}
