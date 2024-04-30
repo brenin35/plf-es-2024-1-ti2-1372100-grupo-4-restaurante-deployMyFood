@@ -41,6 +41,18 @@
     }
   }
 
+  function excluirProduto() {
+    let produtos = JSON.parse(localStorage.getItem("produtos") || "[]");
+    const index = produtos.findIndex((produto: any) => produto.nome === nome);
+
+    if (index !== -1) {
+      produtos.splice(index, 1);
+      localStorage.setItem("produtos", JSON.stringify(produtos));
+    } else {
+      console.error("Produto não encontrado no localStorage.");
+    }
+  }
+
   function converterImg(event) {
     const file = event.target.files[0];
     const reader = new FileReader();
@@ -122,6 +134,9 @@
         </div>
       </div>
       <Dialog.Footer>
+        <Button variant="buttonAdd" on:click={excluirProduto}
+          >Excluir prato</Button
+        >
         <Button variant="buttonAdd" type="submit" on:click={atualizarProduto}
           >Salvar alteracões</Button
         >

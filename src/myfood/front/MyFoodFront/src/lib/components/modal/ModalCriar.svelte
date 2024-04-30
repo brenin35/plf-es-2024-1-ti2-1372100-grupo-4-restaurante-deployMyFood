@@ -13,6 +13,10 @@
   let imagem = "";
 
   function adicionarProduto() {
+    if (!nome || !descricao || !preco) {
+      alert("Por favor, preencha todos os campos obrigatórios.");
+      return;
+    }
     const produto = { nome, descricao, preco, imagem };
     const produtos = JSON.parse(localStorage.getItem("produtos") ?? "[]");
     produtos.push(produto);
@@ -49,19 +53,30 @@
       <div class="grid gap-4 py-4">
         <div class="grid grid-cols-4 items-center gap-4">
           <Label for="name" class="text-right">Nome</Label>
-          <Input id="name" bind:value={nome} class="col-span-3" />
+          <Input id="name" bind:value={nome} class="col-span-3" required />
         </div>
         <div class="grid grid-cols-4 items-center gap-4">
           <Label for="category" class="text-right">Descricao</Label>
-          <Input id="category" bind:value={descricao} class="col-span-3" />
+          <Input
+            id="category"
+            bind:value={descricao}
+            class="col-span-3"
+            required
+          />
         </div>
         <div class="grid grid-cols-4 items-center gap-4">
           <Label for="price" class="text-right">Preco</Label>
-          <Input id="price" bind:value={preco} class="col-span-3" />
+          <Input id="price" bind:value={preco} class="col-span-3" required />
         </div>
         <div class="grid grid-cols-4 items-center gap-4">
           <Label for="imagem" class="text-right">Imagem</Label>
-          <Input id="imagem" type="file" accept="image/*" class="col-span-3" on:change={converterImg} />
+          <Input
+            id="imagem"
+            type="file"
+            accept="image/*"
+            class="col-span-3"
+            on:change={converterImg}
+          />
         </div>
       </div>
       <Dialog.Footer>
