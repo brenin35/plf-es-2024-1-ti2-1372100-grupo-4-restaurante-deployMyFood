@@ -79,10 +79,12 @@
           />
         </div>
       </div>
-      <Dialog.Footer>
-        <Button variant="buttonAdd" type="submit" on:click={adicionarProduto}
-          >Adicionar produto</Button
-        >
+      <Dialog.Footer
+        ><Dialog.Close>
+          <Button variant="buttonAdd" type="submit" on:click={adicionarProduto}
+            >Adicionar produto</Button
+          >
+        </Dialog.Close>
       </Dialog.Footer>
     </Dialog.Content>
   </Dialog.Root>

@@ -42,14 +42,21 @@
   }
 
   function excluirProduto() {
-    let produtos = JSON.parse(localStorage.getItem("produtos") || "[]");
-    const index = produtos.findIndex((produto: any) => produto.nome === nome);
+    const confirmDelete = window.confirm(
+      "Tem certeza de que deseja excluir este produto?"
+    );
 
-    if (index !== -1) {
-      produtos.splice(index, 1);
-      localStorage.setItem("produtos", JSON.stringify(produtos));
+    if (confirmDelete) {
+      let produtos = JSON.parse(localStorage.getItem("produtos") || "[]");
+      const index = produtos.findIndex((produto: any) => produto.nome === nome);
+
+      if (index !== -1) {
+        produtos.splice(index, 1);
+        localStorage.setItem("produtos", JSON.stringify(produtos));
+      } else {
+        console.error("Produto não encontrado no localStorage.");
+      }
     } else {
-      console.error("Produto não encontrado no localStorage.");
     }
   }
 
@@ -134,12 +141,17 @@
         </div>
       </div>
       <Dialog.Footer>
-        <Button variant="buttonAdd" on:click={excluirProduto}
-          >Excluir prato</Button
-        >
-        <Button variant="buttonAdd" type="submit" on:click={atualizarProduto}
-          >Salvar alteracões</Button
-        >
+        <Dialog.Close>
+          <Button variant="buttonAdd" on:click={excluirProduto}
+            >Excluir prato</Button
+          >
+        </Dialog.Close>
+
+        <Dialog.Close>
+          <Button variant="buttonAdd" type="submit" on:click={atualizarProduto}
+            >Salvar alteracões</Button
+          >
+        </Dialog.Close>
       </Dialog.Footer>
     </Dialog.Content>
   </Dialog.Root>
