@@ -10,8 +10,8 @@
     icon: ComponentType<Icon>;
   }[] = [
     { label: "Cardapio", href: "/cardapio", icon: SquareMenu },
-    { label: "Pedidos", href: "/", icon: Receipt },
-    { label: "Clientes", href: "/", icon: User },
+    { label: "Pedidos", href: "/pedidos", icon: Receipt },
+    { label: "Clientes", href: "/mesas", icon: User },
   ];
   let navmobile: HTMLElement;
 
