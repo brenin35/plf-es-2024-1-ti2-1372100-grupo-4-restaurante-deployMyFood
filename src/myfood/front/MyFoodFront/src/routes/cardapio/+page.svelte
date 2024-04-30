@@ -5,10 +5,10 @@
 
   export let data: PageData;
 
-  let pratos = JSON.parse(localStorage.getItem("produtos")) || [];
+  let pratos = JSON.parse(localStorage.getItem("produtos") ?? "[]");
 
   function atualizarPratos() {
-    pratos = JSON.parse(localStorage.getItem("produtos")) || [];
+    pratos = JSON.parse(localStorage.getItem("produtos") ?? "[]");
   }
 </script>
 
@@ -29,7 +29,8 @@
       class="grid grid-cols-1 gap-3 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-3"
     >
       {#each pratos as item}
-        <ModalEdit on:produtoAdicionado={atualizarPratos}
+        <ModalEdit
+          on:produtoAdicionado={atualizarPratos}
           nome={item.nome}
           preco={item.preco}
           descricao={item.descricao}

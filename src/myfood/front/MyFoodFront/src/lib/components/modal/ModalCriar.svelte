@@ -14,7 +14,7 @@
 
   function adicionarProduto() {
     const produto = { nome, descricao, preco, imagem };
-    const produtos = JSON.parse(localStorage.getItem("produtos")) || [];
+    const produtos = JSON.parse(localStorage.getItem("produtos") ?? "[]");
     produtos.push(produto);
     localStorage.setItem("produtos", JSON.stringify(produtos));
     dispatch("produtoAdicionado");
