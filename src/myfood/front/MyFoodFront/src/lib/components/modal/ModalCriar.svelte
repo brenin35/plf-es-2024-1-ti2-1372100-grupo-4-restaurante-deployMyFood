@@ -19,6 +19,19 @@
     localStorage.setItem("produtos", JSON.stringify(produtos));
     dispatch("produtoAdicionado");
   }
+
+  function converterImg(event) {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+
+    reader.onloadend = () => {
+      imagem = reader.result as string;
+    };
+
+    if (file) {
+      reader.readAsDataURL(file);
+    }
+  }
 </script>
 
 <main class="mt-5 flex items-center justify-center">
@@ -48,7 +61,7 @@
         </div>
         <div class="grid grid-cols-4 items-center gap-4">
           <Label for="imagem" class="text-right">Imagem</Label>
-          <Input id="imagem" type="file" accept="image/*" class="col-span-3" />
+          <Input id="imagem" type="file" accept="image/*" class="col-span-3" on:change={converterImg} />
         </div>
       </div>
       <Dialog.Footer>

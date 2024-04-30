@@ -8,17 +8,19 @@
   export let nome: string;
   export let preco: number;
   export let descricao: string;
-  export let img: string;
+  export let imagem: string;
 
   function atualizarProduto() {
     const novoNomeElement = document.getElementById("name");
     const novaDescricaoElement = document.getElementById("category");
     const novoPrecoElement = document.getElementById("price");
+    const novoImgElement = document.getElementById("imagem");
 
     if (novoNomeElement && novaDescricaoElement && novoPrecoElement) {
       const novoNome = (novoNomeElement as HTMLInputElement).value;
       const novaDescricao = (novaDescricaoElement as HTMLInputElement).value;
       const novoPreco = (novoPrecoElement as HTMLInputElement).value;
+      const novoImg = (novoImgElement as HTMLInputElement).value;
 
       let produtos = JSON.parse(localStorage.getItem("produtos") || "[]");
 
@@ -28,6 +30,7 @@
         produtos[index].nome = novoNome;
         produtos[index].descricao = novaDescricao;
         produtos[index].preco = novoPreco;
+        produtos[index].imagem = imagem;
 
         localStorage.setItem("produtos", JSON.stringify(produtos));
       } else {
@@ -35,6 +38,19 @@
       }
     } else {
       console.error("Elementos de entrada não encontrados.");
+    }
+  }
+
+  function converterImg(event) {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+
+    reader.onloadend = () => {
+      imagem = reader.result as string;
+    };
+
+    if (file) {
+      reader.readAsDataURL(file);
     }
   }
 </script>
@@ -66,7 +82,7 @@
           </div>
           <div class="column">
             <img
-              src={img}
+              src={imagem}
               alt=""
               class="ml-auto h-52 w-48 rounded-r-xl object-cover"
             />
@@ -96,7 +112,13 @@
         </div>
         <div class="grid grid-cols-4 items-center gap-4">
           <Label for="imagem" class="text-right">Imagem</Label>
-          <Input id="imagem" type="file" accept="image/*" class="col-span-3" />
+          <Input
+            id="imagem"
+            type="file"
+            accept="image/*"
+            class="col-span-3"
+            on:change={converterImg}
+          />
         </div>
       </div>
       <Dialog.Footer>

@@ -35,7 +35,7 @@
           nome={item.nome}
           preco={item.preco}
           descricao={item.descricao}
-          img={item.imagem}
+          imagem={item.imagem}
         />
       {/each}
     </div>
