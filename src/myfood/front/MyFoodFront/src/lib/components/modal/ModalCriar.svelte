@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { Textarea } from "$lib/components/ui/textarea/index.js";
   import * as Dialog from "$lib/components/ui/dialog/index.js";
   import { Input } from "$lib/components/ui/input/index.js";
   import { Label } from "$lib/components/ui/label/index.js";
@@ -53,14 +54,21 @@
       <div class="grid gap-4 py-4">
         <div class="grid grid-cols-4 items-center gap-4">
           <Label for="name" class="text-right">Nome</Label>
-          <Input id="name" bind:value={nome} class="col-span-3" required />
+          <Input
+            placeholder="Digite o nome do prato..."
+            id="name"
+            bind:value={nome}
+            class="col-span-3"
+            required
+          />
         </div>
         <div class="grid grid-cols-4 items-center gap-4">
           <Label for="category" class="text-right">Descricao</Label>
-          <Input
-            id="category"
+          <Textarea
+            placeholder="Escreva aqui a descricao do prato..."
+            id="description"
             bind:value={descricao}
-            class="col-span-3"
+            class="col-span-3 resize-none h-24"
             required
           />
         </div>

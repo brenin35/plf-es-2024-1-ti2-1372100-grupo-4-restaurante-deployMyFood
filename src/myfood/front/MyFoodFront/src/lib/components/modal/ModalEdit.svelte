@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { Textarea } from "$lib/components/ui/textarea/index.js";
   import * as Dialog from "$lib/components/ui/dialog/index.js";
   import * as Card from "$lib/components/ui/card";
   import { Input } from "$lib/components/ui/input/index.js";
@@ -121,7 +122,12 @@
         </div>
         <div class="grid grid-cols-4 items-center gap-4">
           <Label for="category" class="text-right">Descricao</Label>
-          <Input id="category" value={descricao} class="col-span-3" />
+          <Textarea
+            placeholder="Escreva aqui a descricao do prato..."
+            id="description"
+            value={descricao}
+            class="col-span-3 resize-none h-24"
+          />
         </div>
         <div class="grid grid-cols-4 items-center gap-4">
           <Label for="price" class="text-right">Preco</Label>
