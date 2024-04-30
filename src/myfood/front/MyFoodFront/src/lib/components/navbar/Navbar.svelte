@@ -1,6 +1,6 @@
 <script lang="ts">
   import ButtonNav from "$lib/components/navbar/ButtonNav.svelte";
-  import { SquareMenu } from "lucide-svelte";
+  import { SquareMenu, Receipt, User } from "lucide-svelte";
   import type { ComponentType } from "svelte";
   import type { Icon } from "lucide-svelte";
 
@@ -8,7 +8,11 @@
     label: string;
     href: string;
     icon: ComponentType<Icon>;
-  }[] = [{ label: "Cardapio", href: "/cardapio", icon: SquareMenu }];
+  }[] = [
+    { label: "Cardapio", href: "/cardapio", icon: SquareMenu },
+    { label: "Pedidos", href: "/", icon: Receipt },
+    { label: "Clientes", href: "/", icon: User },
+  ];
   let navmobile: HTMLElement;
 
   function openNav() {
