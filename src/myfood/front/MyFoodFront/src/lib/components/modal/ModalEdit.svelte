@@ -122,7 +122,7 @@
         </div>
       </div>
       <Dialog.Footer>
-        <Button type="submit" on:click={atualizarProduto}
+        <Button variant="buttonAdd" type="submit" on:click={atualizarProduto}
           >Salvar alteracões</Button
         >
       </Dialog.Footer>

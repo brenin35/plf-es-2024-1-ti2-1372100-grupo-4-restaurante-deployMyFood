@@ -37,7 +37,7 @@
 <main class="mt-5 flex items-center justify-center">
   <Dialog.Root>
     <Dialog.Trigger>
-      <Button>Adicionar</Button>
+      <Button variant="buttonAdd">Adicionar</Button>
     </Dialog.Trigger>
     <Dialog.Content class="sm:max-w-[600px]">
       <Dialog.Header>
@@ -65,7 +65,7 @@
         </div>
       </div>
       <Dialog.Footer>
-        <Button type="submit" on:click={adicionarProduto}
+        <Button variant="buttonAdd" type="submit" on:click={adicionarProduto}
           >Adicionar produto</Button
         >
       </Dialog.Footer>
