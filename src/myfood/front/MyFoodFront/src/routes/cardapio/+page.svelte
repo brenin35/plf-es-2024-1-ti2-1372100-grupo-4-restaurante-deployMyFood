@@ -5,11 +5,10 @@
 
   export let data: PageData;
 
-  let pratos = [];
+  let pratos = JSON.parse(localStorage.getItem("produtos")) || [];
 
-  function adicionarPrato(event) {
-    pratos = [...pratos, event.detail];
-    console.log(pratos);
+  function atualizarPratos() {
+    pratos = JSON.parse(localStorage.getItem("produtos")) || [];
   }
 </script>
 
@@ -21,7 +20,7 @@
       </div>
     </div>
     <div class="flex justify-center gap-2">
-      <ModalCriar on:adicionar={adicionarPrato} />
+      <ModalCriar />
       <!-- {#each $categoriasUnicas as categoria}
 				<Button on:click={() => setFilter(categoria)}>{categoria}</Button>
 			{/each} -->
@@ -30,11 +29,11 @@
       class="grid grid-cols-1 gap-3 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-3"
     >
       {#each pratos as item}
-        <ModalEdit
+        <ModalEdit on:produtoAdicionado={atualizarPratos}
           nome={item.nome}
           preco={item.preco}
           descricao={item.descricao}
-          img={item.img}
+          img={item.imagem}
         />
       {/each}
     </div>

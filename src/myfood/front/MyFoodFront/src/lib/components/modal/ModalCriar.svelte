@@ -10,14 +10,14 @@
   let nome = "";
   let descricao = "";
   let preco = 0;
-  let img = "";
+  let imagem = "";
 
-  function adicionarPrato() {
-    dispatch("adicionar", { nome, descricao, preco, img });
-    nome = "";
-    descricao = "";
-    preco = 0;
-    img = "";
+  function adicionarProduto() {
+    const produto = { nome, descricao, preco, imagem };
+    const produtos = JSON.parse(localStorage.getItem("produtos")) || [];
+    produtos.push(produto);
+    localStorage.setItem("produtos", JSON.stringify(produtos));
+    dispatch("produtoAdicionado");
   }
 </script>
 
@@ -52,7 +52,7 @@
         </div>
       </div>
       <Dialog.Footer>
-        <Button type="submit" on:click={adicionarPrato}
+        <Button type="submit" on:click={adicionarProduto}
           >Adicionar produto</Button
         >
       </Dialog.Footer>
