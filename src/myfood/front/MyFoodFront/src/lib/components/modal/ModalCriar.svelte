@@ -41,7 +41,7 @@
 <main class="mt-5 flex items-center justify-center">
   <Dialog.Root>
     <Dialog.Trigger>
-      <Button variant="buttonAdd">Adicionar</Button>
+      <Button variant="buttonAdd">Adicionar prato ao cardapio!</Button>
     </Dialog.Trigger>
     <Dialog.Content class="sm:max-w-[600px]">
       <Dialog.Header>

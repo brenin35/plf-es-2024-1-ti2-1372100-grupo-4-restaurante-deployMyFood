@@ -7,7 +7,7 @@
 </script>
 
 <li>
-	<a {href} class="group flex items-center rounded-lg p-2 text-gray-900 hover:bg-red-500 transition ease-in-out hover:text-white">
+	<a {href} class="group flex items-center rounded-lg p-2 text-gray-900 hover:bg-primary transition ease-in-out hover:text-white">
 		{#if Icon}
 			<svelte:component	
 				this={Icon}

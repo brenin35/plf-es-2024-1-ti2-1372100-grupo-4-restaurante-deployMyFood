@@ -21,7 +21,7 @@
   <div class="">
     <div class="gap-0 py-1">
       <div class="items-center gap-0 pb-7">
-        <h1 class="text-center text-4xl font-bold">Cardapio</h1>
+        <h1 class="text-center text-4xl font-bold text-secondary">Cardapio</h1>
       </div>
     </div>
     <div class="flex justify-center gap-2">
