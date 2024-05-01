@@ -65,6 +65,28 @@ app.put('/produtos/edit/:id', (req, res) => {
   });
 });
 
+app.delete('/produtos/delete/:id', (req, res) => {
+  const idProduto = req.params.id;
+
+  const sql = 'DELETE FROM produtos WHERE id = ?';
+  const values = [idProduto];
+
+  db.query(sql, values, (error, results) => {
+    if (error) {
+      console.error('Erro ao excluir produto:', error);
+      res.status(500).send('Erro ao excluir produto');
+      return;
+    }
+
+    if (results.affectedRows === 0) {
+      res.status(404).send('Produto não encontrado');
+      return;
+    }
+
+    res.json({ message: 'Produto excluído com sucesso!' });
+  });
+});
+
 app.listen(port, () => {
   console.log(`Servidor rodando em http://localhost:${port}`);
 });
