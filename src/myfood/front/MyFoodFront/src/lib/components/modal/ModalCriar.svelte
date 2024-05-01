@@ -14,16 +14,27 @@
   let imagem = "";
 
   function adicionarProduto() {
-    if (!nome || !descricao || !preco) {
-      alert("Por favor, preencha todos os campos obrigatórios.");
-      return;
-    }
-    const produto = { nome, descricao, preco, imagem };
-    const produtos = JSON.parse(localStorage.getItem("produtos") ?? "[]");
-    produtos.push(produto);
-    localStorage.setItem("produtos", JSON.stringify(produtos));
-    dispatch("produtoAdicionado");
+  if (!nome || !descricao || !preco) {
+    alert("Por favor, preencha todos os campos obrigatórios.");
+    return;
   }
+  const produto = { nome, descricao, preco, imagem };
+
+  fetch('http://localhost:3000/produtos', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(produto),
+  })
+  .then(response => response.json())
+  .then(data => {
+    console.log('Produto adicionado com sucesso:', data);
+  })
+  .catch((error) => {
+    console.error('Erro:', error);
+  });
+}
 
   function converterImg(event) {
     const file = event.target.files[0];
