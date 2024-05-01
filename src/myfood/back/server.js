@@ -42,6 +42,29 @@ app.post('/produtos', (req, res) => {
   });
 });
 
+app.put('/produtos/edit/:id', (req, res) => {
+  const idProduto = req.params.id;
+  const { nome, descricao, preco, imagem } = req.body;
+
+  const sql = 'UPDATE produtos SET nome = ?, descricao = ?, preco = ?, imagem = ? WHERE id = ?';
+  const values = [nome, descricao, preco, imagem, idProduto];
+
+  db.query(sql, values, (error, results) => {
+    if (error) {
+      console.error('Erro ao atualizar produto:', error);
+      res.status(500).send('Erro ao atualizar produto');
+      return;
+    }
+
+    if (results.affectedRows === 0) {
+      res.status(404).send('Produto não encontrado');
+      return;
+    }
+
+    res.json({ message: 'Produto atualizado com sucesso!' });
+  });
+});
+
 app.listen(port, () => {
   console.log(`Servidor rodando em http://localhost:${port}`);
 });
