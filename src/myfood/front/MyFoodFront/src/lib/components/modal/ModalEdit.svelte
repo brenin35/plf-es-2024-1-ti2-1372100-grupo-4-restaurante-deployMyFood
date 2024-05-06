@@ -6,7 +6,7 @@
   import { Label } from "$lib/components/ui/label/index.js";
   import { Button, buttonVariants } from "$lib/components/ui/button";
   import Switch from "../ui/switch/switch.svelte";
-  import { Star } from "lucide-svelte";
+  import { Rating } from "flowbite-svelte";
 
   export let id: number;
   export let nome: string;
@@ -89,11 +89,23 @@
                 >
                   Descricao: {descricao}
                 </p>
-                <div class="flex items-center justify-center gap-3">
-                  <Star />
-                  <p>5.00 </p>
-                  <a href="/">70 reviews</a>
-                </div>
+
+                {#if visibilidadeAvaliacao == true}
+                  <div class=" flex justify-center">
+                    <Rating count rating={4.95} id="example-4">
+                      <span
+                        class="w-1 h-1 mx-1.5 bg-gray-500 rounded-full dark:bg-gray-400"
+                      />
+                      <a
+                        href="/"
+                        class="text-sm font-medium text-gray-900 underline hover:no-underline dark:text-white"
+                      >
+                        73 reviews
+                      </a>
+                    </Rating>
+                  </div>
+                {/if}
+
                 <p class="text-2xl font-bold text-gray-900 dark:text-white">
                   R${preco}
                 </p>
@@ -104,7 +116,7 @@
             <img
               src={imagem}
               alt=""
-              class="ml-auto h-52 w-48 rounded-r-xl object-cover"
+              class="ml-auto h-full w-60 rounded-r-lg object-cover"
             />
           </div>
         </div>
