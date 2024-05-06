@@ -7,6 +7,7 @@
   import { Button, buttonVariants } from "$lib/components/ui/button";
   import Switch from "../ui/switch/switch.svelte";
   import { Rating } from "flowbite-svelte";
+  import { onMount } from "svelte";
 
   export let id: number;
   export let nome: string;
@@ -14,7 +15,40 @@
   export let descricao: string;
   export let imagem: string;
   export let visibilidadeAvaliacao: boolean;
-  export let avaliacao;
+  export let avaliacao = [];
+
+  async function fetchAvaliacao() {
+    try {
+      const response = await fetch("http://localhost:3000/avaliacao");
+      if (!response.ok) {
+        throw new Error("Falha fetch nas avaliacoes");
+      }
+      avaliacao = await response.json();
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  function calculaMediaAvaliacao(avaliacoes, produto_id) {
+    const avaliacoesProduto = avaliacoes.filter(
+      (avaliacao) => avaliacao.produto_id === produto_id
+    );
+    if (avaliacoesProduto.length === 0) {
+      return 0;
+    }
+    const totalStars = avaliacoesProduto.reduce(
+      (acc, avaliacao) => acc + avaliacao.estrelas,
+      0
+    );
+    return totalStars / avaliacoesProduto.length;
+  }
+
+  let mediaAvaliacao = 0;
+
+  onMount(async () => {
+    await fetchAvaliacao();
+    mediaAvaliacao = calculaMediaAvaliacao(avaliacao, id);
+  });
 
   const atualizarProduto = () => {
     const produto = { nome, descricao, preco, imagem, visibilidadeAvaliacao };
@@ -92,7 +126,7 @@
 
                 {#if visibilidadeAvaliacao == true}
                   <div class=" flex justify-center">
-                    <Rating count rating={4.95} id="example-4">
+                    <Rating count rating={mediaAvaliacao} id="example-4">
                       <span
                         class="w-1 h-1 mx-1.5 bg-gray-500 rounded-full dark:bg-gray-400"
                       />
@@ -100,7 +134,13 @@
                         href="/"
                         class="text-sm font-medium text-gray-900 underline hover:no-underline dark:text-white"
                       >
-                        73 reviews
+                        {#if avaliacao.filter((av) => av.produto_id === id).length == 1}
+                          {avaliacao.filter((av) => av.produto_id === id)
+                            .length} avaliação
+                        {:else}
+                          {avaliacao.filter((av) => av.produto_id === id)
+                            .length} avaliações
+                        {/if}
                       </a>
                     </Rating>
                   </div>
@@ -169,7 +209,7 @@
           <Label class="text-right">Visibilidade</Label>
           <Switch bind:checked={visibilidadeAvaliacao} />
           <p class="w-max text-sm text-right font-light text-primary">
-            (Alternar visibilidade das avaliacoes)
+            (Alternar visibilidade das avaliações)
           </p>
         </div>
       </div>

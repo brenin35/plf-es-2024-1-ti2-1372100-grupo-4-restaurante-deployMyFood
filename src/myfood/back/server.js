@@ -98,6 +98,19 @@ app.delete("/produtos/delete/:id", (req, res) => {
   });
 });
 
+app.get("/avaliacao", (req, res) => {
+  const sql = "SELECT * FROM avaliacao";
+
+  db.query(sql, (error, results) => {
+    if (error) {
+      console.error("Erro ao buscar avaliações:", error);
+      res.status(500).send("Erro ao buscar avaliações");
+      return;
+    }
+    res.json(results);
+  });
+});
+
 app.listen(port, () => {
   console.log(`Servidor rodando em http://localhost:${port}`);
 });
