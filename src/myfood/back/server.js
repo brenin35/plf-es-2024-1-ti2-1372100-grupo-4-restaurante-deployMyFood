@@ -12,24 +12,26 @@ app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 app.use(express.json());
 app.use(cors());
 
-app.get('/', (req, res) => {
-  db.query('SELECT * FROM produtos', (error, results) => {
+app.get('/produtos', (req, res) => {
+  const sql = 'SELECT * FROM produtos';
+
+  db.query(sql, (error, results) => {
     if (error) {
       console.error('Erro ao buscar produtos:', error);
       res.status(500).send('Erro ao buscar produtos');
       return;
     }
 
-    res.send(results);
+    res.json(results);
   });
 });
 
 app.post('/produtos', (req, res) => {
   console.log(req.body);
-  const { nome, descricao, preco, imagem } = req.body;
+  const { nome, descricao, preco, imagem, avaliacao, visibilidadeAvaliacao } = req.body;
 
-  const sql = 'INSERT INTO produtos (nome, descricao, preco, imagem) VALUES (?, ?, ?, ?)';
-  const values = [nome, descricao, preco, imagem];
+  const sql = 'INSERT INTO produtos (nome, descricao, preco, imagem, avaliacao, visibilidadeAvaliacao) VALUES (?, ?, ?, ?, ?, ?)';
+  const values = [nome, descricao, preco, imagem, avaliacao, visibilidadeAvaliacao];
 
   db.query(sql, values, (error, results) => {
     if (error) {
@@ -44,10 +46,10 @@ app.post('/produtos', (req, res) => {
 
 app.put('/produtos/edit/:id', (req, res) => {
   const idProduto = req.params.id;
-  const { nome, descricao, preco, imagem } = req.body;
+  const { nome, descricao, preco, imagem, avaliacao, visibilidadeAvaliacao} = req.body;
 
-  const sql = 'UPDATE produtos SET nome = ?, descricao = ?, preco = ?, imagem = ? WHERE id = ?';
-  const values = [nome, descricao, preco, imagem, idProduto];
+  const sql = 'UPDATE produtos SET nome = ?, descricao = ?, preco = ?, imagem = ?, avaliacao = ?, visibilidadeAvaliacao = ? WHERE id = ?';
+  const values = [nome, descricao, preco, imagem, avaliacao, visibilidadeAvaliacao, idProduto];
 
   db.query(sql, values, (error, results) => {
     if (error) {

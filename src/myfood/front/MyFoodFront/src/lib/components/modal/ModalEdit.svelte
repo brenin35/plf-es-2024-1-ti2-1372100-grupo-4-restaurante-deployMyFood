@@ -6,39 +6,32 @@
   import { Label } from "$lib/components/ui/label/index.js";
   import { Button, buttonVariants } from "$lib/components/ui/button";
 
+  export let id: number;
   export let nome: string;
   export let preco: number;
   export let descricao: string;
   export let imagem: string;
+  export let visibilidadeAvaliacao: boolean;
 
-  function atualizarProduto() {
-    const novoNomeElement = document.getElementById("name");
-    const novaDescricaoElement = document.getElementById("category");
-    const novoPrecoElement = document.getElementById("price");
+  const atualizarProduto = () => {
 
-    if (novoNomeElement && novaDescricaoElement && novoPrecoElement) {
-      const novoNome = (novoNomeElement as HTMLInputElement).value;
-      const novaDescricao = (novaDescricaoElement as HTMLInputElement).value;
-      const novoPreco = (novoPrecoElement as HTMLInputElement).value;
+    const produto = { nome, descricao, preco, imagem };
 
-      let produtos = JSON.parse(localStorage.getItem("produtos") || "[]");
-
-      const index = produtos.findIndex((produto: any) => produto.nome === nome);
-
-      if (index !== -1) {
-        produtos[index].nome = novoNome;
-        produtos[index].descricao = novaDescricao;
-        produtos[index].preco = novoPreco;
-        produtos[index].imagem = imagem;
-
-        localStorage.setItem("produtos", JSON.stringify(produtos));
-      } else {
-        console.error("Produto não encontrado no localStorage.");
-      }
-    } else {
-      console.error("Elementos de entrada não encontrados.");
-    }
-  }
+    fetch(`http://localhost:3000/produtos/edit/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(produto),
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Produto atualizado com sucesso:', data);
+    })
+    .catch((error) => {
+      console.error('Erro:', error);
+    });
+  };
 
   function excluirProduto() {
     const confirmDelete = window.confirm(
@@ -46,20 +39,20 @@
     );
 
     if (confirmDelete) {
-      let produtos = JSON.parse(localStorage.getItem("produtos") || "[]");
-      const index = produtos.findIndex((produto: any) => produto.nome === nome);
-
-      if (index !== -1) {
-        produtos.splice(index, 1);
-        localStorage.setItem("produtos", JSON.stringify(produtos));
-      } else {
-        console.error("Produto não encontrado no localStorage.");
-      }
-    } else {
+      fetch(`http://localhost:3000/produtos/delete/${id}`, {
+        method: 'DELETE',
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log('Produto excluído com sucesso:', data);
+      })
+      .catch((error) => {
+        console.error('Erro:', error);
+      });
     }
   }
 
-  function converterImg(event) {
+  function converterImg(event: { target: { files: any[]; }; }) {
     const file = event.target.files[0];
     const reader = new FileReader();
 
@@ -108,6 +101,7 @@
         </div>
       </Card.Root>
     </Dialog.Trigger>
+    
     <Dialog.Content class="sm:max-w-[600px]">
       <Dialog.Header>
         <Dialog.Title>Editar {nome}</Dialog.Title>
@@ -118,30 +112,19 @@
       <div class="grid gap-4 py-4">
         <div class="grid grid-cols-4 items-center gap-4">
           <Label for="name" class="text-right">Nome</Label>
-          <Input id="name" value={nome} class="col-span-3" />
+          <Input bind:value={nome} id="name" class="col-span-3" />
         </div>
         <div class="grid grid-cols-4 items-center gap-4">
           <Label for="category" class="text-right">Descricao</Label>
-          <Textarea
-            placeholder="Escreva aqui a descricao do prato..."
-            id="description"
-            value={descricao}
-            class="col-span-3 resize-none h-24"
-          />
+          <Textarea bind:value={descricao} placeholder="Escreva aqui a descricao do prato..." id="description" class="col-span-3 resize-none h-24" />
         </div>
         <div class="grid grid-cols-4 items-center gap-4">
           <Label for="price" class="text-right">Preco</Label>
-          <Input id="price" value={preco} class="col-span-3" />
+          <Input bind:value={preco} id="price" class="col-span-3" />
         </div>
         <div class="grid grid-cols-4 items-center gap-4">
           <Label for="imagem" class="text-right">Imagem</Label>
-          <Input
-            id="imagem"
-            type="file"
-            accept="image/*"
-            class="col-span-3"
-            on:change={converterImg}
-          />
+          <Input id="imagem" type="file" accept="image/*" class="col-span-3" on:change={converterImg} />
         </div>
       </div>
       <Dialog.Footer>
@@ -150,7 +133,7 @@
             >Excluir prato</Button
           >
         </Dialog.Close>
-
+    
         <Dialog.Close>
           <Button variant="buttonAdd" type="submit" on:click={atualizarProduto}
             >Salvar alteracões</Button

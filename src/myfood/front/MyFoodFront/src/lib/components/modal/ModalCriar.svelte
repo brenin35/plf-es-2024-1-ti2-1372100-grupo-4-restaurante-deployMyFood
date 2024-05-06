@@ -12,13 +12,15 @@
   let descricao = "";
   let preco = 0;
   let imagem = "";
+  let avaliacao = 0.0;
+  let visibilidadeAvaliacao = true;
 
   function adicionarProduto() {
   if (!nome || !descricao || !preco) {
     alert("Por favor, preencha todos os campos obrigatórios.");
     return;
   }
-  const produto = { nome, descricao, preco, imagem };
+  const produto = { nome, descricao, preco, imagem, avaliacao, visibilidadeAvaliacao };
 
   fetch('http://localhost:3000/produtos', {
     method: 'POST',

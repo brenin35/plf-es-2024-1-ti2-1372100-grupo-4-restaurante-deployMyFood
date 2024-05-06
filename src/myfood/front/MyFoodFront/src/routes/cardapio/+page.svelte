@@ -4,6 +4,8 @@
   import ModalEdit from "$lib/components/modal/ModalEdit.svelte";
 
   type Prato = {
+    visibilidadeAvaliacao: boolean;
+    id: number;
     nome: string;
     preco: number;
     descricao: string;
@@ -12,8 +14,13 @@
 
   let pratos: Prato[] = [];
 
-  onMount(() => {
-    pratos = JSON.parse(localStorage.getItem("produtos") ?? "[]");
+  onMount(async () => {
+    const response = await fetch('http://localhost:3000/produtos');
+    if (!response.ok) {
+      console.error('Erro ao buscar produtos:', response.status);
+      return;
+    }
+    pratos = await response.json();
   });
 </script>
 
@@ -41,10 +48,12 @@
     >
       {#each pratos as item}
         <ModalEdit
+          id={item.id}
           nome={item.nome}
           preco={item.preco}
           descricao={item.descricao}
           imagem={item.imagem}
+          visibilidadeAvaliacao={item.visibilidadeAvaliacao}
         />
       {/each}
     </div>
