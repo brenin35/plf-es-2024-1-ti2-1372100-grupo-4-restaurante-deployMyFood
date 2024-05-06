@@ -73,17 +73,17 @@
     <Dialog.Trigger>
       <Card.Root class="w-auto">
         <div class="row flex">
-          <div class="column">
+          <div class="column w-7/12">
             <Card.Header>
               <Card.Title
-                class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+                class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
                 >{nome}</Card.Title
               >
             </Card.Header>
             <Card.Content class="flex items-center">
               <div class="flex-grow">
                 <p
-                  class="mb-3 font-normal leading-tight text-gray-700 dark:text-gray-400"
+                  class="mb-2 font-normal leading-tight text-gray-700 dark:text-gray-400"
                 >
                   Descricao: {descricao}
                 </p>
@@ -93,7 +93,7 @@
               </div>
             </Card.Content>
           </div>
-          <div class="column">
+          <div class="column w-5/12 h-auto">
             <img
               src={imagem}
               alt=""
