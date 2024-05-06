@@ -114,14 +114,14 @@
       <div class="grid gap-4 py-4">
         <div class="grid grid-cols-4 items-center gap-4">
           <Label for="name" class="text-right">Nome</Label>
-          <Input bind:value={nome} id="name" class="col-span-3" />
+          <Input bind:value={nome} id="name" type="text" maxlength={17} class="col-span-3" />
         </div>
         <div class="grid grid-cols-4 items-center gap-4">
           <Label for="category" class="text-right">Descricao</Label>
           <Textarea
             bind:value={descricao}
             placeholder="Escreva aqui a descricao do prato..."
-            id="description"
+            id="description" maxlength={54}
             class="col-span-3 resize-none h-24"
           />
         </div>

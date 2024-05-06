@@ -78,6 +78,7 @@
           <Input
             placeholder="Digite o nome do prato..."
             id="name"
+            type="text" maxlength={17}
             bind:value={nome}
             class="col-span-3"
             required
@@ -88,6 +89,7 @@
           <Textarea
             placeholder="Escreva aqui a descricao do prato..."
             id="description"
+            type="text" maxlength={54}
             bind:value={descricao}
             class="col-span-3 resize-none h-24"
             required
