@@ -6,6 +6,7 @@
   import { Label } from "$lib/components/ui/label/index.js";
   import { Button, buttonVariants } from "$lib/components/ui/button";
   import Switch from "../ui/switch/switch.svelte";
+  import { Star } from "lucide-svelte";
 
   export let id: number;
   export let nome: string;
@@ -13,6 +14,7 @@
   export let descricao: string;
   export let imagem: string;
   export let visibilidadeAvaliacao: boolean;
+  export let avaliacao;
 
   const atualizarProduto = () => {
     const produto = { nome, descricao, preco, imagem, visibilidadeAvaliacao };
@@ -87,6 +89,11 @@
                 >
                   Descricao: {descricao}
                 </p>
+                <div class="flex items-center justify-center gap-3">
+                  <Star />
+                  <p>5.00 </p>
+                  <a href="/">70 reviews</a>
+                </div>
                 <p class="text-2xl font-bold text-gray-900 dark:text-white">
                   R${preco}
                 </p>
@@ -149,8 +156,10 @@
         <div class="grid grid-cols-4 items-center gap-4">
           <Label class="text-right">Visibilidade</Label>
           <Switch bind:checked={visibilidadeAvaliacao} />
-          <p class="w-max text-sm text-right font-light text-primary">(Alternar visibilidade das avaliacoes)</p>
-      </div>      
+          <p class="w-max text-sm text-right font-light text-primary">
+            (Alternar visibilidade das avaliacoes)
+          </p>
+        </div>
       </div>
       <Dialog.Footer>
         <Dialog.Close>

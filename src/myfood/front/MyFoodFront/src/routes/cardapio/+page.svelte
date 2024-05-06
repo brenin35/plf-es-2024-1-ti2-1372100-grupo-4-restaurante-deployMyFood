@@ -10,6 +10,7 @@
     preco: number;
     descricao: string;
     imagem: string;
+    avaliacao: Array<{ estrelas: number; comentario: string }>;
   };
 
   let pratos: Prato[] = [];
@@ -54,6 +55,7 @@
           descricao={item.descricao}
           imagem={item.imagem}
           visibilidadeAvaliacao={item.visibilidadeAvaliacao}
+          avaliacao={item.avaliacao}
         />
       {/each}
     </div>
