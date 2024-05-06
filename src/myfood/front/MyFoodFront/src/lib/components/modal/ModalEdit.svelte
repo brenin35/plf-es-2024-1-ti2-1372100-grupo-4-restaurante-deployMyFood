@@ -5,6 +5,7 @@
   import { Input } from "$lib/components/ui/input/index.js";
   import { Label } from "$lib/components/ui/label/index.js";
   import { Button, buttonVariants } from "$lib/components/ui/button";
+  import Switch from "../ui/switch/switch.svelte";
 
   export let id: number;
   export let nome: string;
@@ -14,23 +15,23 @@
   export let visibilidadeAvaliacao: boolean;
 
   const atualizarProduto = () => {
-
-    const produto = { nome, descricao, preco, imagem };
+    const produto = { nome, descricao, preco, imagem, visibilidadeAvaliacao };
 
     fetch(`http://localhost:3000/produtos/edit/${id}`, {
-      method: 'PUT',
+      method: "PUT",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(produto),
     })
-    .then(response => response.json())
-    .then(data => {
-      console.log('Produto atualizado com sucesso:', data);
-    })
-    .catch((error) => {
-      console.error('Erro:', error);
-    });
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Produto atualizado com sucesso:", data);
+      })
+      .catch((error) => {
+        console.error("Erro:", error);
+      });
+    console.log(visibilidadeAvaliacao);
   };
 
   function excluirProduto() {
@@ -40,19 +41,20 @@
 
     if (confirmDelete) {
       fetch(`http://localhost:3000/produtos/delete/${id}`, {
-        method: 'DELETE',
+        method: "DELETE",
       })
-      .then(response => response.json())
-      .then(data => {
-        console.log('Produto excluído com sucesso:', data);
-      })
-      .catch((error) => {
-        console.error('Erro:', error);
-      });
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("Produto excluído com sucesso:", data);
+          window.location.reload();
+        })
+        .catch((error) => {
+          console.error("Erro:", error);
+        });
     }
   }
 
-  function converterImg(event: { target: { files: any[]; }; }) {
+  function converterImg(event: { target: { files: any[] } }) {
     const file = event.target.files[0];
     const reader = new FileReader();
 
@@ -101,7 +103,7 @@
         </div>
       </Card.Root>
     </Dialog.Trigger>
-    
+
     <Dialog.Content class="sm:max-w-[600px]">
       <Dialog.Header>
         <Dialog.Title>Editar {nome}</Dialog.Title>
@@ -116,7 +118,12 @@
         </div>
         <div class="grid grid-cols-4 items-center gap-4">
           <Label for="category" class="text-right">Descricao</Label>
-          <Textarea bind:value={descricao} placeholder="Escreva aqui a descricao do prato..." id="description" class="col-span-3 resize-none h-24" />
+          <Textarea
+            bind:value={descricao}
+            placeholder="Escreva aqui a descricao do prato..."
+            id="description"
+            class="col-span-3 resize-none h-24"
+          />
         </div>
         <div class="grid grid-cols-4 items-center gap-4">
           <Label for="price" class="text-right">Preco</Label>
@@ -124,7 +131,17 @@
         </div>
         <div class="grid grid-cols-4 items-center gap-4">
           <Label for="imagem" class="text-right">Imagem</Label>
-          <Input id="imagem" type="file" accept="image/*" class="col-span-3" on:change={converterImg} />
+          <Input
+            id="imagem"
+            type="file"
+            accept="image/*"
+            class="col-span-3"
+            on:change={converterImg}
+          />
+        </div>
+        <div class="grid grid-cols-4 items-center gap-4">
+          <Label class="text-right">Visibilidade</Label>
+          <Switch bind:checked={visibilidadeAvaliacao} />
         </div>
       </div>
       <Dialog.Footer>
@@ -133,7 +150,7 @@
             >Excluir prato</Button
           >
         </Dialog.Close>
-    
+
         <Dialog.Close>
           <Button variant="buttonAdd" type="submit" on:click={atualizarProduto}
             >Salvar alteracões</Button
