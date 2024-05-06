@@ -15,7 +15,7 @@
   export let descricao: string;
   export let imagem: string;
   export let visibilidadeAvaliacao: boolean;
-  export let avaliacao = [];
+  export let avaliacao: { produto_id: number, estrelas: number }[] = [];
 
   async function fetchAvaliacao() {
     try {
@@ -29,7 +29,7 @@
     }
   }
 
-  function calculaMediaAvaliacao(avaliacoes, produto_id) {
+  function calculaMediaAvaliacao(avaliacoes: { produto_id: number, estrelas: number }[], produto_id: number) {
     const avaliacoesProduto = avaliacoes.filter(
       (avaliacao) => avaliacao.produto_id === produto_id
     );
@@ -41,7 +41,8 @@
       0
     );
     return totalStars / avaliacoesProduto.length;
-  }
+}
+
 
   let mediaAvaliacao = 0;
 
@@ -90,7 +91,7 @@
     }
   }
 
-  function converterImg(event: { target: { files: any[] } }) {
+  function converterImg(event) {
     const file = event.target.files[0];
     const reader = new FileReader();
 

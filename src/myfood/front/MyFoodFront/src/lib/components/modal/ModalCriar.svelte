@@ -12,7 +12,6 @@
   let descricao = "";
   let preco = 0;
   let imagem = "";
-  let avaliacao = 0.0;
   let visibilidadeAvaliacao = true;
 
   function adicionarProduto() {
@@ -25,7 +24,6 @@
       descricao,
       preco,
       imagem,
-      avaliacao,
       visibilidadeAvaliacao,
     };
 
@@ -78,7 +76,8 @@
           <Input
             placeholder="Digite o nome do prato..."
             id="name"
-            type="text" maxlength={17}
+            type="text"
+            maxlength={17}
             bind:value={nome}
             class="col-span-3"
             required
@@ -88,7 +87,8 @@
           <Label for="category" class="text-right">Descricao</Label>
           <Textarea
             placeholder="Escreva aqui a descricao do prato..."
-            id="description" maxlength={54}
+            id="description"
+            maxlength={54}
             bind:value={descricao}
             class="col-span-3 resize-none h-24"
             required

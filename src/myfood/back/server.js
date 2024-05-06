@@ -31,7 +31,7 @@ app.post("/produtos", (req, res) => {
   const { nome, descricao, preco, imagem, visibilidadeAvaliacao } = req.body;
 
   const sql =
-    "INSERT INTO produtos (nome, descricao, preco, imagem, visibilidadeAvaliacao) VALUES (?, ?, ?, ?, ?, ?)";
+    "INSERT INTO produtos (nome, descricao, preco, imagem, visibilidadeAvaliacao) VALUES (?, ?, ?, ?, ?)";
   const values = [nome, descricao, preco, imagem, visibilidadeAvaliacao];
 
   db.query(sql, values, (error, results) => {
