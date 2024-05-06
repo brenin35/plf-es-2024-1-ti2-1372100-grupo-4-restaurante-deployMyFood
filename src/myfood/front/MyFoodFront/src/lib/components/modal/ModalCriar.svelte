@@ -88,8 +88,7 @@
           <Label for="category" class="text-right">Descricao</Label>
           <Textarea
             placeholder="Escreva aqui a descricao do prato..."
-            id="description"
-            type="text" maxlength={54}
+            id="description" maxlength={54}
             bind:value={descricao}
             class="col-span-3 resize-none h-24"
             required
