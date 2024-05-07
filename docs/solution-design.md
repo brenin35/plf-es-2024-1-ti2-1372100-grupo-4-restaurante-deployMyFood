@@ -12,7 +12,7 @@
 | ---            | ---             |
 | SGBD           | MySQL           |
 | Front end      | HTML+CSS+JS     |
-| Back end       | Java SpringBoot |
+| Back end       | NodeJS |
 | Deploy         | Github Pages    |
 |Front end Framework | Svelte |
 |Bibliotecas|Lucide+Shadcn|
