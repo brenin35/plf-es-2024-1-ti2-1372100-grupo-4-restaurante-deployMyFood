@@ -79,22 +79,32 @@ app.put("/produtos/edit/:id", (req, res) => {
 app.delete("/produtos/delete/:id", (req, res) => {
   const idProduto = req.params.id;
 
-  const sql = "DELETE FROM produtos WHERE id = ?";
-  const values = [idProduto];
+  const deleteAvaliacaoSql = "DELETE FROM avaliacao WHERE produto_id = ?";
+  const deleteAvaliacaoValues = [idProduto];
 
-  db.query(sql, values, (error, results) => {
+  db.query(deleteAvaliacaoSql, deleteAvaliacaoValues, (error, results) => {
     if (error) {
-      console.error("Erro ao excluir produto:", error);
-      res.status(500).send("Erro ao excluir produto");
+      console.error("Erro ao excluir avaliações associadas ao produto:", error);
+      res.status(500).send("Erro ao excluir avaliações associadas ao produto");
       return;
     }
+    const deleteProdutoSql = "DELETE FROM produtos WHERE id = ?";
+    const deleteProdutoValues = [idProduto];
 
-    if (results.affectedRows === 0) {
-      res.status(404).send("Produto não encontrado");
-      return;
-    }
+    db.query(deleteProdutoSql, deleteProdutoValues, (error, results) => {
+      if (error) {
+        console.error("Erro ao excluir produto:", error);
+        res.status(500).send("Erro ao excluir produto");
+        return;
+      }
 
-    res.json({ message: "Produto excluído com sucesso!" });
+      if (results.affectedRows === 0) {
+        res.status(404).send("Produto não encontrado");
+        return;
+      }
+
+      res.json({ message: "Produto excluído com sucesso!" });
+    });
   });
 });
 

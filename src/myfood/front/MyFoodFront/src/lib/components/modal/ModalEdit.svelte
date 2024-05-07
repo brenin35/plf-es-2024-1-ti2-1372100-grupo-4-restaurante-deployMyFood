@@ -15,7 +15,8 @@
   export let descricao: string;
   export let imagem: string;
   export let visibilidadeAvaliacao: boolean;
-  export let avaliacao: { produto_id: number; estrelas: number }[] = [];
+  export let avaliacao: { id: number; produto_id: number; estrelas: number }[] =
+    [];
 
   async function fetchAvaliacao() {
     try {
@@ -73,24 +74,42 @@
   };
 
   function excluirProduto() {
-    const confirmDelete = window.confirm(
-      "Tem certeza de que deseja excluir este produto?"
-    );
+  const confirmDelete = window.confirm(
+    "Tem certeza de que deseja excluir este produto?"
+  );
 
-    if (confirmDelete) {
-      fetch(`http://localhost:3000/produtos/delete/${id}`, {
-        method: "DELETE",
+  if (confirmDelete) {
+    fetch(`http://localhost:3000/produtos/delete/${id}`, {
+      method: "DELETE",
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Erro ao excluir produto");
+        }
+        return response.json();
       })
-        .then((response) => response.json())
-        .then((data) => {
-          console.log("Produto excluído com sucesso:", data);
-          window.location.reload();
-        })
-        .catch((error) => {
-          console.error("Erro:", error);
+      .then((data) => {
+        const productId = data.id;
+        return fetch(`http://localhost:3000/avaliacao/delete/${productId}`, {
+          method: "DELETE",
         });
-    }
+      })
+      .then((response) => {
+        if (!response.ok) {
+          if (response.status >= 400 && response.status < 500) {
+            console.log("Avaliações excluídas, mas ocorreu um erro ao obter a resposta do servidor.");
+          } else {
+            throw new Error("Erro ao excluir avaliações associadas ao produto");
+          }
+        }
+        console.log("Avaliações e produto excluídos com sucesso.");
+        window.location.reload();
+      })
+      .catch((error) => {
+        console.error("Erro:", error);
+      });
   }
+}
 
   function converterImg(event) {
     const file = event.target.files[0];
