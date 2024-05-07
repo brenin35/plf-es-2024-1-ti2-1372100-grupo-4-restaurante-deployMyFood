@@ -27,7 +27,7 @@
       visibilidadeAvaliacao,
     };
 
-    fetch("http://localhost:3000/produtos", {
+    fetch("http://localhost:8080/produtos", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

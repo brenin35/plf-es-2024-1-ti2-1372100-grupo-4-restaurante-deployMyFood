@@ -16,7 +16,7 @@
   let pratos: Prato[] = [];
 
   onMount(async () => {
-    const response = await fetch('http://localhost:3000/produtos');
+    const response = await fetch('http://localhost:8080/produtos');
     if (!response.ok) {
       console.error('Erro ao buscar produtos:', response.status);
       return;

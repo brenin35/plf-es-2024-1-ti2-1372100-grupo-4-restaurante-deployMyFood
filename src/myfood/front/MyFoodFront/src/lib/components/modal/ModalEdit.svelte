@@ -20,7 +20,7 @@
 
   async function fetchAvaliacao() {
     try {
-      const response = await fetch("http://localhost:3000/avaliacao");
+      const response = await fetch("http://localhost:8080/avaliacao");
       if (!response.ok) {
         throw new Error("Falha fetch nas avaliacoes");
       }
@@ -56,7 +56,7 @@
   const atualizarProduto = () => {
     const produto = { nome, descricao, preco, imagem, visibilidadeAvaliacao };
 
-    fetch(`http://localhost:3000/produtos/edit/${id}`, {
+    fetch(`http://localhost:8080/produtos/edit/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -79,7 +79,7 @@
   );
 
   if (confirmDelete) {
-    fetch(`http://localhost:3000/produtos/delete/${id}`, {
+    fetch(`http://localhost:8080/produtos/delete/${id}`, {
       method: "DELETE",
     })
       .then((response) => {
@@ -90,7 +90,7 @@
       })
       .then((data) => {
         const productId = data.id;
-        return fetch(`http://localhost:3000/avaliacao/delete/${productId}`, {
+        return fetch(`http://localhost:8080/avaliacao/delete/${productId}`, {
           method: "DELETE",
         });
       })
