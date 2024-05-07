@@ -2,7 +2,7 @@
 
 ### 4.1. Modelo de dados
 
-![Restaurante drawio](https://github.com/ICEI-PUC-Minas-PPLES-TI/plf-es-2024-1-ti2-1372100-grupo-4-restaurante/assets/63589918/639595ea-3fda-4b13-963b-22e52a5b0615)
+![Restaurante4](https://github.com/ICEI-PUC-Minas-PPLES-TI/plf-es-2024-1-ti2-1372100-grupo-4-restaurante/assets/103607467/5481c59b-9d75-4e36-94e5-be3f1e6a32dd)
 
 ---
 
@@ -11,9 +11,8 @@
 | **Dimensão**   | **Tecnologia**  |
 | ---            | ---             |
 | SGBD           | MySQL           |
-| Front end      | HTML+CSS+JS     |
-| Back end       | Java SpringBoot |
-| Deploy         | Github Pages    |
 |Front end Framework | Svelte |
+| Back end       | NodeJS |
+| Deploy         | Github Pages    |
 |Bibliotecas|Lucide+Shadcn|
 
