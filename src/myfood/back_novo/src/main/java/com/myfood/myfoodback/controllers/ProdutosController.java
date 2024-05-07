@@ -1,12 +1,10 @@
 package com.myfood.myfoodback.controllers;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import com.myfood.myfoodback.models.Produtos;
+import com.myfood.myfoodback.repositories.ProdutosRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import com.myfood.myfoodback.models.Produtos;
-import com.myfood.myfoodback.repositories.ProdutosRepository;
 
 import java.util.List;
 
@@ -14,37 +12,54 @@ import java.util.List;
 @RequestMapping("/produtos")
 public class ProdutosController {
 
-    @Autowired
-    private ProdutosRepository produtosRepository;
+    private final ProdutosRepository produtosRepository;
+
+    public ProdutosController(ProdutosRepository produtosRepository) {
+        this.produtosRepository = produtosRepository;
+    }
 
     @GetMapping
     public ResponseEntity<List<Produtos>> getAllProdutos() {
         List<Produtos> produtos = produtosRepository.findAll();
-        return ResponseEntity.ok(produtos);
+        return new ResponseEntity<>(produtos, HttpStatus.OK);
     }
 
     @PostMapping
     public ResponseEntity<Produtos> addProduto(@RequestBody Produtos produto) {
         Produtos savedProduto = produtosRepository.save(produto);
-        return ResponseEntity.status(HttpStatus.CREATED).body(savedProduto);
+        return new ResponseEntity<>(savedProduto, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Produtos> getProdutoById(@PathVariable Long id) {
+        Produtos produto = produtosRepository.findById(id).orElse(null);
+        if (produto != null) {
+            return new ResponseEntity<>(produto, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Produtos> updateProduto(@PathVariable Long id, @RequestBody Produtos produto) {
-        if (!produtosRepository.existsById(id)) {
-            return ResponseEntity.notFound().build();
+    public ResponseEntity<Produtos> updateProduto(@PathVariable Long id, @RequestBody Produtos updatedProduto) {
+        Produtos existingProduto = produtosRepository.findById(id).orElse(null);
+        if (existingProduto != null) {
+            updatedProduto.setId(id);
+            Produtos savedProduto = produtosRepository.save(updatedProduto);
+            return new ResponseEntity<>(savedProduto, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        produto.setId(id);
-        Produtos updatedProduto = produtosRepository.save(produto);
-        return ResponseEntity.ok(updatedProduto);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteProduto(@PathVariable Long id) {
-        if (!produtosRepository.existsById(id)) {
-            return ResponseEntity.notFound().build();
+        Produtos produto = produtosRepository.findById(id).orElse(null);
+        if (produto != null) {
+            produtosRepository.delete(produto);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        produtosRepository.deleteById(id);
-        return ResponseEntity.noContent().build();
     }
 }
