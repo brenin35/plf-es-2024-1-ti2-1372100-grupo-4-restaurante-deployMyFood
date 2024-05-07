@@ -1,12 +1,10 @@
 package com.myfood.myfoodback.controllers;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import com.myfood.myfoodback.models.Avaliacao;
+import com.myfood.myfoodback.repositories.AvaliacaoRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import com.myfood.myfoodback.models.Avaliacao;
-import com.myfood.myfoodback.repositories.AvaliacaoRepository;
 
 import java.util.List;
 
@@ -14,37 +12,54 @@ import java.util.List;
 @RequestMapping("/avaliacao")
 public class AvaliacaoController {
 
-    @Autowired
-    private AvaliacaoRepository avaliacaoRepository;
+    private final AvaliacaoRepository avaliacaoRepository;
+
+    public AvaliacaoController(AvaliacaoRepository avaliacaoRepository) {
+        this.avaliacaoRepository = avaliacaoRepository;
+    }
 
     @GetMapping
-    public ResponseEntity<List<Avaliacao>> getAllAvaliacao() {
-        List<Avaliacao> Avaliacao = avaliacaoRepository.findAll();
-        return ResponseEntity.ok(Avaliacao);
+    public ResponseEntity<List<Avaliacao>> getAllAvaliacoes() {
+        List<Avaliacao> avaliacoes = avaliacaoRepository.findAll();
+        return new ResponseEntity<>(avaliacoes, HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<Avaliacao> addProduto(@RequestBody Avaliacao produto) {
-        Avaliacao savedProduto = avaliacaoRepository.save(produto);
-        return ResponseEntity.status(HttpStatus.CREATED).body(savedProduto);
+    public ResponseEntity<Avaliacao> addAvaliacao(@RequestBody Avaliacao avaliacao) {
+        Avaliacao savedAvaliacao = avaliacaoRepository.save(avaliacao);
+        return new ResponseEntity<>(savedAvaliacao, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Avaliacao> getAvaliacaoById(@PathVariable Long id) {
+        Avaliacao avaliacao = avaliacaoRepository.findById(id).orElse(null);
+        if (avaliacao != null) {
+            return new ResponseEntity<>(avaliacao, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Avaliacao> updateProduto(@PathVariable Long id, @RequestBody Avaliacao produto) {
-        if (!avaliacaoRepository.existsById(id)) {
-            return ResponseEntity.notFound().build();
+    public ResponseEntity<Avaliacao> updateAvaliacao(@PathVariable Long id, @RequestBody Avaliacao updatedAvaliacao) {
+        Avaliacao existingAvaliacao = avaliacaoRepository.findById(id).orElse(null);
+        if (existingAvaliacao != null) {
+            updatedAvaliacao.setId(id);
+            Avaliacao savedAvaliacao = avaliacaoRepository.save(updatedAvaliacao);
+            return new ResponseEntity<>(savedAvaliacao, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        produto.setId(id);
-        Avaliacao updatedProduto = avaliacaoRepository.save(produto);
-        return ResponseEntity.ok(updatedProduto);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteProduto(@PathVariable Long id) {
-        if (!avaliacaoRepository.existsById(id)) {
-            return ResponseEntity.notFound().build();
+    public ResponseEntity<Void> deleteAvaliacao(@PathVariable Long id) {
+        Avaliacao avaliacao = avaliacaoRepository.findById(id).orElse(null);
+        if (avaliacao != null) {
+            avaliacaoRepository.delete(avaliacao);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        avaliacaoRepository.deleteById(id);
-        return ResponseEntity.noContent().build();
     }
 }
