@@ -111,14 +111,14 @@
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
       {#each pratos as prato}
         {#if avaliacao.filter((av) => av.produto_id === prato.id).length === 0}
-          <div class="bg-white rounded-lg shadow-md p-4 text-center">
+          <div class="bg-white rounded-lg shadow-md p-4 text-center border">
             <p class="text-xl font-semibold">Avaliações de {prato.nome}</p>
             <p class="text-primary text-xl mt-4">
               {prato.nome} não possui nenhuma avaliação
             </p>
           </div>
         {:else}
-          <div class="bg-white rounded-lg shadow-md p-4 text-center">
+          <div class="bg-white rounded-lg shadow-md p-4 text-center border">
             <p class="text-xl font-semibold mb-4">Avaliações de {prato.nome}</p>
             {#each avaliacao.filter((av) => av.produto_id === prato.id) as review}
               <hr />
