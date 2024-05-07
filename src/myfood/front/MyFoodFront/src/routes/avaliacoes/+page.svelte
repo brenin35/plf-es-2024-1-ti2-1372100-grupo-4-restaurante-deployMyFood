@@ -110,23 +110,32 @@
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
       {#each pratos as prato}
-        <div class="bg-white rounded-lg shadow-md p-4">
-          <p class="text-xl font-semibold">Avaliacões de {prato.nome}</p>
-          {#each avaliacao.filter((av) => av.produto_id === prato.id) as review}
-            <div class="mt-4 flex">
-              <p>Avaliacão:</p>
-              <Rating id="" total={5} rating={review.estrelas}>
-                <p
-                  slot="text"
-                  class="ms-2 text-sm font-medium text-gray-500 dark:text-gray-400"
-                >
-                  {review.estrelas} de 5
-                </p>
-              </Rating>
-            </div>
-            <p>Comentário: {review.comentario}</p>
-          {/each}
-        </div>
+        {#if avaliacao.filter((av) => av.produto_id === prato.id).length === 0}
+          <div class="bg-white rounded-lg shadow-md p-4">
+            <p class="text-xl font-semibold">Avaliações de {prato.nome}</p>
+            <p class="text-primary text-xl mt-4">
+              {prato.nome} não possui nenhuma avaliação
+            </p>
+          </div>
+        {:else}
+          <div class="bg-white rounded-lg shadow-md p-4">
+            <p class="text-xl font-semibold">Avaliações de {prato.nome}</p>
+            {#each avaliacao.filter((av) => av.produto_id === prato.id) as review}
+              <div class="mt-4 flex">
+                <p>Avaliação:</p>
+                <Rating id="" total={5} rating={review.estrelas}>
+                  <p
+                    slot="text"
+                    class="ms-2 text-sm font-medium text-gray-500 dark:text-gray-400"
+                  >
+                    {review.estrelas} de 5
+                  </p>
+                </Rating>
+              </div>
+              <p>Comentário: {review.comentario}</p>
+            {/each}
+          </div>
+        {/if}
       {/each}
     </div>
     <div class="mt-10">
