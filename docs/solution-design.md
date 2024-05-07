@@ -11,9 +11,8 @@
 | **Dimensão**   | **Tecnologia**  |
 | ---            | ---             |
 | SGBD           | MySQL           |
-| Front end      | HTML+CSS+JS     |
+|Front end Framework | Svelte |
 | Back end       | NodeJS |
 | Deploy         | Github Pages    |
-|Front end Framework | Svelte |
 |Bibliotecas|Lucide+Shadcn|
 
