@@ -1,8 +1,8 @@
-### 3.3.1 Processo 1 – Cadastro de Prato
+![Cadastro](https://github.com/ICEI-PUC-Minas-PPLES-TI/plf-es-2024-1-ti2-1372100-grupo-4-restaurante/assets/103607467/c35904a4-5edf-4fae-9c48-2c14bcbb308c)### 3.3.1 Processo 1 – Cadastro de Prato
 
 _O processo de cadastro de pratos permite que o gerente insira novos pratos no menu. O processo é simples e rápido, permitindo que o gerente atualize o menu com frequência e ofereça novos sabores aos seus clientes._
 
-![Cadastro](https://github.com/ICEI-PUC-Minas-PPLES-TI/plf-es-2024-1-ti2-1372100-grupo-4-restaurante/assets/103607467/9febb266-19e0-429b-8fed-becded072430)
+![Cadastro](https://github.com/ICEI-PUC-Minas-PPLES-TI/plf-es-2024-1-ti2-1372100-grupo-4-restaurante/assets/103607467/8ce11494-2d00-4084-a977-b068bc8a4f0c)
 
 
 #### Detalhamento das atividades
