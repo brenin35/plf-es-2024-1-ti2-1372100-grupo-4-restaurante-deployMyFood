@@ -15,7 +15,7 @@
   export let descricao: string;
   export let imagem: string;
   export let visibilidadeAvaliacao: boolean;
-  export let avaliacao: { id: number; produto_id: number; estrelas: number }[] =
+  export let avaliacao: { id: number; produtoId: number; estrelas: number }[] =
     [];
 
   async function fetchAvaliacao() {
@@ -31,11 +31,11 @@
   }
 
   function calculaMediaAvaliacao(
-    avaliacoes: { produto_id: number; estrelas: number }[],
-    produto_id: number
+    avaliacoes: { produtoId: number; estrelas: number }[],
+    produtoId: number
   ) {
     const avaliacoesProduto = avaliacoes.filter(
-      (avaliacao) => avaliacao.produto_id === produto_id
+      (avaliacao) => avaliacao.produtoId === produtoId
     );
     if (avaliacoesProduto.length === 0) {
       return 0;
@@ -147,11 +147,11 @@
                         href="/avaliacoes"
                         class="text-sm font-medium text-gray-900 underline hover:no-underline dark:text-white"
                       >
-                        {#if avaliacao.filter((av) => av.produto_id === id).length == 1}
-                          {avaliacao.filter((av) => av.produto_id === id)
+                        {#if avaliacao.filter((av) => av.produtoId === id).length == 1}
+                          {avaliacao.filter((av) => av.produtoId === id)
                             .length} avaliação
                         {:else}
-                          {avaliacao.filter((av) => av.produto_id === id)
+                          {avaliacao.filter((av) => av.produtoId === id)
                             .length} avaliações
                         {/if}
                       </a>

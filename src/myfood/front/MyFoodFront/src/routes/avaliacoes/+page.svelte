@@ -8,10 +8,10 @@
 
   let id: number;
   let avaliacao: {
-    produto_id: number;
+    produtoId: number;
     estrelas: number;
     comentario: string;
-  }[] = [];
+}[] = [];
 
   type Prato = {
     id: number;
@@ -32,11 +32,11 @@
   }
 
   function calculaMediaAvaliacao(
-    avaliacoes: { produto_id: number; estrelas: number }[],
-    produto_id: number
+    avaliacoes: { produtoId: number; estrelas: number }[],
+    produtoId: number
   ) {
     const avaliacoesProduto = avaliacoes.filter(
-      (avaliacao) => avaliacao.produto_id === produto_id
+      (avaliacao) => avaliacao.produtoId === produtoId
     );
     if (avaliacoesProduto.length === 0) {
       return 0;
@@ -50,7 +50,7 @@
   let mediaAvaliacao = 0;
 
   function contadorPercentAvaliacao(
-    avaliacoes: { produto_id: number; estrelas: number }[]
+    avaliacoes: { produtoId: number; estrelas: number }[]
   ) {
     let ratings = [0, 0, 0, 0, 0];
 
@@ -66,7 +66,7 @@
   }
 
   function calculaMediaAvaliacaoTotal(
-    avaliacao: { produto_id: number; estrelas: number }[]
+    avaliacao: { produtoId: number; estrelas: number }[]
   ) {
     if (avaliacao.length === 0) {
       return 0;
@@ -110,7 +110,7 @@
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
       {#each pratos as prato}
-        {#if avaliacao.filter((av) => av.produto_id === prato.id).length === 0}
+        {#if avaliacao.filter((av) => av.produtoId === prato.id).length === 0}
           <div class="bg-white rounded-lg shadow-md p-4 text-center border">
             <p class="text-xl font-semibold">Avaliações de {prato.nome}</p>
             <p class="text-primary text-xl mt-4">
@@ -120,7 +120,7 @@
         {:else}
           <div class="bg-white rounded-lg shadow-md p-4 text-center border">
             <p class="text-xl font-semibold mb-4">Avaliações de {prato.nome}</p>
-            {#each avaliacao.filter((av) => av.produto_id === prato.id) as review}
+            {#each avaliacao.filter((av) => av.produtoId === prato.id) as review}
               <hr />
               <div class="flex justify-center mt-4">
                 <p>Avaliação:</p>
