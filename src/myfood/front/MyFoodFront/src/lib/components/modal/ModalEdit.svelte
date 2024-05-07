@@ -42,8 +42,6 @@
     );
     return totalStars / avaliacoesProduto.length;
 }
-
-
   let mediaAvaliacao = 0;
 
   onMount(async () => {
@@ -132,7 +130,7 @@
                         class="w-1 h-1 mx-1.5 bg-gray-500 rounded-full dark:bg-gray-400"
                       />
                       <a
-                        href="/"
+                        href="/avaliacoes"
                         class="text-sm font-medium text-gray-900 underline hover:no-underline dark:text-white"
                       >
                         {#if avaliacao.filter((av) => av.produto_id === id).length == 1}
