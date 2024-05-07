@@ -15,7 +15,7 @@
   export let descricao: string;
   export let imagem: string;
   export let visibilidadeAvaliacao: boolean;
-  export let avaliacao: { produto_id: number, estrelas: number }[] = [];
+  export let avaliacao: { produto_id: number; estrelas: number }[] = [];
 
   async function fetchAvaliacao() {
     try {
@@ -29,7 +29,10 @@
     }
   }
 
-  function calculaMediaAvaliacao(avaliacoes: { produto_id: number, estrelas: number }[], produto_id: number) {
+  function calculaMediaAvaliacao(
+    avaliacoes: { produto_id: number; estrelas: number }[],
+    produto_id: number
+  ) {
     const avaliacoesProduto = avaliacoes.filter(
       (avaliacao) => avaliacao.produto_id === produto_id
     );
@@ -41,7 +44,7 @@
       0
     );
     return totalStars / avaliacoesProduto.length;
-}
+  }
   let mediaAvaliacao = 0;
 
   onMount(async () => {
@@ -125,7 +128,11 @@
 
                 {#if visibilidadeAvaliacao == true}
                   <div class=" flex justify-center">
-                    <Rating count rating={mediaAvaliacao} id="example-4">
+                    <Rating
+                      count
+                      rating={parseFloat(mediaAvaliacao.toFixed(1))}
+                      id="example-4"
+                    >
                       <span
                         class="w-1 h-1 mx-1.5 bg-gray-500 rounded-full dark:bg-gray-400"
                       />
