@@ -73,43 +73,31 @@
     console.log(visibilidadeAvaliacao);
   };
 
-  function excluirProduto() {
-  const confirmDelete = window.confirm(
-    "Tem certeza de que deseja excluir este produto?"
-  );
-
-  if (confirmDelete) {
-    fetch(`http://localhost:8080/produtos/delete/${id}`, {
-      method: "DELETE",
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Erro ao excluir produto");
+  async function excluirProduto(id: number) {
+    try {
+      const response = await fetch(`http://localhost:8080/produtos/delete/${id}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
         }
-        return response.json();
-      })
-      .then((data) => {
-        const productId = data.id;
-        return fetch(`http://localhost:8080/avaliacao/delete/${productId}`, {
-          method: "DELETE",
-        });
-      })
-      .then((response) => {
-        if (!response.ok) {
-          if (response.status >= 400 && response.status < 500) {
-            console.log("Avaliações excluídas, mas ocorreu um erro ao obter a resposta do servidor.");
-          } else {
-            throw new Error("Erro ao excluir avaliações associadas ao produto");
-          }
-        }
-        console.log("Avaliações e produto excluídos com sucesso.");
-        window.location.reload();
-      })
-      .catch((error) => {
-        console.error("Erro:", error);
       });
+      if (response.ok) {
+        console.log('Produto deletado com sucesso');
+      } else if (response.status === 404) {
+        console.error('Produto não encontrado');
+      } else {
+        console.error('Falha ao deletar');
+      }
+    } catch (error) {
+      console.error('Error deletar produto:', error);
+    }
   }
-}
+
+  async function handleDelete() {
+    if (confirm('Are you sure you want to delete this produto?')) {
+      await excluirProduto(id);
+    }
+  }
 
   function converterImg(event) {
     const file = event.target.files[0];
@@ -240,7 +228,7 @@
       </div>
       <Dialog.Footer>
         <Dialog.Close>
-          <Button variant="buttonAdd" on:click={excluirProduto}
+          <Button variant="buttonAdd" on:click={handleDelete}
             >Excluir prato</Button
           >
         </Dialog.Close>

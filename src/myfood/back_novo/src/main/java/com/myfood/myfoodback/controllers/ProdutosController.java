@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:5173")
 @RestController
 @RequestMapping("/produtos")
 public class ProdutosController {
@@ -40,7 +41,7 @@ public class ProdutosController {
         }
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/edit/{id}")
     public ResponseEntity<Produtos> updateProduto(@PathVariable Long id, @RequestBody Produtos updatedProduto) {
         Produtos existingProduto = produtosRepository.findById(id).orElse(null);
         if (existingProduto != null) {
@@ -52,7 +53,7 @@ public class ProdutosController {
         }
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> deleteProduto(@PathVariable Long id) {
         Produtos produto = produtosRepository.findById(id).orElse(null);
         if (produto != null) {

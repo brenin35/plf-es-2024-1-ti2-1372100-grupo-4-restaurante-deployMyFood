@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:5173")
 @RestController
 @RequestMapping("/avaliacao")
 public class AvaliacaoController {
@@ -40,7 +41,7 @@ public class AvaliacaoController {
         }
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/edit/{id}")
     public ResponseEntity<Avaliacao> updateAvaliacao(@PathVariable Long id, @RequestBody Avaliacao updatedAvaliacao) {
         Avaliacao existingAvaliacao = avaliacaoRepository.findById(id).orElse(null);
         if (existingAvaliacao != null) {
@@ -52,7 +53,7 @@ public class AvaliacaoController {
         }
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> deleteAvaliacao(@PathVariable Long id) {
         Avaliacao avaliacao = avaliacaoRepository.findById(id).orElse(null);
         if (avaliacao != null) {
