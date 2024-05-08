@@ -115,10 +115,10 @@
   }
 </script>
 
-<main class="mt-5 flex items-center justify-center">
+<main class="flex items-center justify-center">
   <Dialog.Root>
     <Dialog.Trigger>
-      <Card.Root class="w-auto">
+      <Card.Root class="w-auto border shadow-lg">
         <div class="row flex">
           <div class="column w-7/12">
             <Card.Header>
