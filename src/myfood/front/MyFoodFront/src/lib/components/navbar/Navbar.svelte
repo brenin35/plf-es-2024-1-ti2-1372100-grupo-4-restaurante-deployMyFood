@@ -56,7 +56,7 @@
     <a href="/" class="mb-5 flex items-center">
       <img
         class="self-center whitespace-nowrap text-xl font-semibold dark:text-white"
-        src="src\lib\images\logoTIAW.png"
+        src="logoTIAW.png"
         alt=""
       />
     </a>
