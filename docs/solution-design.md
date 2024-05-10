@@ -13,6 +13,6 @@
 | SGBD           | MySQL           |
 |Front end Framework | Svelte |
 | Back end       | NodeJS |
-| Deploy         | Github Pages    |
+| Deploy         | Vercel    |
 |Bibliotecas|Lucide+Shadcn|
 
