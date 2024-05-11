@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = "https://plf-es-2024-1-ti2-1372100-grupo-4-restaurante-deploy-my-food.vercel.app")
 @RestController
 @RequestMapping("/produtos")
 public class ProdutosController {
@@ -21,8 +21,13 @@ public class ProdutosController {
 
     @GetMapping
     public ResponseEntity<List<Produtos>> getAllProdutos() {
-        List<Produtos> produtos = produtosRepository.findAll();
-        return new ResponseEntity<>(produtos, HttpStatus.OK);
+        try {
+            List<Produtos> produtos = produtosRepository.findAll();
+            return new ResponseEntity<>(produtos, HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @PostMapping
