@@ -1,5 +1,5 @@
-<script lang="ts">
-    import type { PageData } from './$types';
-    
-    export let data: PageData;
+<script lang="ts" context="module">
+  import type { PageData } from "./$types";
+
+  export let data: PageData;
 </script>
