@@ -15,8 +15,10 @@
 
   let pratos: Prato[] = [];
 
+  let endpoint = "https://plf-es-2024-1-ti2-1372100-grupo-4.onrender.com";
+  
   onMount(async () => {
-    const response = await fetch("http://localhost:8080/produtos");
+    const response = await fetch(`${endpoint}/produtos`);
     if (!response.ok) {
       console.error("Erro ao buscar produtos:", response.status);
       return;

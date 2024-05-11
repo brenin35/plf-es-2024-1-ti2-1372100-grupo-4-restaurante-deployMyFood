@@ -18,9 +18,11 @@
   export let avaliacao: { id: number; produtoId: number; estrelas: number }[] =
     [];
 
+  let endpoint = "https://plf-es-2024-1-ti2-1372100-grupo-4.onrender.com";
+
   async function fetchAvaliacao() {
     try {
-      const response = await fetch("http://localhost:8080/avaliacao");
+      const response = await fetch(`${endpoint}/avaliacao`);
       if (!response.ok) {
         throw new Error("Falha fetch nas avaliacoes");
       }
@@ -56,7 +58,7 @@
   const atualizarProduto = () => {
     const produto = { nome, descricao, preco, imagem, visibilidadeAvaliacao };
 
-    fetch(`http://localhost:8080/produtos/edit/${id}`, {
+    fetch(`${endpoint}/produtos/edit/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -76,7 +78,7 @@
 
   async function excluirProduto(id: number) {
     try {
-      const response = await fetch(`http://localhost:8080/produtos/delete/${id}`, {
+      const response = await fetch(`${endpoint}/produtos/delete/${id}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',

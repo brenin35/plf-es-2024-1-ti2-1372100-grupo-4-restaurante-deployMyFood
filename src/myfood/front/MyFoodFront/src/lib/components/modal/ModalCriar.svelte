@@ -14,6 +14,8 @@
   let imagem = "";
   let visibilidadeAvaliacao = true;
 
+  let endpoint = "https://plf-es-2024-1-ti2-1372100-grupo-4.onrender.com";
+
   function adicionarProduto() {
     if (!nome || !descricao || !preco) {
       alert("Por favor, preencha todos os campos obrigatórios.");
@@ -27,7 +29,7 @@
       visibilidadeAvaliacao,
     };
 
-    fetch("http://localhost:8080/produtos", {
+    fetch(`${endpoint}/produtos`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
