@@ -40,9 +40,9 @@
   };
 </script>
 
-<Card.Root class="w-[350px]">
+<Card.Root class="w-[400px] shadow-lg">
   <Card.Header>
-    <Card.Title>Cadastro cliente mesa em {id}</Card.Title>
+    <Card.Title>Cadastre em mesa {id}</Card.Title>
     <Card.Description
       >Coloque seu nome e telefone para acessar o Cardapio!</Card.Description
     >
