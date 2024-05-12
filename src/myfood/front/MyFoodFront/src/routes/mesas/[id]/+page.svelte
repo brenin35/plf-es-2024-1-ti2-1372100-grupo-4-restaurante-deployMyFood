@@ -14,4 +14,6 @@
   export let id;
 </script>
 
-<p>Mesa {id}</p>
+<div class="p-4 sm:ml-64">
+  <p>Mesa {id}</p>
+</div>
