@@ -2,7 +2,6 @@ package com.myfood.myfoodback.controllers;
 
 import com.myfood.myfoodback.models.Clientes;
 import com.myfood.myfoodback.repositories.ClientesRepository;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +14,7 @@ import java.util.Optional;
 @RequestMapping("/clientes")
 public class ClientesController {
 
-    private ClientesRepository clientesRepository;
+    private final ClientesRepository clientesRepository;
 
     @Autowired
     public ClientesController(ClientesRepository clientesRepository) {
@@ -31,21 +30,14 @@ public class ClientesController {
     @GetMapping("/{id}")
     public ResponseEntity<Clientes> getClienteById(@PathVariable Long id) {
         Optional<Clientes> cliente = clientesRepository.findById(id);
-        if (cliente.isPresent()) {
-            return new ResponseEntity<>(cliente.get(), HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+        return cliente.map(value -> new ResponseEntity<>(value, HttpStatus.OK))
+                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @PostMapping
     public ResponseEntity<Clientes> createCliente(@RequestBody Clientes cliente) {
-        try {
-            Clientes newCliente = clientesRepository.save(cliente);
-            return new ResponseEntity<>(newCliente, HttpStatus.CREATED);
-        } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+        Clientes savedCliente = clientesRepository.save(cliente);
+        return new ResponseEntity<>(savedCliente, HttpStatus.CREATED);
     }
 
     @DeleteMapping("/{id}")

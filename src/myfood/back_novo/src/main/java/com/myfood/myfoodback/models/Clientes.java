@@ -21,7 +21,7 @@ public class Clientes {
 
     @ManyToOne
     @JoinColumn(name = "mesa_id")
-    private Mesas mesa;
+    private Mesas mesaId;
 
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
     private List<Avaliacao> avaliacoes;
@@ -51,6 +51,22 @@ public class Clientes {
 
     public void setContatoCliente(String contatoCliente) {
         this.contatoCliente = contatoCliente;
+    }
+
+    public Mesas getMesaId() {
+        return this.mesaId;
+    }
+
+    public void setMesaId(Mesas mesa) {
+        this.mesaId = mesa;
+    }
+
+    public List<Avaliacao> getAvaliacoes() {
+        return this.avaliacoes;
+    }
+
+    public void setAvaliacoes(List<Avaliacao> avaliacoes) {
+        this.avaliacoes = avaliacoes;
     }
 
 }
