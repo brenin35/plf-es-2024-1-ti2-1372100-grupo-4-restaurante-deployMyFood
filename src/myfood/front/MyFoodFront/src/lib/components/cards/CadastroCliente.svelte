@@ -66,10 +66,6 @@
             placeholder="(31) 98765-4321"
           />
         </div>
-        <div class="flex flex-col space-y-1.5">
-          <Label for="mesaId">ID mesa</Label>
-          <Input bind:value={cliente.mesaId} id="mesaId" disabled />
-        </div>
       </div>
     </form>
   </Card.Content>
