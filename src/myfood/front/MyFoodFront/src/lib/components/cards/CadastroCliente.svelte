@@ -20,6 +20,10 @@
       contatoCliente: cliente.contatoCliente,
       mesaId: cliente.mesaId,
     };
+    if (!clienteData.nomeCliente || !clienteData.contatoCliente) {
+      alert("Por favor, preencha todos os campos obrigatórios.");
+      return;
+    }
 
     const response = await fetch(`${endpoint}/clientes`, {
       method: "POST",
