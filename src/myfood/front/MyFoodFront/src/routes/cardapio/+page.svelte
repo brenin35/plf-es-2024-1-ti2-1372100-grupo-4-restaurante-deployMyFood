@@ -44,7 +44,7 @@
     <div class="flex items-center justify-center mt-20">
       <Diamonds size="60" color="#FF3E00" unit="px" duration="1s"/>
     </div>
-    {:then value}
+    {:then}
       {#if pratos.length == 0}
         <div class="flex justify-center items-center mt-40">
           <h1 class="text-xl text-center">

@@ -3,6 +3,7 @@
   import Reviews from "$lib/components/Reviews.svelte";
   import { onMount } from "svelte";
   import { Rating, AdvancedRating } from "flowbite-svelte";
+  import { Diamonds } from 'svelte-loading-spinners';
 
   //export let data: PageData;
 
@@ -20,6 +21,7 @@
   let pratos: Prato[] = [];
 
   let endpoint = "https://plf-es-2024-1-ti2-1372100-grupo-4.onrender.com";
+  let promise = fetch(`${endpoint}/avaliacao`);
 
   async function fetchAvaliacao() {
     try {
@@ -110,37 +112,43 @@
         </h1>
       </div>
     </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-      {#each pratos as prato}
-        {#if avaliacao.filter((av) => av.produtoId === prato.id).length === 0}
-          <div class="bg-white rounded-lg shadow-md p-4 text-center border">
-            <p class="text-xl font-semibold">Avaliações de {prato.nome}</p>
-            <p class="text-primary text-xl mt-4">
-              {prato.nome} não possui nenhuma avaliação
-            </p>
-          </div>
-        {:else}
-          <div class="bg-white rounded-lg shadow-md p-4 text-center border">
-            <p class="text-xl font-semibold mb-4">Avaliações de {prato.nome}</p>
-            {#each avaliacao.filter((av) => av.produtoId === prato.id) as review}
-              <hr />
-              <div class="flex justify-center mt-4">
-                <p>Avaliação:</p>
-                <Rating id="" total={5} rating={review.estrelas}>
-                  <p
-                    slot="text"
-                    class="ms-2 text-sm font-medium text-gray-500 dark:text-gray-400"
-                  >
-                    {review.estrelas} de 5
-                  </p>
-                </Rating>
-              </div>
-              <p class="mb-4">Comentário: {review.comentario}</p>
-            {/each}
-          </div>
-        {/if}
-      {/each}
+    {#await promise}
+    <div class="flex items-center justify-center mt-20">
+      <Diamonds size="60" color="#FF3E00" unit="px" duration="1s"/>
     </div>
+    {:then}
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {#each pratos as prato}
+          {#if avaliacao.filter((av) => av.produtoId === prato.id).length === 0}
+            <div class="bg-white rounded-lg shadow-md p-4 text-center border">
+              <p class="text-xl font-semibold">Avaliações de {prato.nome}</p>
+              <p class="text-primary text-xl mt-4">
+                {prato.nome} não possui nenhuma avaliação
+              </p>
+            </div>
+          {:else}
+            <div class="bg-white rounded-lg shadow-md p-4 text-center border">
+              <p class="text-xl font-semibold mb-4">Avaliações de {prato.nome}</p>
+              {#each avaliacao.filter((av) => av.produtoId === prato.id) as review}
+                <hr />
+                <div class="flex justify-center mt-4">
+                  <p>Avaliação:</p>
+                  <Rating id="" total={5} rating={review.estrelas}>
+                    <p
+                      slot="text"
+                      class="ms-2 text-sm font-medium text-gray-500 dark:text-gray-400"
+                    >
+                      {review.estrelas} de 5
+                    </p>
+                  </Rating>
+                </div>
+                <p class="mb-4">Comentário: {review.comentario}</p>
+              {/each}
+            </div>
+          {/if}
+        {/each}
+      </div>
+    {/await}
     <div class="mt-10">
       <h1 class="text-xl mb-3">Avaliacões totais!</h1>
       <div>
