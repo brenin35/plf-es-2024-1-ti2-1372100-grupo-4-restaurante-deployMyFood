@@ -1,9 +1,13 @@
 package com.myfood.myfoodback.models;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Mesas {
@@ -13,6 +17,9 @@ public class Mesas {
     private Long id;
 
     private String nomeMesa;
+
+     @OneToMany(mappedBy = "mesa", cascade = CascadeType.ALL)
+    private List<Clientes> clientes;
 
     public Mesas() {
 
