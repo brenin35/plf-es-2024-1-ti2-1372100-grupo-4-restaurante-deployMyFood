@@ -15,6 +15,10 @@ public class ClientesController {
 
     private ClientesRepository clientesRepository;
 
+    public ClientesController(ClientesRepository clientesRepository) {
+        this.clientesRepository = clientesRepository;
+    }
+
     @GetMapping
     public ResponseEntity<List<Clientes>> getAllClientes() {
         List<Clientes> clientes = clientesRepository.findAll();

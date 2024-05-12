@@ -7,5 +7,4 @@ import com.myfood.myfoodback.models.Clientes;
 
 @Repository
 public interface ClientesRepository extends JpaRepository<Clientes, Long> {
-
 }
