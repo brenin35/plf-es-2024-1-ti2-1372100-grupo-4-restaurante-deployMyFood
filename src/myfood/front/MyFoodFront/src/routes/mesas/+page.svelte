@@ -79,7 +79,11 @@
             class="w-full border shadow-lg p-5 flex flex-col gap-2 rounded-lg"
           >
             <h2 class="text-center text-xl">{mesa.nomeMesa}</h2>
-            <img src={qrLinks[index]} alt="QR Code" /><br />
+            {#await qrLinks}
+              <Diamonds size="60" color="#FF3E00" unit="px" duration="1s" />
+            {:then}
+              <img src={qrLinks[index]} alt="QR Code" /><br />
+            {/await}
             <Button variant="buttonAdd">
               <a
                 class="flex justify-end"
