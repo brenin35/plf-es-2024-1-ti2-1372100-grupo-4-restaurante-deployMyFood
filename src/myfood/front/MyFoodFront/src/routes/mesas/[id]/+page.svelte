@@ -6,7 +6,6 @@
 
   let mesa = data;
   let CadastroCliente;
-  let endpoint = "http://localhost:8080";
 
   onMount(async () => {
     const module = await import("$lib/components/cards/CadastroCliente.svelte");
@@ -18,7 +17,10 @@
   <h1 class="text-center text-xl mb-4">Cadastro em {mesa.nomeMesa}</h1>
   <div class="flex justify-center items-center">
     {#if CadastroCliente}
-      <CadastroCliente />
+      <CadastroCliente
+        cliente={{ nomeCliente: "", contatoCliente: "", mesaId: "" }}
+        id={mesa.id}
+      />
     {/if}
   </div>
 </div>

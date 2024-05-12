@@ -3,11 +3,46 @@
   import * as Card from "$lib/components/ui/card/index.js";
   import { Input } from "$lib/components/ui/input/index.js";
   import { Label } from "$lib/components/ui/label/index.js";
+
+  export let id: number;
+  export let cliente: {
+    nomeCliente: string;
+    contatoCliente: string;
+    mesaId: number;
+  };
+  cliente.mesaId = id;
+
+  let endpoint = "http://localhost:8080";
+
+  const criarCliente = async () => {
+    const clienteData = {
+      nomeCliente: cliente.nomeCliente,
+      contatoCliente: cliente.contatoCliente,
+      mesaId: cliente.mesaId,
+    };
+
+    const response = await fetch(`${endpoint}/clientes`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(clienteData),
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      console.log("Cliente adicionado com sucesso:", data);
+      window.location.reload();
+    } else {
+      const errorMessage = await response.text();
+      console.error("Falha ao adicionar cliente:", errorMessage);
+    }
+  };
 </script>
 
 <Card.Root class="w-[350px]">
   <Card.Header>
-    <Card.Title>Cadastro cliente</Card.Title>
+    <Card.Title>Cadastro cliente mesa em {id}</Card.Title>
     <Card.Description
       >Coloque seu nome e telefone para acessar o Cardapio!</Card.Description
     >
@@ -17,16 +52,30 @@
       <div class="grid w-full items-center gap-4">
         <div class="flex flex-col space-y-1.5">
           <Label for="name">Nome</Label>
-          <Input id="name" placeholder="Seu nome" />
+          <Input
+            bind:value={cliente.nomeCliente}
+            id="name"
+            placeholder="Seu nome"
+          />
         </div>
         <div class="flex flex-col space-y-1.5">
-          <Label for="framework">Telefone</Label>
-          <Input id="phone" placeholder="(31) 98765-4321" />
+          <Label for="telefone">Telefone</Label>
+          <Input
+            bind:value={cliente.contatoCliente}
+            id="phone"
+            placeholder="(31) 98765-4321"
+          />
+        </div>
+        <div class="flex flex-col space-y-1.5">
+          <Label for="mesaId">ID mesa</Label>
+          <Input bind:value={cliente.mesaId} id="mesaId" disabled />
         </div>
       </div>
     </form>
   </Card.Content>
   <Card.Footer class="flex justify-end">
-    <Button variant="buttonAdd">Cadastrar!</Button>
+    <Button type="submit" variant="buttonAdd" on:click={criarCliente}
+      >Cadastrar!</Button
+    >
   </Card.Footer>
 </Card.Root>
