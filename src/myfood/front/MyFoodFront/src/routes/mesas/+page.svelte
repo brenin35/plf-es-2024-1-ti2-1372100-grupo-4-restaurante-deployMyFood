@@ -1,38 +1,46 @@
-<script lang="ts" context="module">
+<script lang="ts">
+  import { onMount } from "svelte";
   // import type { PageData } from "./$types";
 
   // export let data: PageData;
 
-  let inputText = "";
-  let textPresent = false;
+  let endpoint = "http://localhost:8080";
+  let cardapioMesa = "https://plf-es-2024-1-ti2-1372100-grupo-4-restaurante-deploy-my-food.vercel.app/cardapio";
+  let mesas: Mesa[] = [];
+  let qrLinks: string[] = [];
   let API_URL = "https://api.qrserver.com/v1/create-qr-code/?data=";
-  let size = "&size=[150]x[150]";
-  let full_link = "";
+  let SIZE = "&size=[150]x[150]";
 
-  function dataSubmit(e) {
-    if (inputText !== "") {
-      textPresent = true;
-      full_link = API_URL + inputText + size;
+  type Mesa = {
+    id: number;
+    nome: string;
+  };
+
+  onMount(async () => {
+    const response = await fetch(`${endpoint}/mesas`);
+    if (!response.ok) {
+      console.error("Erro ao buscar mesas:", response.status);
+      return;
     }
-    console.log(full_link);
+    mesas = await response.json();
+    qrLinks = mesas.map((mesa) => generateQRCode(mesa.id));
+  });
+
+  function generateQRCode(mesaId: number) {
+    return `${API_URL}${cardapioMesa}/${mesaId}${SIZE}`;
   }
 </script>
 
 <div class="p-4 sm:ml-64">
   <h1>QR CODE GENERATOR</h1>
-  <form on:submit|preventDefault={dataSubmit}>
-    <input
-      bind:value={inputText}
-      class="textInput"
-      type="text"
-      placeholder="Enter any text or url..."
-    />
-    <input class="btn" type="submit" value="Submit" />
-  </form> 
-  {#if textPresent}
-    <img src={full_link} alt="" /><br />
-    <a href={full_link} download>Download</a>
+
+  {#each mesas as mesa, i}
+    <div>
+      <h2>{mesa.nome}</h2>
+      <img src={qrLinks[i]} alt="QR Code" /><br />
+      <a href={qrLinks[i]} download>Download</a>
+    </div>
   {:else}
-    <p>No QR code yet! ☹️</p>
-  {/if}
+    <p>No mesas available! ☹️</p>
+  {/each}
 </div>
