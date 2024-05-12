@@ -6,6 +6,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import java.util.List;
+import javax.persistence.CascadeType;
 
 @Entity
 public class Clientes {
@@ -19,6 +22,9 @@ public class Clientes {
     @ManyToOne
     @JoinColumn(name = "mesa_id")
     private Mesas mesa;
+
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
+    private List<Avaliacao> avaliacoes;
 
     public Clientes() {
     }

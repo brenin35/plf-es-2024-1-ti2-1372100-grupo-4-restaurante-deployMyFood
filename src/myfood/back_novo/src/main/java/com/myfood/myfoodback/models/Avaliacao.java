@@ -15,6 +15,10 @@ public class Avaliacao {
     private Long id;
 
     @ManyToOne
+    @JoinColumn(name = "cliente_id")
+    private Clientes cliente;
+
+    @ManyToOne
     @JoinColumn(name = "produto_id")
     private Produtos produto;
 
