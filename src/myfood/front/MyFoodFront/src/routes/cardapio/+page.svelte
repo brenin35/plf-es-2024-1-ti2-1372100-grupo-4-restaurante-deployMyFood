@@ -2,6 +2,7 @@
   import { onMount } from "svelte";
   import ModalCriar from "$lib/components/modal/ModalCriar.svelte";
   import ModalEdit from "$lib/components/modal/ModalEdit.svelte";
+  import { Diamonds } from 'svelte-loading-spinners';
 
   type Prato = {
     visibilidadeAvaliacao: boolean;
@@ -40,8 +41,8 @@
     </div>
 
     {#await promise}
-    <div class="items-center justify-center">
-      Aguarde um momento...
+    <div class="flex items-center justify-center mt-20">
+      <Diamonds size="60" color="#FF3E00" unit="px" duration="1s"/>
     </div>
     {:then value}
       {#if pratos.length == 0}
