@@ -15,7 +15,7 @@
 </script>
 
 <div class="p-4 sm:ml-64">
-  <h1>Mesa {mesa.id}</h1>
+  <h1 class="text-center text-xl mb-4">Cadastro em {mesa.nomeMesa}</h1>
   <div class="flex justify-center items-center">
     {#if CadastroCliente}
       <CadastroCliente />
