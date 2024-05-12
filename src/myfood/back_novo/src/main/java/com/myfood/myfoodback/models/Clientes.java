@@ -4,8 +4,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -19,9 +17,7 @@ public class Clientes {
     private String nomeCliente;
     private String contatoCliente;
 
-    @ManyToOne
-    @JoinColumn(name = "mesa_id")
-    private Mesas mesaId;
+    private Long mesaId;
 
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
     private List<Avaliacao> avaliacoes;
@@ -53,12 +49,12 @@ public class Clientes {
         this.contatoCliente = contatoCliente;
     }
 
-    public Mesas getMesaId() {
+    public Long getMesaId() {
         return this.mesaId;
     }
 
-    public void setMesaId(Mesas mesa) {
-        this.mesaId = mesa;
+    public void setMesaId(Long mesaId) {
+        this.mesaId = mesaId;
     }
 
     public List<Avaliacao> getAvaliacoes() {
@@ -70,3 +66,4 @@ public class Clientes {
     }
 
 }
+
