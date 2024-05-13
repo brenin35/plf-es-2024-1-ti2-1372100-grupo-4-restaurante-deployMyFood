@@ -18,7 +18,7 @@ public class Produtos {
     private String nome;
     private String descricao;
     private double preco;
-    private String imagem;
+    private byte[] imagem;
     private boolean visibilidadeAvaliacao;
 
     @OneToMany(mappedBy = "produto", cascade = CascadeType.ALL)
@@ -59,11 +59,11 @@ public class Produtos {
         this.preco = preco;
     }
 
-    public String getImagem() {
+    public byte[] getImagem() {
         return this.imagem;
     }
 
-    public void setImagem(String imagem) {
+    public void setImagem(byte[] imagem) {
         this.imagem = imagem;
     }
 

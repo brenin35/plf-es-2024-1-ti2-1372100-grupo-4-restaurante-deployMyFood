@@ -13,7 +13,8 @@
   export let nome: string;
   export let preco: number;
   export let descricao: string;
-  export let imagem: string;
+  export let imagem = new FormData();
+  export let imageUrl: string;
   export let visibilidadeAvaliacao: boolean;
   export let avaliacao: { id: number; produtoId: number; estrelas: number }[] =
     [];
@@ -56,14 +57,13 @@
   });
 
   const atualizarProduto = () => {
-    const produto = { nome, descricao, preco, imagem, visibilidadeAvaliacao };
+    const produto = { nome, descricao, preco, visibilidadeAvaliacao };
+
+    imagem.append("produto", JSON.stringify(produto));
 
     fetch(`${endpoint}/produtos/edit/${id}`, {
       method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(produto),
+      body: imagem,
     })
       .then((response) => response.json())
       .then((data) => {
@@ -75,7 +75,6 @@
       });
     console.log(visibilidadeAvaliacao);
   };
-
   async function excluirProduto(id: number) {
     try {
       const response = await fetch(`${endpoint}/produtos/delete/${id}`, {
@@ -105,15 +104,8 @@
 
   function converterImg(event) {
     const file = event.target.files[0];
-    const reader = new FileReader();
-
-    reader.onloadend = () => {
-      imagem = reader.result as string;
-    };
-
-    if (file) {
-      reader.readAsDataURL(file);
-    }
+    imagem.append("file", file);
+    imageUrl = URL.createObjectURL(file);
   }
 </script>
 
@@ -171,7 +163,7 @@
           </div>
           <div class="column w-5/12 h-auto">
             <img
-              src={imagem}
+              src={imageUrl}
               alt=""
               class="ml-auto h-full w-60 rounded-r-lg object-cover"
             />
