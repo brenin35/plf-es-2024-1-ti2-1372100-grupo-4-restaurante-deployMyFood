@@ -79,26 +79,26 @@
   async function excluirProduto(id: number) {
     try {
       const response = await fetch(`${endpoint}/produtos/delete/${id}`, {
-        method: 'DELETE',
+        method: "DELETE",
         headers: {
-          'Content-Type': 'application/json',
-        }
+          "Content-Type": "application/json",
+        },
       });
       if (response.ok) {
-        console.log('Produto deletado com sucesso');
+        console.log("Produto deletado com sucesso");
         window.location.reload();
       } else if (response.status === 404) {
-        console.error('Produto não encontrado');
+        console.error("Produto não encontrado");
       } else {
-        console.error('Falha ao deletar');
+        console.error("Falha ao deletar");
       }
     } catch (error) {
-      console.error('Error deletar produto:', error);
+      console.error("Error deletar produto:", error);
     }
   }
 
   async function handleDelete() {
-    if (confirm('Are you sure you want to delete this produto?')) {
+    if (confirm("Are you sure you want to delete this produto?")) {
       await excluirProduto(id);
     }
   }
@@ -152,11 +152,11 @@
                         class="text-sm font-medium text-gray-900 underline hover:no-underline dark:text-white"
                       >
                         {#if avaliacao.filter((av) => av.produtoId === id).length == 1}
-                          {avaliacao.filter((av) => av.produtoId === id)
-                            .length} avaliação
+                          {avaliacao.filter((av) => av.produtoId === id).length}
+                          avaliação
                         {:else}
-                          {avaliacao.filter((av) => av.produtoId === id)
-                            .length} avaliações
+                          {avaliacao.filter((av) => av.produtoId === id).length}
+                          avaliações
                         {/if}
                       </a>
                     </Rating>
