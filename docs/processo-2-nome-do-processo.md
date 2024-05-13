@@ -2,7 +2,7 @@
 
 _O processo 2 permite que o cliente realize o pedido de itens pelo menu digital. O processo de pedido é simplificado, apresentando as informações e imagens dos pratos, podendo a critério do gerente também as avaliações do prato._
 
-![Pedido pelo Cardápio](https://github.com/ICEI-PUC-Minas-PPLES-TI/plf-es-2024-1-ti2-1372100-grupo-4-restaurante/assets/63589918/a94dd0a9-20e6-4b92-87a6-a749e8a3696c)
+![Pedido pelo Cardápio](https://github.com/ICEI-PUC-Minas-PPLES-TI/plf-es-2024-1-ti2-1372100-grupo-4-restaurante/assets/63589918/db166fa9-fff7-41c1-aa6d-8839a88c1b54)
 
 
 
@@ -19,13 +19,14 @@ _O processo 2 permite que o cliente realize o pedido de itens pelo menu digital.
 
 | **Comandos**         |  **Destino**                   | **Tipo**          |
 | ---                  | ---                            | ---               |
-|  Escanear QR | Inserir Dados de Identificação do Cliente             |                   |
+|  Escanear QR | Realizar Cadastro             |                   |
 
-**Atividade 2 - Inserir Dados de Identificação do Cliente**
+**Atividade 2 - Realizar Cadastro**
 
 | **Campo**       | **Tipo**         | **Restrições** | **Valor default** |
 | ---             | ---              | ---            | ---               |
-|  Nome               |     Caixa de Texto             |                |                   |
+|  Nome               |     Caixa de Texto             |   not null             |                   |
+|  Telefone               |     Caixa de Texto             |     not null           |                   |
 
 | **Comandos**         |  **Destino**                   | **Tipo**          |
 | ---                  | ---                            | ---               |
