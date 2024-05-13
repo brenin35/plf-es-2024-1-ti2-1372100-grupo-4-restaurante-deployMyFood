@@ -1,8 +1,8 @@
 <script lang="ts">
-  import { onMount } from "svelte";
   import ModalCriar from "$lib/components/modal/ModalCriar.svelte";
   import ModalEdit from "$lib/components/modal/ModalEdit.svelte";
-  import { Diamonds } from 'svelte-loading-spinners';
+  import { onMount } from "svelte";
+  import Cardapio from "$lib/components/Cardapio.svelte";
 
   type Prato = {
     visibilidadeAvaliacao: boolean;
@@ -17,7 +17,6 @@
   let pratos: Prato[] = [];
 
   let endpoint = "https://plf-es-2024-1-ti2-1372100-grupo-4.onrender.com";
-  let promise = fetch(`${endpoint}/produtos`);
 
   onMount(async () => {
     const response = await fetch(`${endpoint}/produtos`);
@@ -39,34 +38,18 @@
         <ModalCriar />
       </div>
     </div>
-
-    {#await promise}
-    <div class="flex items-center justify-center mt-20">
-      <Diamonds size="60" color="#FF3E00" unit="px" duration="1s"/>
-    </div>
-    {:then}
-      {#if pratos.length == 0}
-        <div class="flex justify-center items-center mt-40">
-          <h1 class="text-xl text-center">
-            Nenhum produto adicionado ao cardápio!
-          </h1>
-        </div>
-      {/if}
-      <div
-        class="grid grid-cols-1 gap-5 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-3"
-      >
-        {#each pratos as item}
-          <ModalEdit
-            id={item.id}
-            nome={item.nome}
-            preco={item.preco}
-            descricao={item.descricao}
-            imagem={item.imagem}
-            visibilidadeAvaliacao={item.visibilidadeAvaliacao}
-            avaliacao={item.avaliacao}
-          />
-        {/each}
-      </div>
-    {/await}
+    <Cardapio>
+      {#each pratos as item}
+        <ModalEdit
+          id={item.id}
+          nome={item.nome}
+          preco={item.preco}
+          descricao={item.descricao}
+          imagem={item.imagem}
+          visibilidadeAvaliacao={item.visibilidadeAvaliacao}
+          avaliacao={item.avaliacao}
+        />
+      {/each}
+    </Cardapio>
   </div>
 </div>
