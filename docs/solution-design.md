@@ -10,9 +10,9 @@
 
 | **Dimensão**   | **Tecnologia**  |
 | ---            | ---             |
-| SGBD           | MySQL           |
+| SGBD           | PostgreSQL           |
 |Front end Framework | Svelte |
-| Back end       | NodeJS |
+| Back end       | Spring Boot+Maven |
 | Deploy         | Vercel    |
 |Bibliotecas|Lucide+Shadcn|
 
