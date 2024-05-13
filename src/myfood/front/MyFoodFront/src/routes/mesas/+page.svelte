@@ -84,14 +84,17 @@
             {:then}
               <img src={qrLinks[index]} alt="QR Code" /><br />
             {/await}
-            <Button variant="buttonAdd">
-              <a
-                class="flex justify-end"
-                target="_blank"
-                href={qrLinks[index]}
-                download="qrcode">Download</a
-              >
-            </Button>
+            <div class="flex gap-2">
+              <Button variant="buttonDD">Deletar mesa</Button>
+              <Button variant="buttonDD">
+                <a
+                  class="flex justify-end"
+                  target="_blank"
+                  href={qrLinks[index]}
+                  download="qrcode">Download</a
+                >
+              </Button>
+            </div>
           </div>
         {:else}
           <div class="flex justify-center items-center mt-40">

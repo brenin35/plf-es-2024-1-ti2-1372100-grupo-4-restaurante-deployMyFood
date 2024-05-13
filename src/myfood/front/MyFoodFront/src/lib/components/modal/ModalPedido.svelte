@@ -139,9 +139,9 @@
         <div class="flex items-center justify-center">
           <h1 class="mr-3 items-center text-xl">Quantidade:</h1>
           <div class="flex items-center gap-3 text-center">
-            <Button on:click={decrease}><Minus /></Button>
+            <Button variant="buttonAdd" on:click={decrease}><Minus /></Button>
             <p class="text-xl font-bold">{quantidade}</p>
-            <Button on:click={increase}><Plus /></Button>
+            <Button variant="buttonAdd" on:click={increase}><Plus /></Button>
           </div>
         </div>
         <p class="mt-3 text-right text-xl">
@@ -150,7 +150,7 @@
         </p>
       </div>
       <Dialog.Footer>
-        <Button type="submit" class="flex items-center">
+        <Button variant="buttonAdd" type="submit" class="flex items-center">
           <p class="pr-2">Adicionar produto ao pedido</p>
           <Plus />
         </Button>
