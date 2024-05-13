@@ -69,6 +69,7 @@
                   bind:value={cliente.nomeCliente}
                   id="name"
                   placeholder="Seu nome"
+                  required
                 />
               </div>
               <div class="flex flex-col space-y-1.5">
@@ -77,17 +78,24 @@
                   bind:value={cliente.contatoCliente}
                   id="phone"
                   placeholder="(31) 98765-4321"
+                  required
                 />
               </div>
             </div>
           </form>
         </Card.Content>
         <Card.Footer class="flex justify-end">
-          <a href="/mesas/{mesa.id}/cardapio">
-            <Button type="submit" variant="buttonAdd" on:click={criarCliente}
+          {#if cliente.nomeCliente && cliente.contatoCliente}
+            <a href="/mesas/{mesa.id}/cardapio">
+              <Button type="submit" variant="buttonAdd" on:click={criarCliente}
+                >Cadastrar!</Button
+              >
+            </a>
+          {:else}
+            <Button type="submit" variant="buttonAdd" disabled
               >Cadastrar!</Button
             >
-          </a>
+          {/if}
         </Card.Footer>
       </Card.Root>
     {/await}
