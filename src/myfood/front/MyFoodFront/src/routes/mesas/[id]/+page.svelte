@@ -37,7 +37,7 @@
     if (response.ok) {
       const data = await response.json();
       console.log("Cliente adicionado com sucesso:", data);
-      window.location.reload();
+      window.location.href =`/mesas/${mesa.id}/cardapio`;
     } else {
       const errorMessage = await response.text();
       console.error("Falha ao adicionar cliente:", errorMessage);
@@ -86,11 +86,9 @@
         </Card.Content>
         <Card.Footer class="flex justify-end">
           {#if cliente.nomeCliente && cliente.contatoCliente}
-            <a href="/mesas/{mesa.id}/cardapio">
               <Button type="submit" variant="buttonAdd" on:click={criarCliente}
                 >Cadastrar!</Button
               >
-            </a>
           {:else}
             <Button type="submit" variant="buttonAdd" disabled
               >Cadastrar!</Button
