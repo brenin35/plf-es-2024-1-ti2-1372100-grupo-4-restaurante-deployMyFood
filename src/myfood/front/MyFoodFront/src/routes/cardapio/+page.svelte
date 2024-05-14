@@ -30,7 +30,7 @@
 <div class="p-10 sm:ml-64">
   <div class="py-4">
     <div class="gap-0 py-1">
-      <div class="sm:flex xl:flex-col justify-between items-center gap-0 pb-5">
+      <div class="mb-5 mt-5 flex flex-col sm:flex-row justify-between items-center">
         <h1 class="text-center text-4xl font-bold text-secondary">
           Cardapio restaurante
         </h1>

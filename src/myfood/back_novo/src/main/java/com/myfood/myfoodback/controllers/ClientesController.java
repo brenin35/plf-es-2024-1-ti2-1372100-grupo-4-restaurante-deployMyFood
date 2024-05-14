@@ -2,7 +2,6 @@ package com.myfood.myfoodback.controllers;
 
 import com.myfood.myfoodback.models.Clientes;
 import com.myfood.myfoodback.repositories.ClientesRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +15,6 @@ public class ClientesController {
 
     private final ClientesRepository clientesRepository;
 
-    @Autowired
     public ClientesController(ClientesRepository clientesRepository) {
         this.clientesRepository = clientesRepository;
     }

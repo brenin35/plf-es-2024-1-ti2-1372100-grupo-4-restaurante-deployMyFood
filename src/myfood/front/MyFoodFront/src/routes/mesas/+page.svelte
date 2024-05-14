@@ -57,7 +57,7 @@
 
 <div class="p-4 sm:ml-64">
   <div class="py-4">
-    <div class="flex justify-between items-center gap-0 pb-5">
+    <div class="mb-5 mt-5 flex flex-col sm:flex-row justify-between">
       <h1 class="text-center text-4xl font-bold text-secondary">
         Mesas restaurante
       </h1>
@@ -93,12 +93,11 @@
               </Button>
             </div>
           </div>
-        {:else}
-          <div class="flex justify-center items-center mt-40">
-            <h1 class="text-xl text-center">Nenhuma mesa registrada!</h1>
-          </div>
-        {/each}
-      </div>
+          {/each}
+        </div>
+        <div class="flex justify-center items-center mt-40">
+          <h1 class="text-xl text-center">Nenhuma mesa registrada!</h1>
+        </div>
     {/await}
   </div>
 </div>
