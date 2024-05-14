@@ -7,7 +7,7 @@
   import { Plus, Minus } from "lucide-svelte";
   import { Rating } from "flowbite-svelte";
   import { onMount } from "svelte";
-  import { endpoint } from "$lib/constants";
+  import { ENDPOINT_URL } from "$lib/constants";
 
   let quantidade = 1;
 
@@ -35,7 +35,7 @@
 
   async function fetchAvaliacao() {
     try {
-      const response = await fetch(`${endpoint}/avaliacao`);
+      const response = await fetch(`${ENDPOINT_URL}/avaliacao`);
       if (!response.ok) {
         throw new Error("Falha fetch nas avaliacoes");
       }

@@ -1,7 +1,7 @@
 <script lang="ts">
   import { onMount } from "svelte";
   import { Diamonds } from "svelte-loading-spinners";
-  import { endpoint } from "$lib/constants";
+  import { ENDPOINT_URL } from "$lib/constants";
 
   type Prato = {
     visibilidadeAvaliacao: boolean;
@@ -15,10 +15,10 @@
 
   let pratos: Prato[] = [];
 
-  let promise = fetch(`${endpoint}/produtos`);
+  let promise = fetch(`${ENDPOINT_URL}/produtos`);
 
   onMount(async () => {
-    const response = await fetch(`${endpoint}/produtos`);
+    const response = await fetch(`${ENDPOINT_URL}/produtos`);
     if (!response.ok) {
       console.error("Erro ao buscar produtos:", response.status);
       return;

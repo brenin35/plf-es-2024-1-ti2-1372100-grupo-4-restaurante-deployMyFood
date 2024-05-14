@@ -5,7 +5,7 @@
   import { Label } from "$lib/components/ui/label/index.js";
   import { Button, buttonVariants } from "$lib/components/ui/button";
   import { createEventDispatcher } from "svelte";
-  import { endpoint } from "$lib/constants";
+  import { ENDPOINT_URL } from "$lib/constants";
 
   const dispatch = createEventDispatcher();
 
@@ -28,7 +28,7 @@
       visibilidadeAvaliacao,
     };
 
-    fetch(`${endpoint}/produtos`, {
+    fetch(`${ENDPOINT_URL}/produtos`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

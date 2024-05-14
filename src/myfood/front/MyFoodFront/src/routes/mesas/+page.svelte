@@ -2,15 +2,15 @@
   import Button from "$lib/components/ui/button/button.svelte";
   import { onMount } from "svelte";
   import { Diamonds } from "svelte-loading-spinners";
-  import { endpoint, deployFront, API_URL, SIZE } from "$lib/constants";
+  import { ENDPOINT_URL, DEPLOY_FRONT_URL, API_URL, SIZE } from "$lib/constants";
   // import type { PageData } from "./$types";
 
   // export let data: PageData;
 
-  let cardapioMesa = `${deployFront}/mesas`;
+  let cardapioMesa = `${DEPLOY_FRONT_URL}/mesas`;
   let mesas: Mesa[] = [];
   let qrLinks: string[] = [];
-  let promise = fetch(`${endpoint}/mesas`);
+  let promise = fetch(`${ENDPOINT_URL}/mesas`);
 
   type Mesa = {
     id: number;
@@ -23,7 +23,7 @@
       nomeMesa: `Mesa ${mesas.length + 1}`,
     };
 
-    fetch(`${endpoint}/mesas`, {
+    fetch(`${ENDPOINT_URL}/mesas`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -41,7 +41,7 @@
   }
 
   onMount(async () => {
-    const response = await fetch(`${endpoint}/mesas`);
+    const response = await fetch(`${ENDPOINT_URL}/mesas`);
     if (!response.ok) {
       console.error("Erro ao buscar mesas:", response.status);
       return;

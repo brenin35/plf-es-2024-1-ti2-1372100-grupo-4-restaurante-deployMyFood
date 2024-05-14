@@ -8,7 +8,7 @@
   import Switch from "../ui/switch/switch.svelte";
   import { Rating } from "flowbite-svelte";
   import { onMount } from "svelte";
-  import { endpoint } from "$lib/constants";
+  import { ENDPOINT_URL } from "$lib/constants";
 
   export let id: number;
   export let nome: string;
@@ -21,7 +21,7 @@
 
   async function fetchAvaliacao() {
     try {
-      const response = await fetch(`${endpoint}/avaliacao`);
+      const response = await fetch(`${ENDPOINT_URL}/avaliacao`);
       if (!response.ok) {
         throw new Error("Falha fetch nas avaliacoes");
       }
@@ -57,7 +57,7 @@
   const atualizarProduto = () => {
     const produto = { nome, descricao, preco, imagem, visibilidadeAvaliacao };
 
-    fetch(`${endpoint}/produtos/edit/${id}`, {
+    fetch(`${ENDPOINT_URL}/produtos/edit/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -77,7 +77,7 @@
 
   async function excluirProduto(id: number) {
     try {
-      const response = await fetch(`${endpoint}/produtos/delete/${id}`, {
+      const response = await fetch(`${ENDPOINT_URL}/produtos/delete/${id}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",

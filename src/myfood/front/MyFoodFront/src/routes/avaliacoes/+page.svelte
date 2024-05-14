@@ -4,7 +4,7 @@
   import { onMount } from "svelte";
   import { Rating, AdvancedRating } from "flowbite-svelte";
   import { Diamonds } from 'svelte-loading-spinners';
-  import { endpoint } from "$lib/constants";
+  import { ENDPOINT_URL } from "$lib/constants";
 
   //export let data: PageData;
 
@@ -21,11 +21,11 @@
   };
   let pratos: Prato[] = [];
 
-  let promise = fetch(`${endpoint}/avaliacao`);
+  let promise = fetch(`${ENDPOINT_URL}/avaliacao`);
 
   async function fetchAvaliacao() {
     try {
-      const response = await fetch(`${endpoint}/avaliacao`);
+      const response = await fetch(`${ENDPOINT_URL}/avaliacao`);
       if (!response.ok) {
         throw new Error("Falha fetch nas avaliacoes");
       }
@@ -93,7 +93,7 @@
     mediaAvaliacao = calculaMediaAvaliacao(avaliacao, id);
     mediaAvaliacaoTotal = calculaMediaAvaliacaoTotal(avaliacao);
 
-    const response = await fetch(`${endpoint}/produtos`);
+    const response = await fetch(`${ENDPOINT_URL}/produtos`);
     if (!response.ok) {
       console.error("Erro ao buscar produtos:", response.status);
       return;

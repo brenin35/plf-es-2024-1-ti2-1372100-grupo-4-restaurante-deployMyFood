@@ -5,13 +5,13 @@
   import * as Card from "$lib/components/ui/card/index.js";
   import { Input } from "$lib/components/ui/input/index.js";
   import { Label } from "$lib/components/ui/label/index.js";
-  import { endpoint } from "$lib/constants";
+  import { ENDPOINT_URL } from "$lib/constants";
 
   export let data: PageData;
 
   let mesa = data.mesas;
   let cliente = data.clientes;
-  let promise = fetch(`${endpoint}/mesas`);
+  let promise = fetch(`${ENDPOINT_URL}/mesas`);
 
   cliente.mesaId = mesa.id;
 
@@ -26,7 +26,7 @@
       return;
     }
 
-    const response = await fetch(`${endpoint}/clientes`, {
+    const response = await fetch(`${ENDPOINT_URL}/clientes`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

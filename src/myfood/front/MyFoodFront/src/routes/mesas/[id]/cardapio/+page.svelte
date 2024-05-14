@@ -3,7 +3,7 @@
   import ModalPedido from "$lib/components/modal/ModalPedido.svelte";
   import { Diamonds } from "svelte-loading-spinners";
   import Cardapio from "$lib/components/Cardapio.svelte";
-  import { endpoint } from "$lib/constants";
+  import { ENDPOINT_URL } from "$lib/constants";
 
   type Prato = {
     visibilidadeAvaliacao: boolean;
@@ -18,7 +18,7 @@
   let pratos: Prato[] = [];
 
   onMount(async () => {
-    const response = await fetch(`${endpoint}/produtos`);
+    const response = await fetch(`${ENDPOINT_URL}/produtos`);
     if (!response.ok) {
       console.error("Erro ao buscar produtos:", response.status);
       return;
