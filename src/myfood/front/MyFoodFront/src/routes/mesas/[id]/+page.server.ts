@@ -1,13 +1,16 @@
 import type { PageServerLoad } from "./$types";
-
-let endpoint = "http://localhost:8080";
+import { ENDPOINT_URL } from "$lib/constants";
 
 export const load = (async ({ params }) => {
   const id = params.id;
 
-  const response = await fetch(`${endpoint}/mesas/${id}`).then((res) => res.json());
+  const response = await fetch(`${ENDPOINT_URL}/mesas/${id}`).then((res) =>
+    res.json()
+  );
 
-  const responseClientes = await fetch(`${endpoint}/clientes`).then((res) => res.json());
+  const responseClientes = await fetch(`${ENDPOINT_URL}/clientes`).then((res) =>
+    res.json()
+  );
 
   console.log(responseClientes);
   console.log(response);
