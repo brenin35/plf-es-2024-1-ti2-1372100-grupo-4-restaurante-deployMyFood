@@ -11,17 +11,10 @@
   let nome = "";
   let descricao = "";
   let preco = 0;
-  let imagem = new FormData();
-  let imageUrl = "";
+  let imagem = "";
   let visibilidadeAvaliacao = true;
 
   let endpoint = "https://plf-es-2024-1-ti2-1372100-grupo-4.onrender.com";
-
-  function converterImg(event) {
-    const file = event.target.files[0];
-    imagem.append("file", file);
-    imageUrl = URL.createObjectURL(file);
-  }
 
   function adicionarProduto() {
     if (!nome || !descricao || !preco) {
@@ -32,14 +25,16 @@
       nome,
       descricao,
       preco,
+      imagem,
       visibilidadeAvaliacao,
     };
 
-    imagem.append("produto", JSON.stringify(produto));
-
     fetch(`${endpoint}/produtos`, {
       method: "POST",
-      body: imagem,
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(produto),
     })
       .then((response) => response.json())
       .then((data) => {
@@ -49,6 +44,19 @@
       .catch((error) => {
         console.error("Erro:", error);
       });
+  }
+
+  function converterImg(event) {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+
+    reader.onloadend = () => {
+      imagem = reader.result as string;
+    };
+
+    if (file) {
+      reader.readAsDataURL(file);
+    }
   }
 </script>
 

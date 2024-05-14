@@ -10,7 +10,7 @@
     nome: string;
     preco: number;
     descricao: string;
-    imagem: FormData;
+    imagem: string;
     avaliacao: Array<{ estrelas: number; comentario: string }>;
   };
 
