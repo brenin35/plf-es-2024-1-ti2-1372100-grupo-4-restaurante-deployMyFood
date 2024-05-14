@@ -5,6 +5,7 @@
   import { Label } from "$lib/components/ui/label/index.js";
   import { Button, buttonVariants } from "$lib/components/ui/button";
   import { createEventDispatcher } from "svelte";
+  import { endpoint } from "$lib/constants";
 
   const dispatch = createEventDispatcher();
 
@@ -13,8 +14,6 @@
   let preco = 0;
   let imagem = "";
   let visibilidadeAvaliacao = true;
-
-  let endpoint = "https://plf-es-2024-1-ti2-1372100-grupo-4.onrender.com";
 
   function adicionarProduto() {
     if (!nome || !descricao || !preco) {

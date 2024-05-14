@@ -3,6 +3,7 @@
   import ModalPedido from "$lib/components/modal/ModalPedido.svelte";
   import { Diamonds } from "svelte-loading-spinners";
   import Cardapio from "$lib/components/Cardapio.svelte";
+  import { endpoint } from "$lib/constants";
 
   type Prato = {
     visibilidadeAvaliacao: boolean;
@@ -15,8 +16,6 @@
   };
 
   let pratos: Prato[] = [];
-
-  let endpoint = "https://plf-es-2024-1-ti2-1372100-grupo-4.onrender.com";
 
   onMount(async () => {
     const response = await fetch(`${endpoint}/produtos`);

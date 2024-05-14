@@ -5,12 +5,12 @@
   import * as Card from "$lib/components/ui/card/index.js";
   import { Input } from "$lib/components/ui/input/index.js";
   import { Label } from "$lib/components/ui/label/index.js";
+  import { endpoint } from "$lib/constants";
 
   export let data: PageData;
 
   let mesa = data.mesas;
   let cliente = data.clientes;
-  let endpoint = "http://localhost:8080";
   let promise = fetch(`${endpoint}/mesas`);
 
   cliente.mesaId = mesa.id;

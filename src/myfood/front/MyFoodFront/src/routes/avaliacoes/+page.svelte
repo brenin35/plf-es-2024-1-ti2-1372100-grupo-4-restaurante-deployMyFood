@@ -4,6 +4,7 @@
   import { onMount } from "svelte";
   import { Rating, AdvancedRating } from "flowbite-svelte";
   import { Diamonds } from 'svelte-loading-spinners';
+  import { endpoint } from "$lib/constants";
 
   //export let data: PageData;
 
@@ -20,7 +21,6 @@
   };
   let pratos: Prato[] = [];
 
-  let endpoint = "https://plf-es-2024-1-ti2-1372100-grupo-4.onrender.com";
   let promise = fetch(`${endpoint}/avaliacao`);
 
   async function fetchAvaliacao() {

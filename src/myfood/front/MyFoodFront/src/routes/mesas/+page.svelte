@@ -2,17 +2,14 @@
   import Button from "$lib/components/ui/button/button.svelte";
   import { onMount } from "svelte";
   import { Diamonds } from "svelte-loading-spinners";
+  import { endpoint, deployFront, API_URL, SIZE } from "$lib/constants";
   // import type { PageData } from "./$types";
 
   // export let data: PageData;
 
-  let endpoint = "http://localhost:8080";
-  let cardapioMesa =
-    "https://plf-es-2024-1-ti2-1372100-grupo-4-restaurante-deploy-my-food.vercel.app/mesas";
+  let cardapioMesa = `${deployFront}/mesas`;
   let mesas: Mesa[] = [];
   let qrLinks: string[] = [];
-  let API_URL = "https://api.qrserver.com/v1/create-qr-code/?data=";
-  let SIZE = "&size=150x150";
   let promise = fetch(`${endpoint}/mesas`);
 
   type Mesa = {
@@ -98,9 +95,7 @@
           </div>
         {:else}
           <div class="flex justify-center items-center mt-40">
-            <h1 class="text-xl text-center">
-              Nenhum produto adicionado ao cardápio!
-            </h1>
+            <h1 class="text-xl text-center">Nenhuma mesa registrada!</h1>
           </div>
         {/each}
       </div>

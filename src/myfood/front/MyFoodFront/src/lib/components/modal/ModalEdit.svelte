@@ -8,6 +8,7 @@
   import Switch from "../ui/switch/switch.svelte";
   import { Rating } from "flowbite-svelte";
   import { onMount } from "svelte";
+  import { endpoint } from "$lib/constants";
 
   export let id: number;
   export let nome: string;
@@ -17,8 +18,6 @@
   export let visibilidadeAvaliacao: boolean;
   export let avaliacao: { id: number; produtoId: number; estrelas: number }[] =
     [];
-
-  let endpoint = "https://plf-es-2024-1-ti2-1372100-grupo-4.onrender.com";
 
   async function fetchAvaliacao() {
     try {

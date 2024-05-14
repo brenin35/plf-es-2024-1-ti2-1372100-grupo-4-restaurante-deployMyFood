@@ -3,6 +3,7 @@
   import * as Card from "$lib/components/ui/card/index.js";
   import { Input } from "$lib/components/ui/input/index.js";
   import { Label } from "$lib/components/ui/label/index.js";
+  import { endpoint } from "$lib/constants";
 
   export let id: number;
   export let cliente: {
@@ -11,8 +12,6 @@
     mesaId: number;
   };
   cliente.mesaId = id;
-
-  let endpoint = "http://localhost:8080";
 
   const criarCliente = async () => {
     const clienteData = {

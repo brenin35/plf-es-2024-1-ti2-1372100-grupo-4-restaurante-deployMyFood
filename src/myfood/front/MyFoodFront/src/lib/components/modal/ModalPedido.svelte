@@ -7,6 +7,7 @@
   import { Plus, Minus } from "lucide-svelte";
   import { Rating } from "flowbite-svelte";
   import { onMount } from "svelte";
+  import { endpoint } from "$lib/constants";
 
   let quantidade = 1;
 
@@ -31,8 +32,6 @@
       precoTotal -= preco;
     }
   }
-
-  let endpoint = "https://plf-es-2024-1-ti2-1372100-grupo-4.onrender.com";
 
   async function fetchAvaliacao() {
     try {
