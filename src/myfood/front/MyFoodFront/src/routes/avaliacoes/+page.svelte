@@ -103,7 +103,7 @@
   console.log(mediaAvaliacaoTotal);
 </script>
 
-<div class="p-4 sm:ml-64">
+<div class=" ">
   <div class="py-12">
     <div class="gap-0 py-1">
       <div class="items-center gap-0 pb-7">

@@ -45,7 +45,7 @@
   };
 </script>
 
-<div class="p-4 sm:ml-64">
+<div class=" ">
   <h1 class="text-center text-xl mb-4">
     Cadastro em <strong>{mesa.nomeMesa}</strong>
   </h1>
@@ -85,15 +85,9 @@
           </form>
         </Card.Content>
         <Card.Footer class="flex justify-end">
-          {#if cliente.nomeCliente && cliente.contatoCliente}
-              <Button type="submit" variant="buttonAdd" on:click={criarCliente}
-                >Cadastrar!</Button
-              >
-          {:else}
-            <Button type="submit" variant="buttonAdd" disabled
+            <Button type="submit" variant="buttonAdd" on:click={criarCliente} disabled={cliente.nomeCliente && cliente.contatoCliente}
               >Cadastrar!</Button
             >
-          {/if}
         </Card.Footer>
       </Card.Root>
     {/await}

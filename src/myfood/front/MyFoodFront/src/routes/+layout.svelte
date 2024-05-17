@@ -6,6 +6,8 @@
 <div class="app">
   <main>
     <Navbar />
-    <slot></slot>
+    <div class="p-4 sm:ml-64">
+      <slot></slot>
+    </div>
   </main>
 </div>

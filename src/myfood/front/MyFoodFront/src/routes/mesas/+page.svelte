@@ -60,7 +60,7 @@
   }
 </script>
 
-<div class="p-4 sm:ml-64">
+<div class=" ">
   <div class="py-4">
     <div class="mb-5 mt-5 flex flex-col sm:flex-row justify-between">
       <h1 class="text-center text-4xl font-bold text-secondary">

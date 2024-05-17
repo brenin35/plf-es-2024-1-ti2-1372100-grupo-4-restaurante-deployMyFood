@@ -8,7 +8,7 @@
   <meta name="description" content="TI-2 MyFood project" />
 </svelte:head>
 
-<div class="p-4 sm:ml-64">
+<div class=" ">
   <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
     <div class="text-center">
       <h1 class="text-4xl font-bold text-secondary mb-4">
