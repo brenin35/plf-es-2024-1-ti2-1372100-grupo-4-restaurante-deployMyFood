@@ -1,6 +1,7 @@
 <script lang="ts">
   import Button from "$lib/components/ui/button/button.svelte";
   import { onMount } from "svelte";
+  import { getMesas,createMesa } from "../../../../../back_novo/src/main/java/com/myfood/myfoodback/services/mesaService";
   import { Diamonds } from "svelte-loading-spinners";
   import {
     ENDPOINT_URL,
@@ -13,7 +14,7 @@
   // export let data: PageData;
 
   let cardapioMesa = `${DEPLOY_FRONT_URL}/mesas`;
-  let mesas: Mesa[] = [];
+  let mesas: string | any[] = [];
   let qrLinks: string[] = [];
   let promise = fetch(`${ENDPOINT_URL}/mesas`);
 
@@ -46,14 +47,42 @@
   }
 
   onMount(async () => {
-    const response = await fetch(`${ENDPOINT_URL}/mesas`);
-    if (!response.ok) {
-      console.error("Erro ao buscar mesas:", response.status);
-      return;
+    try {
+      mesas = await getMesas();
+    } catch (error) {
+      console.error(error);
     }
-    mesas = await response.json();
-    qrLinks = mesas.map((mesa) => gerarQRCode(mesa.id));
   });
+
+  async function handleCreateMesa() {
+    const newMesa = { /* mesa data */ };
+    try {
+      const createdMesa = await createMesa(newMesa);
+      mesas = [...mesas, createdMesa];
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  async function handleUpdateMesa() {
+    const newMesa = { /* mesa data */ };
+    try {
+      const createdMesa = await createMesa(newMesa);
+      mesas = [...mesas, createdMesa];
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  async function handleDeleteMesa() {
+    const newMesa = { /* mesa data */ };
+    try {
+      const createdMesa = await createMesa(newMesa);
+      mesas = [...mesas, createdMesa];
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   function gerarQRCode(mesaId: number) {
     return `${API_URL}${cardapioMesa}/${mesaId}${SIZE}`;

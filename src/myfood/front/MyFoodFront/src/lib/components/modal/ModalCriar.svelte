@@ -6,6 +6,8 @@
   import { Button, buttonVariants } from "$lib/components/ui/button";
   import { createEventDispatcher } from "svelte";
   import { ENDPOINT_URL } from "$lib/constants";
+  import { createProduto } from "../../../../../../back_novo/src/main/java/com/myfood/myfoodback/services/produtosService";
+
 
   const dispatch = createEventDispatcher();
 
@@ -15,35 +17,27 @@
   let imagem = "";
   let visibilidadeAvaliacao = true;
 
-  function adicionarProduto() {
-    if (!nome || !descricao || !preco) {
-      alert("Por favor, preencha todos os campos obrigatórios.");
-      return;
-    }
-    const produto = {
-      nome,
-      descricao,
-      preco,
-      imagem,
-      visibilidadeAvaliacao,
-    };
-
-    fetch(`${ENDPOINT_URL}/produtos`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(produto),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("Produto adicionado com sucesso:", data);
-        window.location.reload();
-      })
-      .catch((error) => {
-        console.error("Erro:", error);
-      });
+  async function adicionarProduto() {
+  if (!nome || !descricao || !preco) {
+    alert("Por favor, preencha todos os campos obrigatórios.");
+    return;
   }
+  const produto = {
+    nome,
+    descricao,
+    preco,
+    imagem,
+    visibilidadeAvaliacao,
+  };
+
+  try {
+    const data = await createProduto(produto);
+    console.log("Produto adicionado com sucesso:", data);
+    window.location.reload();
+  } catch (error) {
+    console.error("Erro:", error);
+  }
+}
 
   function converterImg(event) {
     const file = event.target.files[0];

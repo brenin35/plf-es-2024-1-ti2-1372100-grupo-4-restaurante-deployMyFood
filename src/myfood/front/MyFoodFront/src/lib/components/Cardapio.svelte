@@ -2,6 +2,7 @@
   import { onMount } from "svelte";
   import { Diamonds } from "svelte-loading-spinners";
   import { ENDPOINT_URL } from "$lib/constants";
+  import {getProdutos} from "../../../../../back_novo/src/main/java/com/myfood/myfoodback/services/produtosService"
 
   type Prato = {
     visibilidadeAvaliacao: boolean;
@@ -18,12 +19,11 @@
   let promise = fetch(`${ENDPOINT_URL}/produtos`);
 
   onMount(async () => {
-    const response = await fetch(`${ENDPOINT_URL}/produtos`);
-    if (!response.ok) {
-      console.error("Erro ao buscar produtos:", response.status);
-      return;
+    try {
+      pratos = await getProdutos();
+    } catch (error) {
+      console.error(error);
     }
-    pratos = await response.json();
   });
 </script>
 

@@ -6,6 +6,7 @@
   import { Input } from "$lib/components/ui/input/index.js";
   import { Label } from "$lib/components/ui/label/index.js";
   import { ENDPOINT_URL } from "$lib/constants";
+  import { createCliente } from "../../../../../../back_novo/src/main/java/com/myfood/myfoodback/services/clientesService";
 
   export let data: PageData;
 
@@ -26,21 +27,12 @@
       return;
     }
 
-    const response = await fetch(`${ENDPOINT_URL}/clientes`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(clienteData),
-    });
-
-    if (response.ok) {
-      const data = await response.json();
+    try {
+      const data = await createCliente(clienteData); // Use the service function
       console.log("Cliente adicionado com sucesso:", data);
       window.location.href =`/mesas/${mesa.id}/cardapio`;
-    } else {
-      const errorMessage = await response.text();
-      console.error("Falha ao adicionar cliente:", errorMessage);
+    } catch (error) {
+      console.error("Falha ao adicionar cliente:", error);
     }
   };
 </script>
