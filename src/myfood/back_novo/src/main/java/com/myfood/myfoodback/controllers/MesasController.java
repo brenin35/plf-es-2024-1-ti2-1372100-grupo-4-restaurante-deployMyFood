@@ -18,10 +18,24 @@ public class MesasController {
     private final MesasRepository mesasRepository;
     private final ClientesRepository clientesRepository;
 
-
     public MesasController(MesasRepository mesasRepository, ClientesRepository clientesRepository) {
         this.mesasRepository = mesasRepository;
         this.clientesRepository = clientesRepository;
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Mesas> updateMesa(@PathVariable Long id, @RequestBody Mesas updatedMesa) {
+        Optional<Mesas> existingMesaOptional = mesasRepository.findById(id);
+        if (!existingMesaOptional.isPresent()) {
+            return ResponseEntity.notFound().build();
+        }
+
+        Mesas existingMesa = existingMesaOptional.get();
+        existingMesa.setNomeMesa(updatedMesa.getNomeMesa());
+        existingMesa.setQrCode(updatedMesa.getQrCode());
+
+        Mesas savedMesa = mesasRepository.save(existingMesa);
+        return ResponseEntity.ok(savedMesa);
     }
 
     @GetMapping
@@ -41,26 +55,26 @@ public class MesasController {
         Mesas savedMesa = mesasRepository.save(mesa);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedMesa);
     }
-    //Salvar dados do cliente de acordo com a mesa escolhida
+
+    // Salvar dados do cliente de acordo com a mesa escolhida
     @PostMapping("/{id}/clientes")
     public ResponseEntity<String> receberDadosCliente(@PathVariable Long id, @RequestBody Clientes cliente) {
         try {
-            
+
             Optional<Mesas> mesaOptional = mesasRepository.findById(id);
             if (!mesaOptional.isPresent()) {
                 return ResponseEntity.notFound().build();
             }
 
-            
             Mesas mesa = mesaOptional.get();
             cliente.setMesaId(mesa.getId());
 
-            
             Clientes clienteSalvo = clientesRepository.save(cliente);
 
             return ResponseEntity.ok("Dados do cliente salvos com sucesso. ID do cliente: " + clienteSalvo.getId());
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao salvar os dados do cliente: " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Erro ao salvar os dados do cliente: " + e.getMessage());
         }
     }
 

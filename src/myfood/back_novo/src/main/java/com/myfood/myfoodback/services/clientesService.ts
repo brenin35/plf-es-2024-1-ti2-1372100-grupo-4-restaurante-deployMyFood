@@ -11,7 +11,6 @@ export async function getClientes() {
 export async function createCliente(cliente: { nomeCliente: any; contatoCliente: any; mesaId: any; }) {
     const response = await fetch(`${ENDPOINT_URL}/clientes`, {
       method: "POST",
-      mode: 'no-cors',
       headers: {
         "Content-Type": "application/json",
       },
@@ -26,7 +25,6 @@ export async function createCliente(cliente: { nomeCliente: any; contatoCliente:
 export async function updateCliente(id: any, updatedCliente: any) {
     const response = await fetch(`${ENDPOINT_URL}/clientes/${id}`, {
       method: "PUT",
-      mode: 'no-cors',
       headers: {
         "Content-Type": "application/json",
       },

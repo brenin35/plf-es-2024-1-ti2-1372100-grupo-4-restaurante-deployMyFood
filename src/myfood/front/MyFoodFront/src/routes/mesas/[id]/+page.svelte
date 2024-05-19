@@ -77,7 +77,7 @@
           </form>
         </Card.Content>
         <Card.Footer class="flex justify-end">
-            <Button type="submit" variant="buttonAdd" on:click={criarCliente} disabled={cliente.nomeCliente && cliente.contatoCliente}
+            <Button type="submit" variant="buttonAdd" on:click={criarCliente} disabled={!cliente.nomeCliente && !cliente.contatoCliente}
               >Cadastrar!</Button
             >
         </Card.Footer>

@@ -11,7 +11,6 @@ export async function getMesas() {
 export async function createMesa(mesa: any) {
   const response = await fetch(`${ENDPOINT_URL}/mesas`, {
     method: "POST",
-    mode: 'no-cors',
     headers: {
       "Content-Type": "application/json",
     },
@@ -22,25 +21,23 @@ export async function createMesa(mesa: any) {
   }
   const createdMesa = await response.json();
 
-  // Generate QR code for the created mesa
   createdMesa.qrCode = `${API_URL}/mesas/${createdMesa.id}${SIZE}`;
 
-  return createdMesa;
-}
-
-export async function updateMesa(id: any, updatedMesa: any) {
-  const response = await fetch(`${ENDPOINT_URL}/mesas/${id}`, {
+  const updateResponse = await fetch(`${ENDPOINT_URL}/mesas/${createdMesa.id}`, {
     method: "PUT",
-    mode: 'no-cors',
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(updatedMesa),
+    body: JSON.stringify(createdMesa),
   });
-  if (!response.ok) {
-    throw new Error("Failed to update mesa");
+
+  if (!updateResponse.ok) {
+    throw new Error("Failed to update mesa with QR code");
   }
-  return response.json();
+
+  const updatedMesa = await updateResponse.json();
+
+  return updatedMesa;
 }
 
 export async function deleteMesa(id: any) {

@@ -8,10 +8,9 @@ export async function getProdutos() {
   return response.json();
 }
 
-export async function createProduto(produto: { nome: string; descricao: string; preco: number; imagem: string; visibilidadeAvaliacao: boolean; }) {
+export async function createProduto(produto: { nome: any; descricao: any; preco: any; imagem: any; visibilidadeAvaliacao: any; }) {
     const response = await fetch(`${ENDPOINT_URL}/produtos`, {
       method: "POST",
-      mode: 'no-cors',
       headers: {
         "Content-Type": "application/json",
       },
@@ -23,10 +22,9 @@ export async function createProduto(produto: { nome: string; descricao: string; 
     return response.json();
   }
 
-export async function updateProduto(id: number, updatedProduto: { nome: string; descricao: string; preco: number; imagem: string; visibilidadeAvaliacao: boolean; }) {
+export async function updateProduto(id: number, updatedProduto: { nome: any; descricao: any; preco: any; imagem: any; visibilidadeAvaliacao: any; }) {
     const response = await fetch(`${ENDPOINT_URL}/produtos/${id}`, {
       method: "PUT",
-      mode: 'no-cors',
       headers: {
         "Content-Type": "application/json",
       },
