@@ -8,7 +8,6 @@
   import { ENDPOINT_URL } from "$lib/constants";
   import { createProduto } from "../../../../../../back_novo/src/main/java/com/myfood/myfoodback/services/produtosService";
 
-
   const dispatch = createEventDispatcher();
 
   let nome = "";
@@ -18,26 +17,26 @@
   let visibilidadeAvaliacao = true;
 
   async function adicionarProduto() {
-  if (!nome || !descricao || !preco) {
-    alert("Por favor, preencha todos os campos obrigatórios.");
-    return;
-  }
-  const produto = {
-    nome,
-    descricao,
-    preco,
-    imagem,
-    visibilidadeAvaliacao,
-  };
+    if (!nome || !descricao || !preco) {
+      alert("Por favor, preencha todos os campos obrigatórios.");
+      return;
+    }
+    const produto = {
+      nome,
+      descricao,
+      preco,
+      imagem,
+      visibilidadeAvaliacao,
+    };
 
-  try {
-    const data = await createProduto(produto);
-    console.log("Produto adicionado com sucesso:", data);
-    window.location.reload();
-  } catch (error) {
-    console.error("Erro:", error);
+    try {
+      const data = await createProduto(produto);
+      console.log("Produto adicionado com sucesso:", data);
+      window.location.reload();
+    } catch (error) {
+      console.error("Erro:", error);
+    }
   }
-}
 
   function converterImg(event) {
     const file = event.target.files[0];

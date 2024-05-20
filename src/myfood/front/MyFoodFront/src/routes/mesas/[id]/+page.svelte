@@ -7,6 +7,7 @@
   import { Label } from "$lib/components/ui/label/index.js";
   import { ENDPOINT_URL } from "$lib/constants";
   import { createCliente } from "../../../../../../back_novo/src/main/java/com/myfood/myfoodback/services/clientesService";
+  import { session } from "$lib/sessionStore";
 
   export let data: PageData;
 
@@ -28,9 +29,10 @@
     }
 
     try {
-      const data = await createCliente(clienteData); // Use the service function
+      const data = await createCliente(clienteData);
       console.log("Cliente adicionado com sucesso:", data);
-      window.location.href =`/mesas/${mesa.id}/cardapio`;
+      session.set({ clienteId: data.id, mesaId: mesa.id });
+      window.location.href = `/mesas/${mesa.id}/cardapio`;
     } catch (error) {
       console.error("Falha ao adicionar cliente:", error);
     }
@@ -77,9 +79,13 @@
           </form>
         </Card.Content>
         <Card.Footer class="flex justify-end">
-            <Button type="submit" variant="buttonAdd" on:click={criarCliente} disabled={!cliente.nomeCliente && !cliente.contatoCliente}
-              >Cadastrar!</Button
-            >
+          <Button
+            type="submit"
+            variant="buttonAdd"
+            on:click={criarCliente}
+            disabled={!cliente.nomeCliente || !cliente.contatoCliente}
+            >Cadastrar!</Button
+          >
         </Card.Footer>
       </Card.Root>
     {/await}

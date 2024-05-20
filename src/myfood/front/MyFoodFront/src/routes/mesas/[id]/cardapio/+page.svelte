@@ -4,6 +4,10 @@
   import { Diamonds } from "svelte-loading-spinners";
   import Cardapio from "$lib/components/Cardapio.svelte";
   import { ENDPOINT_URL } from "$lib/constants";
+  import { Button, buttonVariants } from "$lib/components/ui/button";
+  import { Check } from "lucide-svelte";
+  import { cart } from "$lib/cartStore";
+  import { session } from "$lib/sessionStore";
 
   type Prato = {
     visibilidadeAvaliacao: boolean;
@@ -13,6 +17,15 @@
     descricao: string;
     imagem: string;
     avaliacao: Array<{ estrelas: number; comentario: string }>;
+  };
+
+  type Pedido = {
+    clienteIdPedido: any;
+    mesaIdPedido: any;
+    status: string;
+    valorPago: number;
+    produtoId: number;
+    quantidade: number;
   };
 
   let pratos: Prato[] = [];
@@ -25,6 +38,32 @@
     }
     pratos = await response.json();
   });
+  async function finalizePedido() {
+  for (let item of $cart) {
+    const pedido = {
+      clienteIdPedido: $session.clienteId,
+      mesaIdPedido: $session.mesaId,
+      status: 'PENDENTE',
+      valorPago: item.precoTotal,
+      produtoId: item.id,
+      quantidade: item.quantidade
+    };
+
+    const response = await fetch(`${ENDPOINT_URL}/pedidos`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(pedido)
+    });
+
+    if (!response.ok) {
+      console.error('Failed to finalize order:', response.status);
+    }
+  }
+
+  cart.set([]);
+}
 </script>
 
 <div class="p-10 sm:ml-64">
@@ -46,5 +85,14 @@
         />
       {/each}
     </Cardapio>
+    <Button
+      variant="buttonAdd"
+      type="submit"
+      class="flex items-center mt-4"
+      on:click={finalizePedido}
+    >
+      <p class="pr-2">Finalizar Pedido</p>
+      <Check />
+    </Button>
   </div>
 </div>

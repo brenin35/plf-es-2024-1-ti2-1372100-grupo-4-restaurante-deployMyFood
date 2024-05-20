@@ -2,7 +2,7 @@
   import { onMount } from "svelte";
   import { Diamonds } from "svelte-loading-spinners";
   import { ENDPOINT_URL } from "$lib/constants";
-  import {getProdutos} from "../../../../../back_novo/src/main/java/com/myfood/myfoodback/services/produtosService"
+  import { getProdutos } from "../../../../../back_novo/src/main/java/com/myfood/myfoodback/services/produtosService";
 
   type Prato = {
     visibilidadeAvaliacao: boolean;

@@ -88,7 +88,10 @@
             <h2 class="text-center text-xl">{mesa.nomeMesa}</h2>
             <img src={mesa.qrCode} alt="QR Code" /><br />
             <div class="flex gap-2">
-              <Button on:click={() => handleDeleteMesa(mesa.id)} variant="buttonDD">Deletar mesa</Button>
+              <Button
+                on:click={() => handleDeleteMesa(mesa.id)}
+                variant="buttonDD">Deletar mesa</Button
+              >
               <Button variant="buttonDD">
                 <a
                   class="flex justify-end"

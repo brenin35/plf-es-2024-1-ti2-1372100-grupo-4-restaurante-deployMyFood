@@ -9,8 +9,10 @@
   import { Rating } from "flowbite-svelte";
   import { onMount } from "svelte";
   import { ENDPOINT_URL } from "$lib/constants";
-  import { updateProduto,deleteProduto } from "../../../../../../back_novo/src/main/java/com/myfood/myfoodback/services/produtosService";
-
+  import {
+    updateProduto,
+    deleteProduto,
+  } from "../../../../../../back_novo/src/main/java/com/myfood/myfoodback/services/produtosService";
 
   export let id: number;
   export let nome: string;
@@ -57,26 +59,26 @@
   });
 
   async function atualizarProduto() {
-  const produto = { nome, descricao, preco, imagem, visibilidadeAvaliacao };
+    const produto = { nome, descricao, preco, imagem, visibilidadeAvaliacao };
 
-  try {
-    const data = await updateProduto(id, produto); // Use the service function
-    console.log("Produto atualizado com sucesso:", data);
-    window.location.reload();
-  } catch (error) {
-    console.error("Erro:", error);
+    try {
+      const data = await updateProduto(id, produto); // Use the service function
+      console.log("Produto atualizado com sucesso:", data);
+      window.location.reload();
+    } catch (error) {
+      console.error("Erro:", error);
+    }
   }
-}
 
-async function excluirProduto(id: number) {
-  try {
-    await deleteProduto(id); // Use the service function
-    console.log("Produto deletado com sucesso");
-    window.location.reload();
-  } catch (error) {
-    console.error("Error deletar produto:", error);
+  async function excluirProduto(id: number) {
+    try {
+      await deleteProduto(id); // Use the service function
+      console.log("Produto deletado com sucesso");
+      window.location.reload();
+    } catch (error) {
+      console.error("Error deletar produto:", error);
+    }
   }
-}
 
   async function handleDelete() {
     if (confirm("Are you sure you want to delete this produto?")) {
