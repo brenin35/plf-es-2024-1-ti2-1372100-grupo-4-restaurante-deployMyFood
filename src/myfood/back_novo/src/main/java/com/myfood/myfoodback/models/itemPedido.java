@@ -1,27 +1,29 @@
 package com.myfood.myfoodback.models;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Id;
+import javax.persistence.*;
 
-public class itemPedido {
+@Entity
+public class ItemPedido {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    Long quantidade;
-    float precoTotal;
+    private Long quantidade;
+    private float precoTotal;
 
     @ManyToOne
     @JoinColumn(name = "produto_id", nullable = false)
     private Produtos produtoId;
 
-    public itemPedido() {
-    }
+    @ManyToOne
+    @JoinColumn(name = "pedido_id", nullable = false)
+    private Pedido pedido;
+
+    public ItemPedido() {}
+
+    // Getters and setters...
 
     public Long getId() {
-        return this.id;
+        return id;
     }
 
     public void setId(Long id) {
@@ -29,27 +31,34 @@ public class itemPedido {
     }
 
     public Long getQuantidade() {
-        return this.quantidade;
+        return quantidade;
     }
 
     public void setQuantidade(Long quantidade) {
         this.quantidade = quantidade;
     }
 
-    public Produtos getProdutoId() {
-        return this.produtoId;
-    }
-
-    public void setProdutoId(Produtos produtoId) {
-        this.produtoId = produtoId;
-    }
-
     public float getPrecoTotal() {
-        return this.precoTotal;
+        return precoTotal;
     }
 
     public void setPrecoTotal(float precoTotal) {
         this.precoTotal = precoTotal;
     }
 
+    public Produtos getProdutoId() {
+        return produtoId;
+    }
+
+    public void setProdutoId(Produtos produtoId) {
+        this.produtoId = produtoId;
+    }
+
+    public Pedido getPedido() {
+        return pedido;
+    }
+
+    public void setPedido(Pedido pedido) {
+        this.pedido = pedido;
+    }
 }

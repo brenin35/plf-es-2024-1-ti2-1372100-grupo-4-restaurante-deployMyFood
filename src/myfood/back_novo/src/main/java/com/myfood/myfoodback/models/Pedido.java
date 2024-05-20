@@ -2,6 +2,7 @@ package com.myfood.myfoodback.models;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.List;
 
 @Entity
 public class Pedido {
@@ -17,19 +18,16 @@ public class Pedido {
     @JoinColumn(name = "mesa_id_pedido", nullable = false)
     private Mesas mesaIdPedido;
 
-    public boolean statusPreparo;
-    public boolean statusPagamento;
+    private boolean statusPreparo;
+    private boolean statusPagamento;
 
     @Column(precision = 10, scale = 2)
-    private BigDecimal valorPago;
+    private BigDecimal precoTotalPedido;
 
-    @ManyToOne
-    @JoinColumn(name = "produto_id", nullable = false)
-    private Produtos produtoId;
+    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ItemPedido> itensPedido;
 
-
-    public Pedido() {
-    }
+    public Pedido() {}
 
     public Long getId() {
         return id;
@@ -37,14 +35,6 @@ public class Pedido {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public BigDecimal getValorPago() {
-        return valorPago;
-    }
-
-    public void setValorPago(BigDecimal valorPago) {
-        this.valorPago = valorPago;
     }
 
     public Clientes getClienteIdPedido() {
@@ -63,20 +53,8 @@ public class Pedido {
         this.mesaIdPedido = mesaIdPedido;
     }
 
-    public Produtos getProdutoId() {
-        return produtoId;
-    }
-
-    public void setProdutoId(Produtos produtoId) {
-        this.produtoId = produtoId;
-    }
-
     public boolean isStatusPreparo() {
-        return this.statusPreparo;
-    }
-
-    public boolean getStatusPreparo() {
-        return this.statusPreparo;
+        return statusPreparo;
     }
 
     public void setStatusPreparo(boolean statusPreparo) {
@@ -84,15 +62,26 @@ public class Pedido {
     }
 
     public boolean isStatusPagamento() {
-        return this.statusPagamento;
-    }
-
-    public boolean getStatusPagamento() {
-        return this.statusPagamento;
+        return statusPagamento;
     }
 
     public void setStatusPagamento(boolean statusPagamento) {
         this.statusPagamento = statusPagamento;
     }
-    
+
+    public BigDecimal getPrecoTotalPedido() {
+        return precoTotalPedido;
+    }
+
+    public void setPrecoTotalPedido(BigDecimal precoTotalPedido) {
+        this.precoTotalPedido = precoTotalPedido;
+    }
+
+    public List<ItemPedido> getItensPedido() {
+        return itensPedido;
+    }
+
+    public void setItensPedido(List<ItemPedido> itensPedido) {
+        this.itensPedido = itensPedido;
+    }
 }
