@@ -1,15 +1,12 @@
 <script lang="ts">
   import * as Dialog from "$lib/components/ui/dialog/index.js";
   import * as Card from "$lib/components/ui/card";
-  import { Input } from "$lib/components/ui/input/index.js";
-  import { Label } from "$lib/components/ui/label/index.js";
-  import { Button, buttonVariants } from "$lib/components/ui/button";
+  import { Button } from "$lib/components/ui/button";
   import { Plus, Minus } from "lucide-svelte";
   import { Rating } from "flowbite-svelte";
   import { onMount } from "svelte";
   import { ENDPOINT_URL } from "$lib/constants";
-
-  let quantidade = 1;
+  import { createItemPedido } from "$lib/reqsItemPedido";
 
   export let id: number;
   export let nome: string;
@@ -19,7 +16,11 @@
   export let visibilidadeAvaliacao: boolean;
   export let avaliacao: { id: number; produtoId: number; estrelas: number }[] =
     [];
+  export let pedidoId: number;
+
+  let quantidade = 1;
   let precoTotal = preco;
+  let mediaAvaliacao = 0;
 
   function increase() {
     quantidade += 1;
@@ -61,12 +62,26 @@
     );
     return totalStars / avaliacoesProduto.length;
   }
-  let mediaAvaliacao = 0;
 
   onMount(async () => {
     await fetchAvaliacao();
     mediaAvaliacao = calculaMediaAvaliacao(avaliacao, id);
   });
+
+  async function handleAddItemPedido() {
+    try {
+      const newItemPedido = {
+        quantidade: quantidade,
+        precoTotal: precoTotal,
+        produtoId: id,
+      };
+      await createItemPedido(pedidoId, newItemPedido);
+      alert("Item adicionado ao pedido com sucesso!");
+    } catch (error) {
+      console.error("Erro ao adicionar item ao pedido:", error);
+      alert("Erro ao adicionar item ao pedido");
+    }
+  }
 </script>
 
 <main class="mt-5 flex items-center justify-center">
@@ -74,12 +89,13 @@
     <Dialog.Trigger>
       <Card.Root class="w-auto">
         <div class="row flex">
-			<div class="column w-7/12">
+          <div class="column w-7/12">
             <Card.Header>
               <Card.Title
                 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
-                >{nome}</Card.Title
               >
+                {nome}
+              </Card.Title>
             </Card.Header>
             <Card.Content class="flex items-center">
               <div class="flex-grow">
@@ -87,7 +103,7 @@
                   Descricão: {descricao}
                 </p>
                 {#if visibilidadeAvaliacao == true}
-                  <div class=" flex justify-center">
+                  <div class="flex justify-center">
                     <Rating
                       count
                       rating={parseFloat(mediaAvaliacao.toFixed(1))}
@@ -124,16 +140,16 @@
     </Dialog.Trigger>
     <Dialog.Content class="sm:max-w-[600px]">
       <Dialog.Header>
-        <Dialog.Title
-          >Adicionar <span class="font-bold text-primary">{nome}</span> ao seu pedido</Dialog.Title
-        >
+        <Dialog.Title>
+          Adicionar <span class="font-bold text-primary">{nome}</span> ao seu pedido
+        </Dialog.Title>
         <Dialog.Description>
           Selecione a quantidade e clique em adicionar!
         </Dialog.Description>
       </Dialog.Header>
       <div class="grid gap-4 py-4">
-        <div class=" h-10 w-10 items-center justify-center gap-4">
-          <img class="" src={imagem} alt="imagem {nome}" />
+        <div class="h-10 w-10 items-center justify-center gap-4">
+          <img src={imagem} alt="imagem {nome}" />
         </div>
         <div class="flex items-center justify-center">
           <h1 class="mr-3 items-center text-xl">Quantidade:</h1>
@@ -150,11 +166,7 @@
       </div>
       <Dialog.Footer>
         <Dialog.Close>
-          <Button
-            variant="buttonAdd"
-            type="submit"
-            class="flex items-center"
-          >
+          <Button on:click={handleAddItemPedido} variant="buttonAdd" type="submit" class="flex items-center">
             <p class="pr-2">Adicionar produto ao pedido</p>
             <Plus />
           </Button>

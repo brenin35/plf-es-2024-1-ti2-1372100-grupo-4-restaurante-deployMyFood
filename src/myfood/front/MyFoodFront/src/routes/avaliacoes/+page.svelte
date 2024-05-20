@@ -100,7 +100,6 @@
     }
     pratos = await response.json();
   });
-  console.log(mediaAvaliacaoTotal);
 </script>
 
 <div class=" ">

@@ -12,5 +12,7 @@ export const load = (async ({ params }) => {
     res.json()
   );
 
+  console.log(responseClientes);
+
   return { mesas: response, clientes: responseClientes };
 }) satisfies PageServerLoad;

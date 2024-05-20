@@ -38,19 +38,6 @@ public class ItemPedidoController {
         return null;
     }
 
-    @PutMapping("/{id}")
-    public ItemPedido updateItemPedido(@PathVariable Long id, @RequestBody ItemPedido itemPedidoDetails) {
-        ItemPedido itemPedido = itemPedidoRepository.findById(id).orElse(null);
-        if (itemPedido != null) {
-            itemPedido.setQuantidade(itemPedidoDetails.getQuantidade());
-            itemPedido.setPrecoTotal(itemPedidoDetails.getPrecoTotal());
-            itemPedido.setProdutoId(itemPedidoDetails.getProdutoId());
-            itemPedido.setPedido(itemPedidoDetails.getPedido());
-            return itemPedidoRepository.save(itemPedido);
-        }
-        return null;
-    }
-
     @DeleteMapping("/{id}")
     public void deleteItemPedido(@PathVariable Long id) {
         itemPedidoRepository.deleteById(id);
