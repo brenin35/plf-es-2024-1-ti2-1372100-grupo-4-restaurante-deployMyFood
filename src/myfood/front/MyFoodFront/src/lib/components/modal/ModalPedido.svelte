@@ -8,7 +8,6 @@
   import { Rating } from "flowbite-svelte";
   import { onMount } from "svelte";
   import { ENDPOINT_URL } from "$lib/constants";
-  import { cart } from "$lib/cartStore";
 
   let quantidade = 1;
 
@@ -32,14 +31,6 @@
       quantidade -= 1;
       precoTotal -= preco;
     }
-  }
-
-  function addToCart() {
-    cart.update((items) => {
-      const updatedItems = [...items, { id, nome, quantidade, precoTotal }];
-      console.log("Cart after adding item:", updatedItems);
-      return updatedItems;
-    });
   }
 
   async function fetchAvaliacao() {
@@ -83,7 +74,7 @@
     <Dialog.Trigger>
       <Card.Root class="w-auto">
         <div class="row flex">
-          <div class="column w-7/12">
+			<div class="column w-7/12">
             <Card.Header>
               <Card.Title
                 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
@@ -158,17 +149,10 @@
         </p>
       </div>
       <Dialog.Footer>
-        <Dialog.Close>
-          <Button
-            variant="buttonAdd"
-            type="submit"
-            class="flex items-center"
-            on:click={addToCart}
-          >
-            <p class="pr-2">Adicionar produto ao pedido</p>
-            <Plus />
-          </Button>
-        </Dialog.Close>
+        <Button variant="buttonAdd" type="submit" class="flex items-center">
+          <p class="pr-2">Adicionar produto ao pedido</p>
+          <Plus />
+        </Button>
       </Dialog.Footer>
     </Dialog.Content>
   </Dialog.Root>

@@ -17,7 +17,8 @@ public class Pedido {
     @JoinColumn(name = "mesa_id_pedido", nullable = false)
     private Mesas mesaIdPedido;
 
-    private String status;
+    public boolean statusPreparo;
+    public boolean statusPagamento;
 
     @Column(precision = 10, scale = 2)
     private BigDecimal valorPago;
@@ -26,7 +27,9 @@ public class Pedido {
     @JoinColumn(name = "produto_id", nullable = false)
     private Produtos produtoId;
 
-    private int quantidade;
+
+    public Pedido() {
+    }
 
     public Long getId() {
         return id;
@@ -68,19 +71,28 @@ public class Pedido {
         this.produtoId = produtoId;
     }
 
-    public int getQuantidade() {
-        return quantidade;
+    public boolean isStatusPreparo() {
+        return this.statusPreparo;
     }
 
-    public void setQuantidade(int quantidade) {
-        this.quantidade = quantidade;
+    public boolean getStatusPreparo() {
+        return this.statusPreparo;
     }
 
-    public String getStatus() {
-        return status;
+    public void setStatusPreparo(boolean statusPreparo) {
+        this.statusPreparo = statusPreparo;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public boolean isStatusPagamento() {
+        return this.statusPagamento;
     }
+
+    public boolean getStatusPagamento() {
+        return this.statusPagamento;
+    }
+
+    public void setStatusPagamento(boolean statusPagamento) {
+        this.statusPagamento = statusPagamento;
+    }
+    
 }

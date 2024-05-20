@@ -23,21 +23,6 @@ public class MesasController {
         this.clientesRepository = clientesRepository;
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Mesas> updateMesa(@PathVariable Long id, @RequestBody Mesas updatedMesa) {
-        Optional<Mesas> existingMesaOptional = mesasRepository.findById(id);
-        if (!existingMesaOptional.isPresent()) {
-            return ResponseEntity.notFound().build();
-        }
-
-        Mesas existingMesa = existingMesaOptional.get();
-        existingMesa.setNomeMesa(updatedMesa.getNomeMesa());
-        existingMesa.setQrCode(updatedMesa.getQrCode());
-
-        Mesas savedMesa = mesasRepository.save(existingMesa);
-        return ResponseEntity.ok(savedMesa);
-    }
-
     @GetMapping
     public ResponseEntity<List<Mesas>> getAllMesas() {
         List<Mesas> mesas = mesasRepository.findAll();

@@ -14,7 +14,6 @@ public class Mesas {
     private Long id;
 
     private String nomeMesa;
-    private String qrCode;
 
     public Mesas() {
 
@@ -34,13 +33,5 @@ public class Mesas {
 
     public void setNomeMesa(String nomeMesa) {
         this.nomeMesa = nomeMesa;
-    }
-
-    public String getQrCode() {
-        return qrCode;
-    }
-
-    public void setQrCode(String qrCode) {
-        this.qrCode = qrCode;
     }
 }
