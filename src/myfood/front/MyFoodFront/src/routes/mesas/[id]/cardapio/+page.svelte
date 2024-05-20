@@ -19,6 +19,13 @@
     avaliacao: Array<{ estrelas: number; comentario: string }>;
   };
 
+  type itemPedido = {
+    id: number;
+    nome: string;
+    quantidade: number;
+    precoTotal: number;
+  };
+
   type Pedido = {
     clienteIdPedido: any;
     mesaIdPedido: any;
@@ -28,6 +35,8 @@
     quantidade: number;
   };
 
+  let itemPedidos: itemPedido;
+  
   let pratos: Prato[] = [];
 
   onMount(async () => {
@@ -38,39 +47,39 @@
     }
     pratos = await response.json();
   });
+
   async function finalizePedido() {
-    console.log('clienteId', $session.clienteId)
-    console.log('mesaId', $session.mesaId)
+    console.log("clienteId", $session.clienteId);
+    console.log("mesaId", $session.mesaId);
 
+    for (let item of $cart) {
+      console.log("preco", item.precoTotal);
+      console.log("itemId", item.id);
+      console.log("quantidade", item.quantidade);
+      const Pedido = {
+        clienteIdPedido: $session.clienteId,
+        mesaIdPedido: $session.mesaId,
+        status: "PENDENTE",
+        valorPago: item.precoTotal,
+        produtoId: item.id,
+        quantidade: item.quantidade,
+      };
 
-  for (let item of $cart) {
-    console.log('preco', item.precoTotal)
-    console.log('itemId', item.id)
-    console.log('quantidade', item.quantidade)
-    const Pedido = {
-      clienteIdPedido: $session.clienteId,
-      mesaIdPedido: $session.mesaId,
-      status: 'PENDENTE',
-      valorPago: item.precoTotal,
-      produtoId: item.id,
-      quantidade: item.quantidade
-    };
+      const response = await fetch(`${ENDPOINT_URL}/pedidos`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(Pedido),
+      });
 
-    const response = await fetch(`${ENDPOINT_URL}/pedidos`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(Pedido)
-    });
-
-    if (!response.ok) {
-      console.error('Failed to finalize order:', response.status);
+      if (!response.ok) {
+        console.error("Failed to finalize order:", response.status);
+      }
     }
-  }
 
-  cart.set([]);
-}
+    cart.set([]);
+  }
 </script>
 
 <div class="p-10 sm:ml-64">
