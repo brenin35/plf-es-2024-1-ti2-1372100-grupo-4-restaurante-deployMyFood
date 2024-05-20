@@ -39,8 +39,15 @@
     pratos = await response.json();
   });
   async function finalizePedido() {
+    console.log('clienteId', $session.clienteId)
+    console.log('mesaId', $session.mesaId)
+
+
   for (let item of $cart) {
-    const pedido = {
+    console.log('preco', item.precoTotal)
+    console.log('itemId', item.id)
+    console.log('quantidade', item.quantidade)
+    const Pedido = {
       clienteIdPedido: $session.clienteId,
       mesaIdPedido: $session.mesaId,
       status: 'PENDENTE',
@@ -54,7 +61,7 @@
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(pedido)
+      body: JSON.stringify(Pedido)
     });
 
     if (!response.ok) {
@@ -80,6 +87,7 @@
           preco={item.preco}
           descricao={item.descricao}
           img={item.imagem}
+          id={item.id}
           visibilidadeAvaliacao={item.visibilidadeAvaliacao}
           avaliacao={item.avaliacao}
         />

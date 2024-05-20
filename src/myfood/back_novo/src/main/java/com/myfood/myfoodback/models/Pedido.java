@@ -47,7 +47,7 @@ public class Pedido {
     public Clientes getClienteIdPedido() {
         return clienteIdPedido;
     }
-    
+
     public void setClienteIdPedido(Clientes clienteIdPedido) {
         this.clienteIdPedido = clienteIdPedido;
     }
@@ -79,7 +79,7 @@ public class Pedido {
     public String getStatus() {
         return status;
     }
-    
+
     public void setStatus(String status) {
         this.status = status;
     }
