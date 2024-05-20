@@ -149,10 +149,16 @@
         </p>
       </div>
       <Dialog.Footer>
-        <Button variant="buttonAdd" type="submit" class="flex items-center">
-          <p class="pr-2">Adicionar produto ao pedido</p>
-          <Plus />
-        </Button>
+        <Dialog.Close>
+          <Button
+            variant="buttonAdd"
+            type="submit"
+            class="flex items-center"
+          >
+            <p class="pr-2">Adicionar produto ao pedido</p>
+            <Plus />
+          </Button>
+        </Dialog.Close>
       </Dialog.Footer>
     </Dialog.Content>
   </Dialog.Root>
