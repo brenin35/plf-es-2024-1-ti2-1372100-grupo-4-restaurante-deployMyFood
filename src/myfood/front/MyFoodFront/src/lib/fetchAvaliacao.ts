@@ -1,6 +1,7 @@
 import { ENDPOINT_URL } from "$lib/constants";
 
 export type Avaliacao = {
+  id: number;
   produtoId: number;
   estrelas: number;
   comentario: string;

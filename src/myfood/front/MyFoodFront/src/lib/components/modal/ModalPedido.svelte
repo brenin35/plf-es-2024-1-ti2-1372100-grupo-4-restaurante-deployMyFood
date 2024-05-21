@@ -18,8 +18,8 @@
   export let descricao: string;
   export let imagem: string;
   export let visibilidadeAvaliacao: boolean;
-  export let avaliacao: { id: number; produtoId: number; estrelas: number }[] =
-    [];
+  export let avaliacao: Avaliacao[] = [];
+  
   export let pedidoId: number;
 
   let quantidade = 1;

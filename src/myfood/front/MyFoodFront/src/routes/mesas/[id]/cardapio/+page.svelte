@@ -8,6 +8,7 @@
   import { Check } from "lucide-svelte";
   import { session } from "$lib/sessionStore";
   import { getProdutos } from "$lib/fetchProdutos";
+  import { type Avaliacao } from "$lib/fetchAvaliacao";
 
   type Prato = {
     visibilidadeAvaliacao: boolean;
@@ -16,7 +17,8 @@
     preco: number;
     descricao: string;
     imagem: string;
-    avaliacao: Array<{ estrelas: number; comentario: string }>;
+    avaliacao: Avaliacao[];
+    pedidoId: number;
   };
 
   let promise = fetch(`${ENDPOINT_URL}/produtos`);

@@ -20,8 +20,7 @@
   export let descricao: string;
   export let imagem: string;
   export let visibilidadeAvaliacao: boolean;
-  export let avaliacao: { id: number; produtoId: number; estrelas: number }[] =
-    [];
+  export let avaliacao: Avaliacao[] = [];
 
   function calculaMediaAvaliacao(
     avaliacoes: { produtoId: number; estrelas: number }[],

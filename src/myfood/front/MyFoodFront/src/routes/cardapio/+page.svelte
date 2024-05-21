@@ -4,16 +4,20 @@
   import { onMount } from "svelte";
   import Cardapio from "$lib/components/Cardapio.svelte";
   import { getProdutos } from "$lib/fetchProdutos";
+  import {
+    type Avaliacao
+  } from "$lib/fetchAvaliacao";
 
-  type Prato = {
-    visibilidadeAvaliacao: boolean;
-    id: number;
-    nome: string;
-    preco: number;
-    descricao: string;
-    imagem: string;
-    avaliacao: Array<{ estrelas: number; comentario: string }>;
-  };
+type Prato = {
+  visibilidadeAvaliacao: boolean;
+  id: number;
+  nome: string;
+  preco: number;
+  descricao: string;
+  imagem: string;
+  avaliacao: Avaliacao[];
+};
+
 
   let pratos: Prato[] = [];
 
