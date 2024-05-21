@@ -7,6 +7,7 @@
   import { Button, buttonVariants } from "$lib/components/ui/button";
   import { Check } from "lucide-svelte";
   import { session } from "$lib/sessionStore";
+  import { getProdutos } from "$lib/fetchProdutos";
 
   type Prato = {
     visibilidadeAvaliacao: boolean;
@@ -23,12 +24,7 @@
   let pratos: Prato[] = [];
 
   onMount(async () => {
-    const response = await fetch(`${ENDPOINT_URL}/produtos`);
-    if (!response.ok) {
-      console.error("Erro ao buscar produtos:", response.status);
-      return;
-    }
-    pratos = await response.json();
+    pratos = await getProdutos();
   });
 </script>
 
@@ -46,13 +42,7 @@
     <Cardapio>
       {#each pratos as item}
         <ModalPedido
-          nome={item.nome}
-          preco={item.preco}
-          descricao={item.descricao}
-          img={item.imagem}
-          id={item.id}
-          visibilidadeAvaliacao={item.visibilidadeAvaliacao}
-          avaliacao={item.avaliacao}
+          {...item}
         />
       {/each}
     </Cardapio>

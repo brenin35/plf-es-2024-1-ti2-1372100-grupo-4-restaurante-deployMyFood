@@ -47,7 +47,7 @@
 
 <div class=" ">
   <h1 class="text-center text-xl mb-4">
-    Cadastro em <strong>{mesa.nomeMesa}</strong>
+    Cadastro em <strong>Mesa {mesa.id}</strong>
   </h1>
   <div class="flex justify-center items-center">
     {#await promise}

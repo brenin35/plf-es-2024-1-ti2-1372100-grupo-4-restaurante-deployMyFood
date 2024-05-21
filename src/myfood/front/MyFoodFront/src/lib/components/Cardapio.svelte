@@ -2,6 +2,7 @@
   import { onMount } from "svelte";
   import { Diamonds } from "svelte-loading-spinners";
   import { ENDPOINT_URL } from "$lib/constants";
+  import { getProdutos } from "$lib/fetchProdutos";
 
   type Prato = {
     visibilidadeAvaliacao: boolean;
@@ -18,12 +19,7 @@
   let promise = fetch(`${ENDPOINT_URL}/produtos`);
 
   onMount(async () => {
-    const response = await fetch(`${ENDPOINT_URL}/produtos`);
-    if (!response.ok) {
-      console.error("Erro ao buscar produtos:", response.status);
-      return;
-    }
-    pratos = await response.json();
+    pratos = await getProdutos();
   });
 </script>
 
