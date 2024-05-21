@@ -12,11 +12,11 @@ public class Pedido {
 
     @ManyToOne
     @JoinColumn(name = "cliente_id_pedido", nullable = false)
-    private Clientes clienteIdPedido;
+    private Clientes clientes;
 
     @ManyToOne
     @JoinColumn(name = "mesa_id_pedido", nullable = false)
-    private Mesas mesaIdPedido;
+    private Mesas mesas;
 
     private boolean statusPreparo;
     private boolean statusPagamento;
@@ -27,7 +27,8 @@ public class Pedido {
     @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ItemPedido> itensPedido;
 
-    public Pedido() {}
+    public Pedido() {
+    }
 
     public Long getId() {
         return id;
@@ -37,20 +38,28 @@ public class Pedido {
         this.id = id;
     }
 
-    public Clientes getClienteIdPedido() {
-        return clienteIdPedido;
+    public Clientes getClientes() {
+        return this.clientes;
     }
 
-    public void setClienteIdPedido(Clientes clienteIdPedido) {
-        this.clienteIdPedido = clienteIdPedido;
+    public void setClientes(Clientes clientes) {
+        this.clientes = clientes;
     }
 
-    public Mesas getMesaIdPedido() {
-        return mesaIdPedido;
+    public Mesas getMesas() {
+        return this.mesas;
     }
 
-    public void setMesaIdPedido(Mesas mesaIdPedido) {
-        this.mesaIdPedido = mesaIdPedido;
+    public void setMesas(Mesas mesas) {
+        this.mesas = mesas;
+    }
+
+    public boolean getStatusPreparo() {
+        return this.statusPreparo;
+    }
+
+    public boolean getStatusPagamento() {
+        return this.statusPagamento;
     }
 
     public boolean isStatusPreparo() {

@@ -5,7 +5,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-
 @Entity
 public class Mesas {
 
@@ -14,7 +13,6 @@ public class Mesas {
     private Long id;
 
     public Mesas() {
-
     }
 
     public Long getId() {
