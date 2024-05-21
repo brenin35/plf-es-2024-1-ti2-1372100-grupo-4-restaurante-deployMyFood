@@ -25,7 +25,7 @@ public class PedidoController {
 
     @PostMapping
     public Pedido createPedido(@RequestBody Pedido pedido) {
-        return pedidoService.createPedido(pedido.getClientes().getId(), pedido.getMesas().getId());
+        return pedidoService.createPedido(pedido);
     }
 
     @PutMapping("/{id}")

@@ -20,18 +20,18 @@
   export let avaliacao: Avaliacao[] = [];
 
   let quantidade = 1;
-  let precoTotal = preco;
+  let itemPreco = preco;
   let mediaAvaliacao = 0;
 
   function increase() {
     quantidade += 1;
-    precoTotal += preco;
+    itemPreco += preco;
   }
 
   function decrease() {
     if (quantidade > 1) {
       quantidade -= 1;
-      precoTotal -= preco;
+      itemPreco -= preco;
     }
   }
 
@@ -57,13 +57,7 @@
     mediaAvaliacao = calculaMediaAvaliacao(avaliacao, id);
   });
 
-  function adicionarProdutoAoPedido() {
-    cart.update((items) => {
-      const updatedItems = [...items, { id, nome, quantidade, precoTotal }];
-      console.log("Cart after adding item:", updatedItems);
-      return updatedItems;
-    });
-  }
+
 </script>
 
 <main class="mt-5 flex items-center justify-center">
@@ -142,14 +136,12 @@
           </div>
         </div>
         <p class="mt-3 text-right text-xl">
-          Valor total: <span class="font-bold text-primary">R${precoTotal}</span
-          >
+          Valor total: <span class="font-bold text-primary">R${itemPreco}</span>
         </p>
       </div>
       <Dialog.Footer>
         <Dialog.Close>
           <Button
-            on:click={adicionarProdutoAoPedido}
             variant="buttonAdd"
             type="submit"
             class="flex items-center"

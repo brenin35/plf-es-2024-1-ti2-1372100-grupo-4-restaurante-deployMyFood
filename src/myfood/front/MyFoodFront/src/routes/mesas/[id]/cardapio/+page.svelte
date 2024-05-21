@@ -27,37 +27,6 @@
     pratos = await getProdutos();
   });
 
-  async function finalizarPedido() {
-    for (let item of $cart) {
-      const pedidoData = {
-        clienteIdPedido: { id: $session.clienteId },
-        mesaIdPedido: { id: $session.mesaId },
-        status: "PENDENTE",
-        valorPago: item.precoTotal,
-        produtoId: { id: item.id },
-      };
-
-      const response = await fetch(`${ENDPOINT_URL}/pedidos`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(pedidoData),
-      });
-
-      if (!response.ok) {
-        console.error(
-          "Failed to finalize order:",
-          response.status,
-          response.statusText
-        );
-        const responseData = await response.json();
-        console.error("Server response:", responseData);
-        return;
-      }
-    }
-    cart.set([]);
-  }
 </script>
 
 <div class="py-4">
@@ -77,7 +46,6 @@
       {/each}
     </Cardapio>
     <Button
-      on:click={finalizarPedido}
       variant="buttonAdd"
       type="submit"
       class="flex items-center mt-4"

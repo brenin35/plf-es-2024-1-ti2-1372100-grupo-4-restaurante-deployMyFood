@@ -3,15 +3,15 @@ package com.myfood.myfoodback.services;
 import com.myfood.myfoodback.models.Clientes;
 import com.myfood.myfoodback.models.Mesas;
 import com.myfood.myfoodback.models.Pedido;
+import com.myfood.myfoodback.models.ItemPedido;
 import com.myfood.myfoodback.repositories.ClientesRepository;
 import com.myfood.myfoodback.repositories.MesasRepository;
 import com.myfood.myfoodback.repositories.PedidoRepository;
-
+import com.myfood.myfoodback.repositories.ItemPedidoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
-import java.math.BigDecimal;
 import java.util.List;
 
 @Service
@@ -26,6 +26,9 @@ public class PedidoService {
     @Autowired
     private MesasRepository mesasRepository;
 
+    @Autowired
+    private ItemPedidoRepository itemPedidoRepository;
+
     public List<Pedido> getAllPedidos() {
         return pedidoRepository.findAll();
     }
@@ -35,20 +38,23 @@ public class PedidoService {
                 .orElseThrow(() -> new EntityNotFoundException("Pedido não encontrado com id: " + id));
     }
 
-    public Pedido createPedido(Long clienteId, Long mesaId) {
-        Clientes cliente = clientesRepository.findById(clienteId)
-                .orElseThrow(() -> new EntityNotFoundException("Cliente não encontrado com id: " + clienteId));
-        Mesas mesa = mesasRepository.findById(mesaId)
-                .orElseThrow(() -> new EntityNotFoundException("Mesa não encontrada com id: " + mesaId));
+    public Pedido createPedido(Pedido pedido) {
+        Clientes cliente = clientesRepository.findById(pedido.getClientes().getId())
+                .orElseThrow(() -> new EntityNotFoundException("Cliente não encontrado com id: " + pedido.getClientes().getId()));
+        Mesas mesa = mesasRepository.findById(pedido.getMesas().getId())
+                .orElseThrow(() -> new EntityNotFoundException("Mesa não encontrada com id: " + pedido.getMesas().getId()));
 
-        Pedido pedido = new Pedido();
         pedido.setClientes(cliente);
         pedido.setMesas(mesa);
-        pedido.setStatusPreparo(false);
-        pedido.setStatusPagamento(false);
-        pedido.setPrecoTotalPedido(BigDecimal.ZERO);
 
-        return pedidoRepository.save(pedido);
+        Pedido savedPedido = pedidoRepository.save(pedido);
+
+        for (ItemPedido item : pedido.getItensPedido()) {
+            item.setPedido(savedPedido);
+            itemPedidoRepository.save(item);
+        }
+
+        return pedidoRepository.findById(savedPedido.getId()).orElseThrow(() -> new EntityNotFoundException("Pedido not found after save"));
     }
 
     public Pedido updatePedido(Long id, Pedido pedidoDetails) {
