@@ -17,6 +17,7 @@ public class ItemPedido {
     private Produtos produtos;
 
     private int quantidade;
+    float precoItem;
 
     public Long getId() {
         return this.id;

@@ -6,28 +6,58 @@
   import { ENDPOINT_URL } from "$lib/constants";
   import { Button, buttonVariants } from "$lib/components/ui/button";
   import { Check } from "lucide-svelte";
-  import { session } from "$lib/sessionStore";
+  import { session, type ItemPedido, cart } from "$lib/sessionStore";
   import { getProdutos } from "$lib/fetchProdutos";
   import { type Avaliacao } from "$lib/fetchAvaliacao";
-
-  type Prato = {
-    visibilidadeAvaliacao: boolean;
-    id: number;
-    nome: string;
-    preco: number;
-    descricao: string;
-    imagem: string;
-    avaliacao: Avaliacao[];
-    pedidoId: number;
-  };
+  import { type Prato } from "$lib/fetchProdutos";
 
   let promise = fetch(`${ENDPOINT_URL}/produtos`);
 
   let pratos: Prato[] = [];
 
+  type Pedido = {
+    clienteIdPedido: any;
+    mesaIdPedido: any;
+    status: string;
+    valorPedido: number;
+    produtoId: number;
+  };
+
   onMount(async () => {
     pratos = await getProdutos();
   });
+
+  async function finalizarPedido() {
+    for (let item of $cart) {
+      const pedidoData = {
+        clienteIdPedido: { id: $session.clienteId },
+        mesaIdPedido: { id: $session.mesaId },
+        status: "PENDENTE",
+        valorPago: item.precoTotal,
+        produtoId: { id: item.id },
+      };
+
+      const response = await fetch(`${ENDPOINT_URL}/pedidos`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(pedidoData),
+      });
+
+      if (!response.ok) {
+        console.error(
+          "Failed to finalize order:",
+          response.status,
+          response.statusText
+        );
+        const responseData = await response.json();
+        console.error("Server response:", responseData);
+        return;
+      }
+    }
+    cart.set([]);
+  }
 </script>
 
 <div class="py-4">
@@ -46,7 +76,12 @@
         <ModalPedido {...item} />
       {/each}
     </Cardapio>
-    <Button variant="buttonAdd" type="submit" class="flex items-center mt-4">
+    <Button
+      on:click={finalizarPedido}
+      variant="buttonAdd"
+      type="submit"
+      class="flex items-center mt-4"
+    >
       <p class="pr-2">Finalizar Pedido</p>
       <Check />
     </Button>

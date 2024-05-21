@@ -1,7 +1,15 @@
-import { writable } from 'svelte/store';
+import { writable } from "svelte/store";
+import { type Prato } from "$lib/fetchProdutos";
+
+export type ItemPedido = {
+  id: number;
+  produtos: Prato;
+  quantidade: number;
+  itemPreco: number;
+};
 
 function persist(key: string, value: any) {
-  if (typeof window !== 'undefined') {
+  if (typeof window !== "undefined") {
     const storedValue = window.localStorage.getItem(key);
     if (storedValue) {
       value = JSON.parse(storedValue);
@@ -18,5 +26,5 @@ function persist(key: string, value: any) {
     return writable(value);
   }
 }
-
-export const session = persist('session', { clienteId: null, mesaId: null });
+export const cart = persist('cart', [] as ItemPedido[]);
+export const session = persist("session", { clienteId: null, mesaId: null });

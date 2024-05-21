@@ -7,10 +7,9 @@
   import { onMount } from "svelte";
   import { ENDPOINT_URL } from "$lib/constants";
   import { createItemPedido } from "$lib/fetchItemPedido";
-  import {
-    fetchAvaliacao,
-    type Avaliacao,
-  } from "$lib/fetchAvaliacao";
+  import { fetchAvaliacao, type Avaliacao } from "$lib/fetchAvaliacao";
+  import { session, cart } from "$lib/sessionStore";
+  import { type Prato } from "$lib/fetchProdutos";
 
   export let id: number;
   export let nome: string;
@@ -19,8 +18,6 @@
   export let imagem: string;
   export let visibilidadeAvaliacao: boolean;
   export let avaliacao: Avaliacao[] = [];
-  
-  export let pedidoId: number;
 
   let quantidade = 1;
   let precoTotal = preco;
@@ -60,19 +57,12 @@
     mediaAvaliacao = calculaMediaAvaliacao(avaliacao, id);
   });
 
-  async function handleAddItemPedido() {
-    try {
-      const newItemPedido = {
-        quantidade: quantidade,
-        precoTotal: precoTotal,
-        produtoId: id,
-      };
-      await createItemPedido(pedidoId, newItemPedido);
-      alert("Item adicionado ao pedido com sucesso!");
-    } catch (error) {
-      console.error("Erro ao adicionar item ao pedido:", error);
-      alert("Erro ao adicionar item ao pedido");
-    }
+  function adicionarProdutoAoPedido() {
+    cart.update((items) => {
+      const updatedItems = [...items, { id, nome, quantidade, precoTotal }];
+      console.log("Cart after adding item:", updatedItems);
+      return updatedItems;
+    });
   }
 </script>
 
@@ -158,7 +148,12 @@
       </div>
       <Dialog.Footer>
         <Dialog.Close>
-          <Button on:click={handleAddItemPedido} variant="buttonAdd" type="submit" class="flex items-center">
+          <Button
+            on:click={adicionarProdutoAoPedido}
+            variant="buttonAdd"
+            type="submit"
+            class="flex items-center"
+          >
             <p class="pr-2">Adicionar produto ao pedido</p>
             <Plus />
           </Button>
