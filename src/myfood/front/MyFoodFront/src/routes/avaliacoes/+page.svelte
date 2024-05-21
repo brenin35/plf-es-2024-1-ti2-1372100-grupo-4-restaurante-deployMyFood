@@ -1,19 +1,20 @@
 <script lang="ts">
-  //import type { PageData } from "./$types";
   import Reviews from "$lib/components/Reviews.svelte";
   import { onMount } from "svelte";
   import { Rating, AdvancedRating } from "flowbite-svelte";
-  import { Diamonds } from 'svelte-loading-spinners';
+  import { Diamonds } from "svelte-loading-spinners";
   import { ENDPOINT_URL } from "$lib/constants";
-
-  //export let data: PageData;
+  import { getProdutos } from "$lib/fetchProdutos";
+  import {
+    fetchAvaliacao,
+    calculaMediaAvaliacao,
+    contadorPercentAvaliacao,
+    calculaMediaAvaliacaoTotal,
+    type Avaliacao,
+  } from "$lib/fetchAvaliacao";
 
   let id: number;
-  let avaliacao: {
-    produtoId: number;
-    estrelas: number;
-    comentario: string;
-}[] = [];
+  let avaliacao: Avaliacao[] = [];
 
   type Prato = {
     id: number;
@@ -21,74 +22,14 @@
   };
   let pratos: Prato[] = [];
 
-  let promise = fetch(`${ENDPOINT_URL}/avaliacao`);
+  let promise = fetch(`${ENDPOINT_URL}/produtos`);
 
-  async function fetchAvaliacao() {
-    try {
-      const response = await fetch(`${ENDPOINT_URL}/avaliacao`);
-      if (!response.ok) {
-        throw new Error("Falha fetch nas avaliacoes");
-      }
-      avaliacao = await response.json();
-    } catch (error) {
-      console.error(error);
-    }
-  }
-
-  function calculaMediaAvaliacao(
-    avaliacoes: { produtoId: number; estrelas: number }[],
-    produtoId: number
-  ) {
-    const avaliacoesProduto = avaliacoes.filter(
-      (avaliacao) => avaliacao.produtoId === produtoId
-    );
-    if (avaliacoesProduto.length === 0) {
-      return 0;
-    }
-    const totalStars = avaliacoesProduto.reduce(
-      (acc, avaliacao) => acc + avaliacao.estrelas,
-      0
-    );
-    return totalStars / avaliacoesProduto.length;
-  }
   let mediaAvaliacao = 0;
-
-  function contadorPercentAvaliacao(
-    avaliacoes: { produtoId: number; estrelas: number }[]
-  ) {
-    let ratings = [0, 0, 0, 0, 0];
-
-    avaliacoes.forEach((avaliacao) => {
-      ratings[avaliacao.estrelas - 1]++;
-    });
-    const totalRatings = avaliacoes.length;
-
-    const ratingPercentages = ratings.map(
-      (rating) => (rating / totalRatings) * 100
-    );
-    return ratingPercentages;
-  }
-
-  function calculaMediaAvaliacaoTotal(
-    avaliacao: { produtoId: number; estrelas: number }[]
-  ) {
-    if (avaliacao.length === 0) {
-      return 0;
-    }
-    const sum = avaliacao.reduce(
-      (total, current) => total + current.estrelas,
-      0
-    );
-    const average = sum / avaliacao.length;
-
-    return average;
-  }
-
-  let starRatings = contadorPercentAvaliacao(avaliacao);
+  let starRatings: number[] = [];
   let mediaAvaliacaoTotal = 0;
 
   onMount(async () => {
-    await fetchAvaliacao();
+    avaliacao = await fetchAvaliacao();
     starRatings = contadorPercentAvaliacao(avaliacao);
     mediaAvaliacao = calculaMediaAvaliacao(avaliacao, id);
     mediaAvaliacaoTotal = calculaMediaAvaliacaoTotal(avaliacao);
@@ -98,7 +39,7 @@
       console.error("Erro ao buscar produtos:", response.status);
       return;
     }
-    pratos = await response.json();
+    pratos = await getProdutos();
   });
 </script>
 
@@ -112,9 +53,9 @@
       </div>
     </div>
     {#await promise}
-    <div class="flex items-center justify-center mt-20">
-      <Diamonds size="60" color="#FF3E00" unit="px" duration="1s"/>
-    </div>
+      <div class="flex items-center justify-center mt-20">
+        <Diamonds size="60" color="#FF3E00" unit="px" duration="1s" />
+      </div>
     {:then}
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {#each pratos as prato}
@@ -127,7 +68,9 @@
             </div>
           {:else}
             <div class="bg-white rounded-lg shadow-md p-4 text-center border">
-              <p class="text-xl font-semibold mb-4">Avaliações de {prato.nome}</p>
+              <p class="text-xl font-semibold mb-4">
+                Avaliações de {prato.nome}
+              </p>
               {#each avaliacao.filter((av) => av.produtoId === prato.id) as review}
                 <hr />
                 <div class="flex justify-center mt-4">

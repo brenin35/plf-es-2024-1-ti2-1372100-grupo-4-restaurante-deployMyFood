@@ -6,7 +6,11 @@
   import { Rating } from "flowbite-svelte";
   import { onMount } from "svelte";
   import { ENDPOINT_URL } from "$lib/constants";
-  import { createItemPedido } from "$lib/reqsItemPedido";
+  import { createItemPedido } from "$lib/fetchItemPedido";
+  import {
+    fetchAvaliacao,
+    type Avaliacao,
+  } from "$lib/fetchAvaliacao";
 
   export let id: number;
   export let nome: string;
@@ -31,18 +35,6 @@
     if (quantidade > 1) {
       quantidade -= 1;
       precoTotal -= preco;
-    }
-  }
-
-  async function fetchAvaliacao() {
-    try {
-      const response = await fetch(`${ENDPOINT_URL}/avaliacao`);
-      if (!response.ok) {
-        throw new Error("Falha fetch nas avaliacoes");
-      }
-      avaliacao = await response.json();
-    } catch (error) {
-      console.error(error);
     }
   }
 
