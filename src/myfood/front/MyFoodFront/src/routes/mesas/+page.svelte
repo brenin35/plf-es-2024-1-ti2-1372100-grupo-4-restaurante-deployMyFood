@@ -8,9 +8,7 @@
     API_URL,
     SIZE,
   } from "$lib/constants";
-  // import type { PageData } from "./$types";
-
-  // export let data: PageData;
+  import { getMesas, criarMesa, deleteMesa } from "$lib/fetchMesas";
 
   let cardapioMesa = `${DEPLOY_FRONT_URL}/mesas`;
   let mesas: Mesa[] = [];
@@ -19,44 +17,34 @@
 
   type Mesa = {
     id: number;
-    nomeMesa: string;
   };
 
-  async function criarMesa() {
-    const newMesa: Mesa = {
-      id: mesas.length + 1,
-      nomeMesa: `Mesa ${mesas.length + 1}`,
-    };
-
-    fetch(`${ENDPOINT_URL}/mesas`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(newMesa),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("Mesa adicionado com sucesso:", data);
-        window.location.reload();
-      })
-      .catch((error) => {
-        console.error("Erro:", error);
-      });
-  }
-
   onMount(async () => {
-    const response = await fetch(`${ENDPOINT_URL}/mesas`);
-    if (!response.ok) {
-      console.error("Erro ao buscar mesas:", response.status);
-      return;
-    }
-    mesas = await response.json();
+    mesas = await getMesas();
     qrLinks = mesas.map((mesa) => gerarQRCode(mesa.id));
   });
 
   function gerarQRCode(mesaId: number) {
     return `${API_URL}${cardapioMesa}/${mesaId}${SIZE}`;
+  }
+
+  async function handleDeleteMesa(id: number) {
+    try {
+      await deleteMesa(id);
+      await getMesas();
+      window.location.reload();
+    } catch (error) {
+      console.error("Erro deletando mesa:", error);
+    }
+  }
+
+  async function handleCreateMesa() {
+    try {
+      await criarMesa();
+      mesas = await getMesas();
+    } catch (error) {
+      console.error("Erro criando mesa:", error);
+    }
   }
 </script>
 
@@ -65,7 +53,9 @@
     <h1 class="text-center text-4xl font-bold text-secondary">
       Mesas restaurante
     </h1>
-    <Button on:click={criarMesa} variant="buttonAdd">Cadastrar mesa</Button>
+    <Button on:click={handleCreateMesa} variant="buttonAdd"
+      >Cadastrar mesa</Button
+    >
   </div>
   {#await promise}
     <div class="flex items-center justify-center mt-20">
@@ -78,20 +68,23 @@
       </div>
     {:else}
       <div
-        class="grid grid-cols-2 gap-5 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 justify-center items-center"
+        class="grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 justify-center items-center"
       >
         {#each mesas as mesa, index (mesa.id)}
           <div
             class="w-full border shadow-lg p-5 flex flex-col gap-2 rounded-lg"
           >
-            <h2 class="text-center text-xl">{mesa.nomeMesa}</h2>
+            <h2 class="text-center text-xl">Mesa {mesa.id}</h2>
             {#await qrLinks}
               <Diamonds size="60" color="#FF3E00" unit="px" duration="1s" />
             {:then}
               <img src={qrLinks[index]} alt="QR Code" /><br />
             {/await}
             <div class="flex gap-2">
-              <Button variant="buttonDD">Deletar mesa</Button>
+              <Button
+                variant="buttonDD"
+                on:click={() => handleDeleteMesa(mesa.id)}>Deletar mesa</Button
+              >
               <Button variant="buttonDD">
                 <a
                   class="flex justify-end"

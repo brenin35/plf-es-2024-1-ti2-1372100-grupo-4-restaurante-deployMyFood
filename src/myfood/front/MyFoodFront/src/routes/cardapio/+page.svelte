@@ -27,7 +27,6 @@
   });
 </script>
 
-<div class="p-10">
   <div class="py-4">
     <div class="gap-0 py-1">
       <div class="mb-5 mt-5 flex flex-col sm:flex-row justify-between items-center">
@@ -51,4 +50,3 @@
       {/each}
     </Cardapio>
   </div>
-</div>

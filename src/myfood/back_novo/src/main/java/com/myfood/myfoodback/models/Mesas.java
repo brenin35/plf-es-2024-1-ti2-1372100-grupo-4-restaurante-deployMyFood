@@ -13,8 +13,6 @@ public class Mesas {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String nomeMesa;
-
     public Mesas() {
 
     }
@@ -27,11 +25,4 @@ public class Mesas {
         this.id = id;
     }
 
-    public String getNomeMesa() {
-        return this.nomeMesa;
-    }
-
-    public void setNomeMesa(String nomeMesa) {
-        this.nomeMesa = nomeMesa;
-    }
 }

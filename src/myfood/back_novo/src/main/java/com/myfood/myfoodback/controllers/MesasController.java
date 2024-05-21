@@ -41,7 +41,6 @@ public class MesasController {
         return ResponseEntity.status(HttpStatus.CREATED).body(savedMesa);
     }
 
-    // Salvar dados do cliente de acordo com a mesa escolhida
     @PostMapping("/{id}/clientes")
     public ResponseEntity<String> receberDadosCliente(@PathVariable Long id, @RequestBody Clientes cliente) {
         try {
