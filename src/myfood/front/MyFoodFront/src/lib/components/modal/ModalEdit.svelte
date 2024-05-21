@@ -9,6 +9,10 @@
   import { Rating } from "flowbite-svelte";
   import { onMount } from "svelte";
   import { ENDPOINT_URL } from "$lib/constants";
+  import {
+    fetchAvaliacao,
+    type Avaliacao,
+  } from "$lib/fetchAvaliacao";
 
   export let id: number;
   export let nome: string;
@@ -18,18 +22,6 @@
   export let visibilidadeAvaliacao: boolean;
   export let avaliacao: { id: number; produtoId: number; estrelas: number }[] =
     [];
-
-  async function fetchAvaliacao() {
-    try {
-      const response = await fetch(`${ENDPOINT_URL}/avaliacao`);
-      if (!response.ok) {
-        throw new Error("Falha fetch nas avaliacoes");
-      }
-      avaliacao = await response.json();
-    } catch (error) {
-      console.error(error);
-    }
-  }
 
   function calculaMediaAvaliacao(
     avaliacoes: { produtoId: number; estrelas: number }[],
