@@ -7,9 +7,8 @@
   import { onMount } from "svelte";
   import { ENDPOINT_URL } from "$lib/constants";
   import { createItemPedido } from "$lib/fetchItemPedido";
-  import { fetchAvaliacao, type Avaliacao } from "$lib/fetchAvaliacao";
-  import { session, cart } from "$lib/sessionStore";
-  import { type Prato } from "$lib/fetchProdutos";
+  import { fetchAvaliacao } from "$lib/fetchAvaliacao";
+  import { type Avaliacao, type ItemPedido, type Prato } from "$lib/types";
 
   export let id: number;
   export let nome: string;
@@ -18,10 +17,12 @@
   export let imagem: string;
   export let visibilidadeAvaliacao: boolean;
   export let avaliacao: Avaliacao[] = [];
+  //export let clienteId: number;
 
   let quantidade = 1;
   let itemPreco = preco;
   let mediaAvaliacao = 0;
+  let cart: ItemPedido;
 
   function increase() {
     quantidade += 1;
@@ -56,8 +57,6 @@
     await fetchAvaliacao();
     mediaAvaliacao = calculaMediaAvaliacao(avaliacao, id);
   });
-
-
 </script>
 
 <main class="mt-5 flex items-center justify-center">
@@ -141,11 +140,7 @@
       </div>
       <Dialog.Footer>
         <Dialog.Close>
-          <Button
-            variant="buttonAdd"
-            type="submit"
-            class="flex items-center"
-          >
+          <Button variant="buttonAdd" type="submit" class="flex items-center">
             <p class="pr-2">Adicionar produto ao pedido</p>
             <Plus />
           </Button>

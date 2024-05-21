@@ -6,27 +6,26 @@
   import { ENDPOINT_URL } from "$lib/constants";
   import { Button, buttonVariants } from "$lib/components/ui/button";
   import { Check } from "lucide-svelte";
-  import { session, type ItemPedido, cart } from "$lib/sessionStore";
   import { getProdutos } from "$lib/fetchProdutos";
-  import { type Avaliacao } from "$lib/fetchAvaliacao";
-  import { type Prato } from "$lib/fetchProdutos";
+  import { type Avaliacao } from "$lib/types";
+  import { type Prato } from "$lib/types";
 
   let promise = fetch(`${ENDPOINT_URL}/produtos`);
 
   let pratos: Prato[] = [];
-
-  type Pedido = {
-    clienteIdPedido: any;
-    mesaIdPedido: any;
-    status: string;
-    valorPedido: number;
-    produtoId: number;
-  };
+  let clienteId;
 
   onMount(async () => {
     pratos = await getProdutos();
-  });
 
+    clienteId = localStorage.getItem("clienteId");
+
+    if (clienteId) {
+      console.log("Cliente ID:", clienteId);
+    } else {
+      console.error("Cliente não registrado");
+    }
+  });
 </script>
 
 <div class="py-4">
@@ -45,11 +44,7 @@
         <ModalPedido {...item} />
       {/each}
     </Cardapio>
-    <Button
-      variant="buttonAdd"
-      type="submit"
-      class="flex items-center mt-4"
-    >
+    <Button variant="buttonAdd" type="submit" class="flex items-center mt-4">
       <p class="pr-2">Finalizar Pedido</p>
       <Check />
     </Button>

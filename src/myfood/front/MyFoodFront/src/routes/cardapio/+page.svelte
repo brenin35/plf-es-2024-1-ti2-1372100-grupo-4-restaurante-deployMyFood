@@ -4,9 +4,7 @@
   import { onMount } from "svelte";
   import Cardapio from "$lib/components/Cardapio.svelte";
   import { getProdutos } from "$lib/fetchProdutos";
-  import {
-    type Avaliacao
-  } from "$lib/fetchAvaliacao";
+  import { type Avaliacao } from "$lib/types";
 
 type Prato = {
   visibilidadeAvaliacao: boolean;
@@ -17,7 +15,6 @@ type Prato = {
   imagem: string;
   avaliacao: Avaliacao[];
 };
-
 
   let pratos: Prato[] = [];
 

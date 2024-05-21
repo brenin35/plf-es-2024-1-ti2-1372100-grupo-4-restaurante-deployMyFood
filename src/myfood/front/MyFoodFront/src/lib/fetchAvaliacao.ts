@@ -1,11 +1,5 @@
 import { ENDPOINT_URL } from "$lib/constants";
-
-export type Avaliacao = {
-  id: number;
-  produtoId: number;
-  estrelas: number;
-  comentario: string;
-};
+import { type Avaliacao } from "./types";
 
 export async function fetchAvaliacao(): Promise<Avaliacao[]> {
   try {

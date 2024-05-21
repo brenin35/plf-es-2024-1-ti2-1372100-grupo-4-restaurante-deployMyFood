@@ -21,26 +21,34 @@
       contatoCliente: cliente.contatoCliente,
       mesaId: cliente.mesaId,
     };
+
     if (!clienteData.nomeCliente || !clienteData.contatoCliente) {
       alert("Por favor, preencha todos os campos obrigatórios.");
       return;
     }
 
-    const response = await fetch(`${ENDPOINT_URL}/clientes`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(clienteData),
-    });
+    try {
+      const response = await fetch(`${ENDPOINT_URL}/clientes`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(clienteData),
+      });
 
-    if (response.ok) {
-      const data = await response.json();
-      console.log("Cliente adicionado com sucesso:", data);
-      window.location.href =`/mesas/${mesa.id}/cardapio`;
-    } else {
-      const errorMessage = await response.text();
-      console.error("Falha ao adicionar cliente:", errorMessage);
+      if (response.ok) {
+        const data = await response.json();
+        console.log("Cliente adicionado com sucesso:", data);
+
+        localStorage.setItem("clienteId", data.id);
+
+        window.location.href = `/mesas/${clienteData.mesaId}/cardapio`;
+      } else {
+        const errorMessage = await response.text();
+        console.error("Falha ao adicionar cliente:", errorMessage);
+      }
+    } catch (error) {
+      console.error("Erro ao adicionar cliente:", error);
     }
   };
 </script>
@@ -85,8 +93,13 @@
           </form>
         </Card.Content>
         <Card.Footer class="flex justify-end">
-            <Button type="submit" variant="buttonAdd" on:click={criarCliente} disabled={!cliente.nomeCliente || !cliente.contatoCliente}
-              >Cadastrar!</Button>
+          <Button
+            type="submit"
+            variant="buttonAdd"
+            on:click={criarCliente}
+            disabled={!cliente.nomeCliente || !cliente.contatoCliente}
+            >Cadastrar!</Button
+          >
         </Card.Footer>
       </Card.Root>
     {/await}

@@ -10,16 +10,12 @@
     calculaMediaAvaliacao,
     contadorPercentAvaliacao,
     calculaMediaAvaliacaoTotal,
-    type Avaliacao,
   } from "$lib/fetchAvaliacao";
+  import { type Avaliacao, type Prato } from "$lib/types";
 
   let id: number;
   let avaliacao: Avaliacao[] = [];
 
-  type Prato = {
-    id: number;
-    nome: string;
-  };
   let pratos: Prato[] = [];
 
   let promise = fetch(`${ENDPOINT_URL}/produtos`);
