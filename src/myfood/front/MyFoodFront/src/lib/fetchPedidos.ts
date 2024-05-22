@@ -1,13 +1,20 @@
 import { ENDPOINT_URL } from "$lib/constants";
 
-export async function postPedidos() {
+export async function postPedidos(clienteId) {
   try {
+    const clienteResponse = await fetch(`${ENDPOINT_URL}/clientes/${clienteId}`);
+    if (!clienteResponse.ok) {
+      throw new Error(`Failed to fetch cliente details! Status: ${clienteResponse.status}`);
+    }
+    const clienteData = await clienteResponse.json();
+    const mesaId = clienteData.mesaId;
+
     const pedido = {
       cliente: {
-        id: 1,
+        id: clienteId,
       },
       mesa: {
-        id: 1,
+        id: mesaId,
       },
       statusPreparo: true,
       statusPagamento: false,

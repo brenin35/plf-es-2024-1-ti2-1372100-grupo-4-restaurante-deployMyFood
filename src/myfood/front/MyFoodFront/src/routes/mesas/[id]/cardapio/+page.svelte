@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { onMount } from "svelte";
+  import { onMount, createEventDispatcher } from "svelte";
   import ModalPedido from "$lib/components/modal/ModalPedido.svelte";
   import { Diamonds } from "svelte-loading-spinners";
   import Cardapio from "$lib/components/Cardapio.svelte";
@@ -11,6 +11,7 @@
   import { postPedidos } from "$lib/fetchPedidos";
 
   let promise = fetch(`${ENDPOINT_URL}/produtos`);
+  const dispatch = createEventDispatcher();
 
   let pratos: Prato[] = [];
   let clienteId: number;
@@ -32,6 +33,20 @@
       console.error("Cliente não registrado");
     }
   });
+
+  async function postPedidosBtn() {
+    if (!clienteId) {
+      console.error("ClienteId not found.");
+      return;
+    }
+    try {
+      const response = await postPedidos(clienteId);
+
+      dispatch("pedidoCreated", response);
+    } catch (error) {
+      console.error("Failed to post pedido:", error);
+    }
+  }
 </script>
 
 <div class="py-4">
@@ -51,7 +66,7 @@
       {/each}
     </Cardapio>
     <Button
-      on:click={postPedidos}
+      on:click={postPedidosBtn}
       variant="buttonAdd"
       type="submit"
       class="flex items-center mt-4"
