@@ -36,28 +36,3 @@ export async function postPedidos() {
     throw error;
   }
 }
-
-export async function postItemPedido(pedidoId, itemPedido) {
-  try {
-    const response = await fetch(
-      `${ENDPOINT_URL}/pedidos/${pedidoId}/itensPedido`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(itemPedido),
-      }
-    );
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.error("Error:", error);
-    throw error;
-  }
-}

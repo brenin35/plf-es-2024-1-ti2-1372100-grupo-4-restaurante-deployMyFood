@@ -6,7 +6,7 @@
   import { Rating } from "flowbite-svelte";
   import { onMount } from "svelte";
   import { ENDPOINT_URL } from "$lib/constants";
-  import { postPedidos, postItemPedido } from "$lib/fetchPedidos";
+  import { postPedidos } from "$lib/fetchPedidos";
   import { fetchAvaliacao } from "$lib/fetchAvaliacao";
   import { type Avaliacao, type ItemPedido, type Prato } from "$lib/types";
 
@@ -69,22 +69,6 @@
     mediaAvaliacao = calculaMediaAvaliacao(avaliacao, id);
   });
 
-  async function adicionarProdutoAoPedido() {
-    try {
-      const itemPedido = {
-        produto: {
-          id: id,
-        },
-        quantidade: quantidade,
-      };
-
-      const response = await postItemPedido(newPedidoId, itemPedido);
-      console.log("ItemPedido added to Pedido:", response);
-
-    } catch (error) {
-      console.error("Error adding itemPedido:", error);
-    }
-  }
 </script>
 
 <main class="mt-5 flex items-center justify-center">
@@ -168,7 +152,7 @@
       </div>
       <Dialog.Footer>
         <Dialog.Close>
-          <Button on:click={adicionarProdutoAoPedido} variant="buttonAdd" type="submit" class="flex items-center">
+          <Button variant="buttonAdd" type="submit" class="flex items-center">
             <p class="pr-2">Adicionar produto ao pedido</p>
             <Plus />
           </Button>
