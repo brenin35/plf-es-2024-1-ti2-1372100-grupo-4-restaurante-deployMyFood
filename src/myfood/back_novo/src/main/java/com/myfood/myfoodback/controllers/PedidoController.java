@@ -3,7 +3,6 @@ package com.myfood.myfoodback.controllers;
 import com.myfood.myfoodback.models.ItemPedido;
 import com.myfood.myfoodback.models.Pedido;
 import com.myfood.myfoodback.repositories.PedidoRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,7 +13,6 @@ public class PedidoController {
 
     private final PedidoRepository pedidoRepository;
 
-    @Autowired
     public PedidoController(PedidoRepository pedidoRepository) {
         this.pedidoRepository = pedidoRepository;
     }
