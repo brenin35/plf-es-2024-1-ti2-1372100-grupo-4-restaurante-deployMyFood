@@ -1,5 +1,5 @@
 import { ENDPOINT_URL } from "$lib/constants";
-import { type Avaliacao } from "../../types";
+import { type Avaliacao } from "../types";
 
 export async function fetchAvaliacao(): Promise<Avaliacao[]> {
   try {

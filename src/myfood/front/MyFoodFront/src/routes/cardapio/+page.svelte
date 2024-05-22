@@ -3,7 +3,7 @@
   import ModalEdit from "$lib/components/modal/ModalEdit.svelte";
   import { onMount } from "svelte";
   import Cardapio from "$lib/components/Cardapio.svelte";
-  import { getProdutos } from "$lib/components/fetchs/fetchProdutos";
+  import { getProdutos } from "$lib/fetchs/fetchProdutos";
   import { type Avaliacao } from "$lib/types";
 
 type Prato = {

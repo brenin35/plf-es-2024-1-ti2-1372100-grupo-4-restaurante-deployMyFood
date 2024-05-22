@@ -4,13 +4,13 @@
   import { Rating, AdvancedRating } from "flowbite-svelte";
   import { Diamonds } from "svelte-loading-spinners";
   import { ENDPOINT_URL } from "$lib/constants";
-  import { getProdutos } from "$lib/components/fetchs/fetchProdutos";
+  import { getProdutos } from "$lib/fetchs/fetchProdutos";
   import {
     fetchAvaliacao,
     calculaMediaAvaliacao,
     contadorPercentAvaliacao,
     calculaMediaAvaliacaoTotal,
-  } from "$lib/components/fetchs/fetchAvaliacao";
+  } from "$lib/fetchs/fetchAvaliacao";
   import { type Avaliacao, type Prato } from "$lib/types";
 
   let id: number;

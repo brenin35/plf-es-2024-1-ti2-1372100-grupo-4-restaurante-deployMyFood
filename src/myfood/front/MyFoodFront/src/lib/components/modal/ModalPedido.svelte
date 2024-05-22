@@ -6,9 +6,9 @@
   import { Rating } from "flowbite-svelte";
   import { onMount } from "svelte";
   import { ENDPOINT_URL } from "$lib/constants";
-  import { fetchAvaliacao } from "$lib/components/fetchs/fetchAvaliacao";
+  import { fetchAvaliacao } from "$lib/fetchs/fetchAvaliacao";
   import { type Avaliacao, type ItemPedido, type Prato } from "$lib/types";
-  import { pedidoStore } from "../stores/pedidoStore";
+  import { pedidoStore } from "../../stores/pedidoStore";
 
   export let id: number;
   export let nome: string;
