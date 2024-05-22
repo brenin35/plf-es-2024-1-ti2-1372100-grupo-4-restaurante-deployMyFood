@@ -1,6 +1,6 @@
 import { ENDPOINT_URL } from "$lib/constants";
 import { get } from "svelte/store";
-import { pedidoStore } from "./components/stores/pedidoStore";
+import { pedidoStore } from "../stores/pedidoStore";
 
 export async function postPedidos(clienteId: number) {
   try {

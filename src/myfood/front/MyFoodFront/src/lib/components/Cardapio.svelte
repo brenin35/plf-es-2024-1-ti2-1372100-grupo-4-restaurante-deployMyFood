@@ -2,7 +2,7 @@
   import { onMount } from "svelte";
   import { Diamonds } from "svelte-loading-spinners";
   import { ENDPOINT_URL } from "$lib/constants";
-  import { getProdutos } from "$lib/fetchProdutos";
+  import { getProdutos } from "$lib/components/fetchs/fetchProdutos";
 
   type Prato = {
     visibilidadeAvaliacao: boolean;

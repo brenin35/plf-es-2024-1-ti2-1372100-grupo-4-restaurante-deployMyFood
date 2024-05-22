@@ -6,8 +6,7 @@
   import { Rating } from "flowbite-svelte";
   import { onMount } from "svelte";
   import { ENDPOINT_URL } from "$lib/constants";
-  import { postPedidos } from "$lib/fetchPedidos";
-  import { fetchAvaliacao } from "$lib/fetchAvaliacao";
+  import { fetchAvaliacao } from "$lib/components/fetchs/fetchAvaliacao";
   import { type Avaliacao, type ItemPedido, type Prato } from "$lib/types";
   import { pedidoStore } from "../stores/pedidoStore";
 
@@ -23,8 +22,6 @@
   let quantidade = 1;
   let itemPreco = preco;
   let mediaAvaliacao = 0;
-
-  let itens_pedido: ItemPedido[] = [];
 
   function increase() {
     quantidade += 1;

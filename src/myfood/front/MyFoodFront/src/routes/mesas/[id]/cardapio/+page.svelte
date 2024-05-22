@@ -7,8 +7,8 @@
   import { Button, buttonVariants } from "$lib/components/ui/button";
   import { Check } from "lucide-svelte";
   import { type Prato, type Pedido } from "$lib/types";
-  import { getProdutos } from "$lib/fetchProdutos";
-  import { postPedidos } from "$lib/fetchPedidos";
+  import { getProdutos } from "$lib/components/fetchs/fetchProdutos";
+  import { postPedidos } from "$lib/components/fetchs/fetchPedidos";
 
   let promise = fetch(`${ENDPOINT_URL}/produtos`);
   const dispatch = createEventDispatcher();

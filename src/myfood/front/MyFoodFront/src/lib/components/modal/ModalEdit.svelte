@@ -12,7 +12,7 @@
   import {
     fetchAvaliacao,
     type Avaliacao,
-  } from "$lib/fetchAvaliacao";
+  } from "$lib/components/fetchs/fetchAvaliacao";
 
   export let id: number;
   export let nome: string;

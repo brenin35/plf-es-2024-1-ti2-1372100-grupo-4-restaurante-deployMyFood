@@ -8,7 +8,7 @@
     API_URL,
     SIZE,
   } from "$lib/constants";
-  import { getMesas, criarMesa, deleteMesa } from "$lib/fetchMesas";
+  import { getMesas, criarMesa, deleteMesa } from "$lib/components/fetchs/fetchMesas";
 
   let cardapioMesa = `${DEPLOY_FRONT_URL}/mesas`;
   let mesas: Mesa[] = [];
