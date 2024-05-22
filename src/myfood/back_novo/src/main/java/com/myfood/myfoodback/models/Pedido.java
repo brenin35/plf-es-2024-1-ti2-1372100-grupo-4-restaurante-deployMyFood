@@ -1,5 +1,6 @@
 package com.myfood.myfoodback.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import javax.persistence.*;
 import java.util.List;
 
@@ -21,13 +22,11 @@ public class Pedido {
     private boolean statusPagamento;
     private double precoTotalPedido;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "pedido_id")
+    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    @JsonManagedReference
     private List<ItemPedido> itensPedido;
 
-
-    public Pedido() {
-    }
+    public Pedido() {}
 
     public Long getId() {
         return id;

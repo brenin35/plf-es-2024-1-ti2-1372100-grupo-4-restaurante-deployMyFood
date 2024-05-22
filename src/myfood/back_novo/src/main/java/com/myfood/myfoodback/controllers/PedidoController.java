@@ -1,5 +1,6 @@
 package com.myfood.myfoodback.controllers;
 
+import com.myfood.myfoodback.models.ItemPedido;
 import com.myfood.myfoodback.models.Pedido;
 import com.myfood.myfoodback.repositories.PedidoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,9 @@ public class PedidoController {
 
     @PostMapping
     public Pedido createPedido(@RequestBody Pedido pedido) {
+        for (ItemPedido item : pedido.getItensPedido()) {
+            item.setPedido(pedido);
+        }
         return pedidoRepository.save(pedido);
     }
 

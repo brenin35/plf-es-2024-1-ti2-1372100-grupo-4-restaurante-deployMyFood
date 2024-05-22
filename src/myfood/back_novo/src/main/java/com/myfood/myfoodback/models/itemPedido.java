@@ -1,5 +1,6 @@
 package com.myfood.myfoodback.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import javax.persistence.*;
 
 @Entity
@@ -9,9 +10,6 @@ public class ItemPedido {
     private Long id;
 
     @ManyToOne
-    private Pedido pedido;
-
-    @ManyToOne
     @JoinColumn(name = "produto_id")
     private Produtos produto;
 
@@ -19,8 +17,12 @@ public class ItemPedido {
     private double precoItem;
     private double precoTotal;
 
-    public ItemPedido() {
-    }
+    @ManyToOne
+    @JoinColumn(name = "pedido_id")
+    @JsonBackReference
+    private Pedido pedido;
+
+    public ItemPedido() {}
 
     public Long getId() {
         return id;
@@ -28,14 +30,6 @@ public class ItemPedido {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Pedido getPedido() {
-        return pedido;
-    }
-
-    public void setPedido(Pedido pedido) {
-        this.pedido = pedido;
     }
 
     public Produtos getProduto() {
@@ -68,5 +62,13 @@ public class ItemPedido {
 
     public void setPrecoTotal(double precoTotal) {
         this.precoTotal = precoTotal;
+    }
+
+    public Pedido getPedido() {
+        return pedido;
+    }
+
+    public void setPedido(Pedido pedido) {
+        this.pedido = pedido;
     }
 }
