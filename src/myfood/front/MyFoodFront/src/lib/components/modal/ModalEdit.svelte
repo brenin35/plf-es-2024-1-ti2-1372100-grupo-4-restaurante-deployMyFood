@@ -9,10 +9,8 @@
   import { Rating } from "flowbite-svelte";
   import { onMount } from "svelte";
   import { ENDPOINT_URL } from "$lib/constants";
-  import {
-    fetchAvaliacao,
-    type Avaliacao,
-  } from "$lib/fetchs/fetchAvaliacao";
+  import { fetchAvaliacao } from "$lib/fetchs/fetchAvaliacao";
+  import { type Avaliacao } from "$lib/types";
 
   export let id: number;
   export let nome: string;
@@ -86,7 +84,7 @@
       console.error("Error deletar produto:", error);
     }
   }
-  
+
   async function handleDelete() {
     if (confirm("Are you sure you want to delete this produto?")) {
       await excluirProduto(id);
