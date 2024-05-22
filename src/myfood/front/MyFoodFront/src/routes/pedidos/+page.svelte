@@ -25,7 +25,7 @@
           >
             <div>
               <h1 class="text-xl mb-2">
-                Pedido #{pedido.id} - Mesa: <strong>{pedido.mesa.id}</strong>
+                Pedido <strong>#{pedido.id}</strong> - <span class="text-primary">Mesa: <strong>{pedido.mesa.id}</strong></span>
               </h1>
               <div class="flex gap-2">
                 {#each pedido.itensPedido as item}
@@ -41,7 +41,7 @@
               </div>
             </div>
             <div class=" flex flex-col justify-between">
-              <p class="text-right"><strong>Valor total:</strong> R${pedido.precoTotalPedido}</p>
+              <p class="text-right text-xl"><strong>Valor total:</strong> R${pedido.precoTotalPedido}</p>
               <Button variant="buttonAdd">Pedido finalizado!</Button>
             </div>
           </div>

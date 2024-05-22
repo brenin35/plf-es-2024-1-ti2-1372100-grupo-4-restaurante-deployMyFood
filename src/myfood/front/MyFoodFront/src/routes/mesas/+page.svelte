@@ -83,7 +83,7 @@
             {:then}
               <img src={qrLinks[index]} alt="QR Code" /><br />
             {/await}
-            <div class="flex gap-2">
+            <div class="flex gap-2 flex-col xl:flex-row">
               <Button
                 variant="buttonDD"
                 on:click={() => handleDeleteMesa(mesa.id)}>Deletar mesa</Button
