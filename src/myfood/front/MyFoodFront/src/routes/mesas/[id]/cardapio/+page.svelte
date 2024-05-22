@@ -16,12 +16,18 @@
   let clienteId: number;
 
   onMount(async () => {
+    localStorage.setItem("isAdmin", "false");
     pratos = await getProdutos();
-    
-    clienteId = localStorage.getItem("clienteId");
 
-    if (clienteId) {
-      console.log("Cliente ID:", clienteId);
+    const storedClienteId = localStorage.getItem("clienteId");
+
+    if (storedClienteId) {
+      clienteId = parseInt(storedClienteId, 10);
+      if (!isNaN(clienteId)) {
+        console.log("Cliente ID:", clienteId);
+      } else {
+        console.error("Cliente ID is not a valid number");
+      }
     } else {
       console.error("Cliente não registrado");
     }

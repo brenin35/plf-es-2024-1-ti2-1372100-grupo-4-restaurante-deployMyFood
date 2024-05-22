@@ -2,8 +2,17 @@
   import NavbarCliente from "$lib/components/navbar/NavbarCliente.svelte";
   import "../app.pcss";
   import Navbar from "$lib/components/navbar/Navbar.svelte";
+  import { onMount } from "svelte";
+
   let isAdmin = true;
-  console.log(isAdmin);
+
+  onMount(() => {
+  if (typeof localStorage !== 'undefined') {
+    isAdmin = localStorage.getItem('isAdmin') === 'true';
+    console.log(isAdmin);
+  }
+});
+
 </script>
 
 <div class="app">
