@@ -4,22 +4,50 @@
   import { Input } from "$lib/components/ui/input/index.js";
   import { Label } from "$lib/components/ui/label/index.js";
   import { Button, buttonVariants } from "$lib/components/ui/button";
-  import { createEventDispatcher } from "svelte";
   import { ENDPOINT_URL } from "$lib/constants";
-
-  const dispatch = createEventDispatcher();
 
   let nome = "";
   let descricao = "";
+  let imagemURL = "";
   let preco = 0;
-  let imagem = "";
+  export let imagemFile: File | null = null;
   let visibilidadeAvaliacao = true;
 
-  function adicionarProduto() {
-    if (!nome || !descricao || !preco) {
-      alert("Por favor, preencha todos os campos obrigatórios.");
-      return;
+  function handleFileChange(event: any) {
+    imagemFile = event.target.files[0];
+  }
+
+  async function uploadImagem(file: any) {
+  const formData = new FormData();
+  formData.append("file", file);
+
+  const response = await fetch(`${ENDPOINT_URL}/file/upload`, {
+    method: "POST",
+    body: formData,
+  });
+
+  if (!response.ok) {
+    throw new Error("File upload failed");
+  }
+
+  const data = await response.text();
+  return data; 
+}
+
+async function adicionarProduto() {
+  if (!nome || !descricao || !preco) {
+    alert("Por favor, preencha todos os campos obrigatórios.");
+    return;
+  }
+
+  try {
+    let imagem = "";
+    if (imagemFile) {
+      imagem = await uploadImagem(imagemFile);
+      // Update the state variable with the URL
+      imagemURL = imagem;
     }
+
     const produto = {
       nome,
       descricao,
@@ -28,35 +56,25 @@
       visibilidadeAvaliacao,
     };
 
-    fetch(`${ENDPOINT_URL}/produtos`, {
+    const response = await fetch(`${ENDPOINT_URL}/produtos`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(produto),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("Produto adicionado com sucesso:", data);
-        window.location.reload();
-      })
-      .catch((error) => {
-        console.error("Erro:", error);
-      });
-  }
+    });
 
-  function converterImg(event) {
-    const file = event.target.files[0];
-    const reader = new FileReader();
-
-    reader.onloadend = () => {
-      imagem = reader.result as string;
-    };
-
-    if (file) {
-      reader.readAsDataURL(file);
+    if (!response.ok) {
+      throw new Error("Failed to add product");
     }
+
+    const data = await response.json();
+    console.log("Produto adicionado com sucesso:", data);
+    window.location.reload();
+  } catch (error) {
+    console.error("Erro:", error);
   }
+}
 </script>
 
 <main class="mt-5 flex items-center justify-center">
@@ -106,7 +124,7 @@
             type="file"
             accept="image/*"
             class="col-span-3"
-            on:change={converterImg}
+            on:change={handleFileChange}
           />
         </div>
       </div>

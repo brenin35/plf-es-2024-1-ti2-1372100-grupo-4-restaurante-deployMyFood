@@ -91,18 +91,6 @@
     }
   }
 
-  function converterImg(event) {
-    const file = event.target.files[0];
-    const reader = new FileReader();
-
-    reader.onloadend = () => {
-      imagem = reader.result as string;
-    };
-
-    if (file) {
-      reader.readAsDataURL(file);
-    }
-  }
 </script>
 
 <main class="flex items-center justify-center">
@@ -207,7 +195,6 @@
             type="file"
             accept="image/*"
             class="col-span-3"
-            on:change={converterImg}
           />
         </div>
         <div class="grid grid-cols-4 items-center gap-4">

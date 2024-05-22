@@ -4,7 +4,7 @@ cloud:
       access-key: AKIAXYKJVWNNJECAYO7U
       secret-key: 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
     region:
-      static: us-east-2
+      static: us-east-1
     stack:
       auto: false
 
@@ -22,3 +22,4 @@ spring:
 
 server:
   port: 8080
+  
