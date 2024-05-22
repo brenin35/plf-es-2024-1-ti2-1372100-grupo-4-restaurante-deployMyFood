@@ -9,16 +9,19 @@
   import { type Prato, type Pedido } from "$lib/types";
   import { getProdutos } from "$lib/fetchs/fetchProdutos";
   import { postPedidos } from "$lib/fetchs/fetchPedidos";
+  import type { PageData } from "./$types";
 
-  let promise = fetch(`${ENDPOINT_URL}/produtos`);
+  export let data: PageData;
+
   const dispatch = createEventDispatcher();
-
+  
   let pratos: Prato[] = [];
   let clienteId: number;
+  pratos = data.produtos;
+  let promise = pratos;
 
   onMount(async () => {
     localStorage.setItem("isAdmin", "false");
-    pratos = await getProdutos();
 
     const storedClienteId = localStorage.getItem("clienteId");
 

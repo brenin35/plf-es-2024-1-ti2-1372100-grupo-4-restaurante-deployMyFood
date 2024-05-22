@@ -1,4 +1,4 @@
-import type { PageServerLoad } from "./$types";
+import type { LayoutServerLoad } from './$types';
 import { ENDPOINT_URL } from "$lib/constants";
 
 export const load = (async ({ params }) => {
@@ -13,4 +13,4 @@ export const load = (async ({ params }) => {
   );
 
   return { mesas: response, clientes: responseClientes };
-}) satisfies PageServerLoad;
+}) satisfies LayoutServerLoad;

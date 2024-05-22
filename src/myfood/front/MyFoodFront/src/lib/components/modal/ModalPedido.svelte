@@ -69,9 +69,6 @@
   }
 </script>
 
-<pre>
-  {JSON.stringify($pedidoStore, null, 2)}
-</pre>
 <main class="mt-5 flex items-center justify-center">
   <Dialog.Root>
     <Dialog.Trigger>
