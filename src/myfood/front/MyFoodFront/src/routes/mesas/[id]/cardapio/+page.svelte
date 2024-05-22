@@ -6,18 +6,18 @@
   import { ENDPOINT_URL } from "$lib/constants";
   import { Button, buttonVariants } from "$lib/components/ui/button";
   import { Check } from "lucide-svelte";
+  import { type Prato, type Pedido } from "$lib/types";
   import { getProdutos } from "$lib/fetchProdutos";
-  import { type Avaliacao } from "$lib/types";
-  import { type Prato } from "$lib/types";
+  import { postPedidos } from "$lib/fetchPedidos";
 
   let promise = fetch(`${ENDPOINT_URL}/produtos`);
 
   let pratos: Prato[] = [];
-  let clienteId;
+  let clienteId: number;
 
   onMount(async () => {
     pratos = await getProdutos();
-
+    
     clienteId = localStorage.getItem("clienteId");
 
     if (clienteId) {
@@ -44,7 +44,12 @@
         <ModalPedido {...item} />
       {/each}
     </Cardapio>
-    <Button variant="buttonAdd" type="submit" class="flex items-center mt-4">
+    <Button
+      on:click={postPedidos}
+      variant="buttonAdd"
+      type="submit"
+      class="flex items-center mt-4"
+    >
       <p class="pr-2">Finalizar Pedido</p>
       <Check />
     </Button>

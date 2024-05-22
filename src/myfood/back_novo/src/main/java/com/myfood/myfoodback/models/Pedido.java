@@ -1,31 +1,29 @@
 package com.myfood.myfoodback.models;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
 import java.util.List;
 
 @Entity
 public class Pedido {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "cliente_id_pedido", nullable = false)
-    private Clientes clientes;
+    @JoinColumn(name = "cliente_id")
+    private Clientes cliente;
 
     @ManyToOne
-    @JoinColumn(name = "mesa_id_pedido", nullable = false)
-    private Mesas mesas;
+    @JoinColumn(name = "mesa_id")
+    private Mesas mesa;
 
     private boolean statusPreparo;
     private boolean statusPagamento;
+    private double precoTotalPedido;
 
-    @Column(precision = 10, scale = 2)
-    private BigDecimal precoTotalPedido;
-
-    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
     private List<ItemPedido> itensPedido;
+
 
     public Pedido() {
     }
@@ -38,28 +36,20 @@ public class Pedido {
         this.id = id;
     }
 
-    public Clientes getClientes() {
-        return this.clientes;
+    public Clientes getCliente() {
+        return cliente;
     }
 
-    public void setClientes(Clientes clientes) {
-        this.clientes = clientes;
+    public void setCliente(Clientes cliente) {
+        this.cliente = cliente;
     }
 
-    public Mesas getMesas() {
-        return this.mesas;
+    public Mesas getMesa() {
+        return mesa;
     }
 
-    public void setMesas(Mesas mesas) {
-        this.mesas = mesas;
-    }
-
-    public boolean getStatusPreparo() {
-        return this.statusPreparo;
-    }
-
-    public boolean getStatusPagamento() {
-        return this.statusPagamento;
+    public void setMesa(Mesas mesa) {
+        this.mesa = mesa;
     }
 
     public boolean isStatusPreparo() {
@@ -78,11 +68,11 @@ public class Pedido {
         this.statusPagamento = statusPagamento;
     }
 
-    public BigDecimal getPrecoTotalPedido() {
+    public double getPrecoTotalPedido() {
         return precoTotalPedido;
     }
 
-    public void setPrecoTotalPedido(BigDecimal precoTotalPedido) {
+    public void setPrecoTotalPedido(double precoTotalPedido) {
         this.precoTotalPedido = precoTotalPedido;
     }
 

@@ -1,7 +1,4 @@
 export type ItemPedido = {
-  id: number;
-  pedido_id: number;
-  produtos: Prato;
   quantidade: number;
   precoItem: number;
   precoTotal: number;

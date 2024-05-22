@@ -5,50 +5,70 @@ import javax.persistence.*;
 @Entity
 public class ItemPedido {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "pedido_id", nullable = false)
-    private Pedido pedido;
+    @JoinColumn(name = "produto_id")
+    private Produtos produto;
 
     @ManyToOne
-    @JoinColumn(name = "produto_id", nullable = false)
-    private Produtos produtos;
+    @JoinColumn(name = "pedido_id")
+    private Pedido pedido;
 
     private int quantidade;
-    float precoItem;
+    private double precoItem;
+    private double precoTotal;
+
+    public ItemPedido() {
+    }
 
     public Long getId() {
-        return this.id;
+        return id;
     }
 
     public void setId(Long id) {
         this.id = id;
     }
 
+    public Produtos getProduto() {
+        return produto;
+    }
+
+    public void setProduto(Produtos produto) {
+        this.produto = produto;
+    }
+
     public Pedido getPedido() {
-        return this.pedido;
+        return pedido;
     }
 
     public void setPedido(Pedido pedido) {
         this.pedido = pedido;
     }
 
-    public Produtos getProdutos() {
-        return this.produtos;
-    }
-
-    public void setProdutos(Produtos produtos) {
-        this.produtos = produtos;
-    }
-
     public int getQuantidade() {
-        return this.quantidade;
+        return quantidade;
     }
 
     public void setQuantidade(int quantidade) {
         this.quantidade = quantidade;
     }
 
+    public double getPrecoItem() {
+        return precoItem;
+    }
+
+    public void setPrecoItem(double precoItem) {
+        this.precoItem = precoItem;
+    }
+
+    public double getPrecoTotal() {
+        return precoTotal;
+    }
+
+    public void setPrecoTotal(double precoTotal) {
+        this.precoTotal = precoTotal;
+    }
+    
 }

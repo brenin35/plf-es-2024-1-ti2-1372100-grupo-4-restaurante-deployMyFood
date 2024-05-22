@@ -6,7 +6,7 @@
   import { Rating } from "flowbite-svelte";
   import { onMount } from "svelte";
   import { ENDPOINT_URL } from "$lib/constants";
-  import { createItemPedido } from "$lib/fetchItemPedido";
+  import { postPedidos } from "$lib/fetchPedidos";
   import { fetchAvaliacao } from "$lib/fetchAvaliacao";
   import { type Avaliacao, type ItemPedido, type Prato } from "$lib/types";
 
@@ -18,11 +18,12 @@
   export let visibilidadeAvaliacao: boolean;
   export let avaliacao: Avaliacao[] = [];
   //export let clienteId: number;
+  let newPedidoId: number;
+  let pedidoCreated = false;
 
   let quantidade = 1;
   let itemPreco = preco;
   let mediaAvaliacao = 0;
-  let cart: ItemPedido;
 
   function increase() {
     quantidade += 1;
@@ -54,9 +55,49 @@
   }
 
   onMount(async () => {
+    if ((pedidoCreated = false)) {
+      try {
+        newPedidoId = await postPedidos();
+        console.log("New pedido ID:", newPedidoId);
+        pedidoCreated = true;
+      } catch (error) {
+        console.error("Error creating pedido:", error);
+      }
+    }
+
     await fetchAvaliacao();
     mediaAvaliacao = calculaMediaAvaliacao(avaliacao, id);
   });
+
+  async function addItemPedido() {
+    const itemPedido: ItemPedido = {
+      precoItem: preco,
+      quantidade: quantidade,
+      precoTotal: itemPreco,
+    };
+
+    try {
+      const response = await fetch(
+        `${ENDPOINT_URL}/itempedidos/${newPedidoId}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(itemPedido),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      console.log(newPedidoId);
+      console.log("Item adicionado:", itemPedido);
+    } catch (error) {
+      console.error("Erro adicionando pedido", error);
+    }
+  }
 </script>
 
 <main class="mt-5 flex items-center justify-center">
@@ -140,7 +181,12 @@
       </div>
       <Dialog.Footer>
         <Dialog.Close>
-          <Button variant="buttonAdd" type="submit" class="flex items-center">
+          <Button
+            on:click={addItemPedido}
+            variant="buttonAdd"
+            type="submit"
+            class="flex items-center"
+          >
             <p class="pr-2">Adicionar produto ao pedido</p>
             <Plus />
           </Button>
