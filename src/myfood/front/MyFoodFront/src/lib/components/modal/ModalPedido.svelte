@@ -6,7 +6,7 @@
   import { Rating } from "flowbite-svelte";
   import { onMount } from "svelte";
   import { ENDPOINT_URL } from "$lib/constants";
-  import { postPedidos } from "$lib/fetchPedidos";
+  import { postPedidos, postItemPedido } from "$lib/fetchPedidos";
   import { fetchAvaliacao } from "$lib/fetchAvaliacao";
   import { type Avaliacao, type ItemPedido, type Prato } from "$lib/types";
 
@@ -69,33 +69,20 @@
     mediaAvaliacao = calculaMediaAvaliacao(avaliacao, id);
   });
 
-  async function addItemPedido() {
-    const itemPedido: ItemPedido = {
-      precoItem: preco,
-      quantidade: quantidade,
-      precoTotal: itemPreco,
-    };
-
+  async function adicionarProdutoAoPedido() {
     try {
-      const response = await fetch(
-        `${ENDPOINT_URL}/itempedidos/${newPedidoId}`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(itemPedido),
-        }
-      );
+      const itemPedido = {
+        produto: {
+          id: id,
+        },
+        quantidade: quantidade,
+      };
 
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
+      const response = await postItemPedido(newPedidoId, itemPedido);
+      console.log("ItemPedido added to Pedido:", response);
 
-      console.log(newPedidoId);
-      console.log("Item adicionado:", itemPedido);
     } catch (error) {
-      console.error("Erro adicionando pedido", error);
+      console.error("Error adding itemPedido:", error);
     }
   }
 </script>
@@ -181,12 +168,7 @@
       </div>
       <Dialog.Footer>
         <Dialog.Close>
-          <Button
-            on:click={addItemPedido}
-            variant="buttonAdd"
-            type="submit"
-            class="flex items-center"
-          >
+          <Button on:click={adicionarProdutoAoPedido} variant="buttonAdd" type="submit" class="flex items-center">
             <p class="pr-2">Adicionar produto ao pedido</p>
             <Plus />
           </Button>
