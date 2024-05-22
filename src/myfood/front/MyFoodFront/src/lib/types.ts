@@ -1,8 +1,13 @@
 export type ItemPedido = {
+  id?: number;
   quantidade: number;
   precoItem: number;
   precoTotal: number;
+  produto: {
+    id: number;
+  };
 };
+
 export type Prato = {
   visibilidadeAvaliacao: boolean;
   id: number;
@@ -21,9 +26,13 @@ export type Avaliacao = {
 };
 
 export type Pedido = {
-  id: number;
-  cliente_id: number;
-  mesa_id: number;
+  id?: number;
+  cliente: {
+    id: number;
+  };
+  mesa: {
+    id: number;
+  };
   statusPreparo: boolean;
   statusPagamento: boolean;
   precoTotalPedido: number;

@@ -21,7 +21,8 @@ public class Pedido {
     private boolean statusPagamento;
     private double precoTotalPedido;
 
-    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "pedido_id")
     private List<ItemPedido> itensPedido;
 
 

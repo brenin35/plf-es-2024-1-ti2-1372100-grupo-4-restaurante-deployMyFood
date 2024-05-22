@@ -9,6 +9,7 @@
   import { postPedidos } from "$lib/fetchPedidos";
   import { fetchAvaliacao } from "$lib/fetchAvaliacao";
   import { type Avaliacao, type ItemPedido, type Prato } from "$lib/types";
+  import { pedidoStore } from "../stores/pedidoStore";
 
   export let id: number;
   export let nome: string;
@@ -18,12 +19,12 @@
   export let visibilidadeAvaliacao: boolean;
   export let avaliacao: Avaliacao[] = [];
   //export let clienteId: number;
-  let newPedidoId: number;
-  let pedidoCreated = false;
 
   let quantidade = 1;
   let itemPreco = preco;
   let mediaAvaliacao = 0;
+
+  let itens_pedido: ItemPedido[] = [];
 
   function increase() {
     quantidade += 1;
@@ -55,22 +56,25 @@
   }
 
   onMount(async () => {
-    if ((pedidoCreated = false)) {
-      try {
-        newPedidoId = await postPedidos();
-        console.log("New pedido ID:", newPedidoId);
-        pedidoCreated = true;
-      } catch (error) {
-        console.error("Error creating pedido:", error);
-      }
-    }
-
     await fetchAvaliacao();
     mediaAvaliacao = calculaMediaAvaliacao(avaliacao, id);
   });
 
+  function adicionarProdutoAoPedido() {
+    const itemPedido: ItemPedido = {
+      quantidade: quantidade,
+      precoItem: preco,
+      precoTotal: itemPreco,
+      produto: { id: id },
+    };
+
+    pedidoStore.addItem(itemPedido);
+  }
 </script>
 
+<pre>
+  {JSON.stringify($pedidoStore, null, 2)}
+</pre>
 <main class="mt-5 flex items-center justify-center">
   <Dialog.Root>
     <Dialog.Trigger>
@@ -152,7 +156,12 @@
       </div>
       <Dialog.Footer>
         <Dialog.Close>
-          <Button variant="buttonAdd" type="submit" class="flex items-center">
+          <Button
+            on:click={adicionarProdutoAoPedido}
+            variant="buttonAdd"
+            type="submit"
+            class="flex items-center"
+          >
             <p class="pr-2">Adicionar produto ao pedido</p>
             <Plus />
           </Button>

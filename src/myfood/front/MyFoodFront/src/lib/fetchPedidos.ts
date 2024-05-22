@@ -1,14 +1,21 @@
 import { ENDPOINT_URL } from "$lib/constants";
+import { get } from "svelte/store";
+import { pedidoStore } from "./components/stores/pedidoStore";
 
-export async function postPedidos(clienteId) {
+export async function postPedidos(clienteId: number) {
   try {
-    const clienteResponse = await fetch(`${ENDPOINT_URL}/clientes/${clienteId}`);
+    const clienteResponse = await fetch(
+      `${ENDPOINT_URL}/clientes/${clienteId}`
+    );
     if (!clienteResponse.ok) {
-      throw new Error(`Failed to fetch cliente details! Status: ${clienteResponse.status}`);
+      throw new Error(
+        `Failed to fetch cliente details! Status: ${clienteResponse.status}`
+      );
     }
     const clienteData = await clienteResponse.json();
     const mesaId = clienteData.mesaId;
 
+    const ItemsPedido = get(pedidoStore);
     const pedido = {
       cliente: {
         id: clienteId,
@@ -19,7 +26,7 @@ export async function postPedidos(clienteId) {
       statusPreparo: true,
       statusPagamento: false,
       precoTotalPedido: 0,
-      itensPedido: [],
+      itensPedido: ItemsPedido,
     };
 
     const response = await fetch(`${ENDPOINT_URL}/pedidos`, {
