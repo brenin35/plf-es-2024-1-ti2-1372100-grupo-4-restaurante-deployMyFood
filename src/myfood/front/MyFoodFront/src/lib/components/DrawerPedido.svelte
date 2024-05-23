@@ -69,7 +69,7 @@
     <div class="mx-auto p-4">
       <h1 class="text-xl text-center font-bold mb-2">Produtos no carrinho:</h1>
       <div class="flex flex-col md:flex-row">
-        <ScrollArea class="h-[300px] w-[240px] rounded-md border p-3">
+        <ScrollArea class="h-[300px] w-[auto] rounded-md border p-3">
           {#if itemsPedido.length > 0}
             {#each itemsPedido as item}
               <div class="flex flex-col border rounded-lg p-2 mb-2">
