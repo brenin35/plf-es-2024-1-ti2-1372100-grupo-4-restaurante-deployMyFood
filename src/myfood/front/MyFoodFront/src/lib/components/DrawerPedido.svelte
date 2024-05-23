@@ -6,6 +6,7 @@
   import { onMount, createEventDispatcher } from "svelte";
   import { pedidoStore } from "$lib/stores/pedidoStore";
   import { get } from "svelte/store";
+  import { ScrollArea } from "$lib/components/ui/scroll-area/index.js";
 
   const dispatch = createEventDispatcher();
   let clienteId: number;
@@ -68,21 +69,23 @@
     <div class="mx-auto p-4">
       <h1 class="text-xl text-center font-bold mb-2">Produtos no carrinho:</h1>
       <div class="flex flex-col md:flex-row">
-        {#if itemsPedido.length > 0}
-          {#each itemsPedido as item}
-            <div class="flex flex-col border rounded-lg p-2 mx-1 mb-2">
-              <p>
-                <strong>Prato: </strong>{item.produto.nome}
-              </p>
-              <p>Quantidade: {item.quantidade}</p>
-              <h1 class="text-xl font-bold">Preço: {item.precoTotal}</h1>
-            </div>
-          {/each}
-        {:else}
-          <p>Seu carrinho está vazio.</p>
-        {/if}
+        <ScrollArea class="h-[200px] w-[240px] rounded-md border p-3">
+          {#if itemsPedido.length > 0}
+            {#each itemsPedido as item}
+              <div class="flex flex-col border rounded-lg p-2 mb-2">
+                <p>
+                  <strong>Prato: </strong>{item.produto.nome}
+                </p>
+                <p>Quantidade: {item.quantidade}</p>
+                <h1 class="text-xl font-bold">Preço: {item.precoTotal}</h1>
+              </div>
+            {/each}
+          {:else}
+            <p>Seu carrinho está vazio.</p>
+          {/if}
+        </ScrollArea>
       </div>
-      <h1 class="text-xl text-center font-bold">Preco total:</h1>
+      <h1 class="text-xl text-center font-bold mt-2">Preco total:</h1>
     </div>
     <Drawer.Footer>
       <Button on:click={postPedidosBtn}>Finalizar Pedido!</Button>
