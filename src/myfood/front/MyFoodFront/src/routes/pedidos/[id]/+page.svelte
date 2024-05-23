@@ -1,4 +1,5 @@
 <script lang="ts">
+  import ModalAvaliar from "$lib/components/modal/ModalAvaliar.svelte";
   import type { Pedido } from "$lib/types.ts";
   import type { PageData } from "./$types";
 
@@ -14,7 +15,7 @@
     <p><strong>Mesa ID:</strong> {pedido.mesa.id}</p>
     <p>
       <strong>Status de Preparo:</strong>
-      {pedido.statusPreparo ? "Em Preparo" : "Não Iniciado"}
+      {pedido.statusPreparo ? "Em Preparo" : "Pedido pronto"}
     </p>
     <p>
       <strong>Status de Pagamento:</strong>
@@ -43,6 +44,7 @@
         <p>
           <strong>Preço Total:</strong> R${itemPedido.precoTotal.toFixed(2)}
         </p>
+        <ModalAvaliar />
       </div>
     {/each}
   </div>
