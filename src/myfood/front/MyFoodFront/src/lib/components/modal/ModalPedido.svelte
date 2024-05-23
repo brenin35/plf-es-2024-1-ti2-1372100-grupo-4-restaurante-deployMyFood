@@ -64,6 +64,8 @@
       precoTotal: itemPreco,
       produto: { id: id },
     };
+    console.log(itemPedido);
+    
 
     pedidoStore.addItem(itemPedido);
   }

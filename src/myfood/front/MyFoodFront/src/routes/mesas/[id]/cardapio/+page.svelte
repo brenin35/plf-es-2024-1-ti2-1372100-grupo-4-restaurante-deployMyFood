@@ -1,55 +1,18 @@
 <script lang="ts">
-  import { onMount, createEventDispatcher } from "svelte";
+  import { onMount } from "svelte";
   import ModalPedido from "$lib/components/modal/ModalPedido.svelte";
   import { Diamonds } from "svelte-loading-spinners";
   import Cardapio from "$lib/components/Cardapio.svelte";
-  import { ENDPOINT_URL } from "$lib/constants";
-  import { Button, buttonVariants } from "$lib/components/ui/button";
-  import { Check } from "lucide-svelte";
   import { type Prato, type Pedido } from "$lib/types";
-  import { getProdutos } from "$lib/fetchs/fetchProdutos";
-  import { postPedidos } from "$lib/fetchs/fetchPedidos";
   import type { PageData } from "./$types";
+  import DrawerPedido from "$lib/components/DrawerPedido.svelte";
 
   export let data: PageData;
 
-  const dispatch = createEventDispatcher();
-  
   let pratos: Prato[] = [];
-  let clienteId: number;
   pratos = data.produtos;
   let promise = pratos;
 
-  onMount(async () => {
-    localStorage.setItem("isAdmin", "false");
-
-    const storedClienteId = localStorage.getItem("clienteId");
-
-    if (storedClienteId) {
-      clienteId = parseInt(storedClienteId, 10);
-      if (!isNaN(clienteId)) {
-        console.log("Cliente ID:", clienteId);
-      } else {
-        console.error("Cliente ID is not a valid number");
-      }
-    } else {
-      console.error("Cliente não registrado");
-    }
-  });
-
-  async function postPedidosBtn() {
-    if (!clienteId) {
-      console.error("ClienteId not found.");
-      return;
-    }
-    try {
-      const response = await postPedidos(clienteId);
-
-      dispatch("pedidoCreated", response);
-    } catch (error) {
-      console.error("Failed to post pedido:", error);
-    }
-  }
 </script>
 
 <div class="py-4">
@@ -68,14 +31,6 @@
         <ModalPedido {...item} />
       {/each}
     </Cardapio>
-    <Button
-      on:click={postPedidosBtn}
-      variant="buttonAdd"
-      type="submit"
-      class="flex items-center mt-4"
-    >
-      <p class="pr-2">Finalizar Pedido</p>
-      <Check />
-    </Button>
+    <DrawerPedido />
   {/await}
 </div>
