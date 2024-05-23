@@ -26,11 +26,15 @@
       <Diamonds size="60" color="#FF3E00" unit="px" duration="1s" />
     </div>
   {:then}
+  <div>
     <Cardapio>
       {#each pratos as item}
         <ModalPedido {...item} />
       {/each}
     </Cardapio>
-    <DrawerPedido />
+    <div class="fixed bottom-0 right-0 flex flex-col items-end mr-10 mb-10">
+      <DrawerPedido />
+    </div>    
+  </div>
   {/await}
 </div>

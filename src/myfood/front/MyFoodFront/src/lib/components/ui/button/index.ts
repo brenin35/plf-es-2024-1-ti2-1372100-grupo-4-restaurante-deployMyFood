@@ -14,7 +14,8 @@ const buttonVariants = tv({
 			ghost: "hover:bg-accent hover:text-accent-foreground",
 			link: "text-primary underline-offset-4 hover:underline",
 			buttonAdd: "bg-primary text-white hover:bg-secondary hover:text-orange-500 transition ease-in-out",
-			buttonDD: "bg-primary text-white hover:bg-secondary hover:text-orange-500 transition ease-in-out w-full"
+			buttonDD: "bg-primary text-white hover:bg-secondary hover:text-orange-500 transition ease-in-out w-full",
+			buttonBasket: "bg-primary text-white hover:bg-secondary hover:text-orange-500 transition ease-in-out w-16 h-16",
 		},
 		size: {
 			default: "h-10 px-4 py-2",
