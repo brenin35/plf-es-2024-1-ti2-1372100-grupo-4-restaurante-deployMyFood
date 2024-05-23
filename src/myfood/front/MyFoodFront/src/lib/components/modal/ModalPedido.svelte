@@ -152,7 +152,7 @@
         <p class="mt-3 text-right text-xl">
           Valor total: <span class="font-bold text-primary">R${itemPreco}</span>
         </p>
-      </div>      
+      </div>
       <Dialog.Footer>
         <Dialog.Close>
           <Button

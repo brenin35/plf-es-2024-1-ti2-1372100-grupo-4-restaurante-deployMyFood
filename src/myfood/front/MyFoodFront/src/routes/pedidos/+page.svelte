@@ -21,13 +21,16 @@
         </h2>
         {#each pedidos as pedido (pedido.id)}
           <div
-            class="bg-white border border-gray-200 rounded shadow p-4 mb-4 flex justify-between"
+            class="bg-white border border-gray-200 rounded shadow p-4 mb-4 justify-between"
           >
             <div>
-              <h1 class="text-xl mb-2">
-                Pedido <strong>#{pedido.id}</strong> - <span class="text-primary">Mesa: <strong>{pedido.mesa.id}</strong></span>
-              </h1>
-              <div class="flex gap-2">
+              <div class="flex justify-between">
+                <h1 class="text-xl mb-2">
+                  Pedido <strong>#{pedido.id}</strong> - <span class="text-primary">Mesa: <strong>{pedido.mesa.id}</strong></span>
+                </h1>
+                <p class="text-right text-xl"><strong>Valor total:</strong> R${pedido.precoTotalPedido}</p>
+              </div>
+              <div class="grid md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-2">
                 {#each pedido.itensPedido as item}
                   <div
                     class="bg-white border border-gray-200 rounded shadow p-4 flex flex-col justify-between"
@@ -40,8 +43,7 @@
                 {/each}
               </div>
             </div>
-            <div class=" flex flex-col justify-between">
-              <p class="text-right text-xl"><strong>Valor total:</strong> R${pedido.precoTotalPedido}</p>
+            <div class=" flex flex-col justify-between mt-2">
               <Button variant="buttonAdd">Pedido finalizado!</Button>
             </div>
           </div>

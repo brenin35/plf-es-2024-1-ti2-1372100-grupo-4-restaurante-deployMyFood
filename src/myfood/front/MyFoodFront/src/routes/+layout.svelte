@@ -7,21 +7,16 @@
   let isAdmin = true;
 
   onMount(() => {
-  if (typeof localStorage !== 'undefined') {
-    isAdmin = localStorage.getItem('isAdmin') === 'true';
-    console.log(isAdmin);
-  }
-});
-
+    if (typeof localStorage !== "undefined") {
+      isAdmin = localStorage.getItem("isAdmin") === "true";
+      console.log(isAdmin);
+    }
+  });
 </script>
 
 <div class="app">
   <main>
-    {#if isAdmin}
-      <Navbar />
-    {:else}
-      <NavbarCliente />
-    {/if}
+    <Navbar />
     <div class="p-4 sm:ml-64">
       <slot></slot>
     </div>
