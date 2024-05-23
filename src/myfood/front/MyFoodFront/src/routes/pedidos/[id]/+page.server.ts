@@ -2,9 +2,11 @@ import type { PageServerLoad } from "./$types";
 import { ENDPOINT_URL } from "$lib/constants";
 
 export const load = (async ({ params }) => {
-  const response = await fetch(`${ENDPOINT_URL}/pedidos`).then((res) =>
+  const id = params.id;
+
+  const response = await fetch(`${ENDPOINT_URL}/pedidos/${id}`).then((res) =>
     res.json()
   );
 
-  return { pedidos: response };
+  return { pedidoId: response };
 }) satisfies PageServerLoad;
