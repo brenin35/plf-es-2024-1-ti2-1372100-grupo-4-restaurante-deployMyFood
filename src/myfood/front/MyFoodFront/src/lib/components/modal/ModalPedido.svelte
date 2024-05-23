@@ -124,7 +124,7 @@
         </div>
       </Card.Root>
     </Dialog.Trigger>
-    <Dialog.Content class="sm:max-w-[600px]">
+    <Dialog.Content class="max-w-[600px]">
       <Dialog.Header>
         <Dialog.Title>
           Adicionar <span class="font-bold text-primary">{nome}</span> ao seu pedido
@@ -134,11 +134,15 @@
         </Dialog.Description>
       </Dialog.Header>
       <div class="grid gap-4 py-4">
-        <div class="h-10 w-10 items-center justify-center gap-4">
-          <img src={imagem} alt="imagem {nome}" />
+        <div class="flex flex-col items-center justify-center gap-4">
+          <img
+            src={imagem}
+            alt="imagem {nome}"
+            class="rounded-lg object-cover h-72 w-full"
+          />
         </div>
         <div class="flex items-center justify-center">
-          <h1 class="mr-3 items-center text-xl">Quantidade:</h1>
+          <h1 class="mr-3 items-center text-lg">Quantidade:</h1>
           <div class="flex items-center gap-3 text-center">
             <Button variant="buttonAdd" on:click={decrease}><Minus /></Button>
             <p class="text-xl font-bold">{quantidade}</p>
@@ -148,7 +152,7 @@
         <p class="mt-3 text-right text-xl">
           Valor total: <span class="font-bold text-primary">R${itemPreco}</span>
         </p>
-      </div>
+      </div>      
       <Dialog.Footer>
         <Dialog.Close>
           <Button

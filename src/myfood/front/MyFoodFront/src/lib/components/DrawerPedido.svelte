@@ -90,7 +90,7 @@
       </h1>
     </div>
     <Drawer.Footer>
-      <Button on:click={postPedidosBtn}>Finalizar Pedido!</Button>
+      <Button variant="buttonAdd" on:click={postPedidosBtn}>Finalizar Pedido!</Button>
       <Drawer.Close>Cancelar</Drawer.Close>
     </Drawer.Footer>
   </Drawer.Content>
