@@ -5,6 +5,7 @@ export type ItemPedido = {
   precoTotal: number;
   produto: {
     id: number;
+    nome?: string;
   };
 };
 

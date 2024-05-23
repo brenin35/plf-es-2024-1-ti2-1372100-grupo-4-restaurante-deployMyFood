@@ -62,10 +62,9 @@
       quantidade: quantidade,
       precoItem: preco,
       precoTotal: itemPreco,
-      produto: { id: id },
+      produto: { id: id, nome: nome },
     };
     console.log(itemPedido);
-    
 
     pedidoStore.addItem(itemPedido);
   }
