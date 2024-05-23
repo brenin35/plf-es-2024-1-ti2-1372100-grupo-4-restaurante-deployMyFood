@@ -10,4 +10,3 @@ node_modules
 .output
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
-src/myfood/back_novo/src/main/resources/application.yml
