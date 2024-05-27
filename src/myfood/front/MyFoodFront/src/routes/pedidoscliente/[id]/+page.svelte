@@ -1,4 +1,5 @@
 <script lang="ts">
+  import type { Pedido } from "$lib/types.ts";
   import ModalAvaliar from "$lib/components/modal/ModalAvaliar.svelte";
   import type { PageData } from "./$types";
 
@@ -8,7 +9,7 @@
   let pedidos = data.pedidos;
 
   const filteredPedidos = pedidos.filter(
-    (pedido) => pedido.cliente.id === clienteId.id
+    (pedido: Pedido) => pedido.cliente.id === clienteId.id
   );
 </script>
 
