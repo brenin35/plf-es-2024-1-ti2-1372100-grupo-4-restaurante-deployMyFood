@@ -11,7 +11,15 @@
   const filteredPedidos = pedidos.filter(
     (pedido: Pedido) => pedido.cliente.id === clienteId.id
   );
+
+  let pedidoId = pedidos[0].itensPedido[0].produto.id;
+  console.log(pedidoId);
+  
 </script>
+
+<!-- <pre>
+  {JSON.stringify(pedidos,null,2)}
+</pre> -->
 
 {#each filteredPedidos as pedido}
   <div class="p-4">
@@ -52,7 +60,7 @@
           <p>
             <strong>Preço Total:</strong> R${itemPedido.precoTotal.toFixed(2)}
           </p>
-          <ModalAvaliar />
+          <ModalAvaliar produtoId = {pedidoId} />
         </div>
       {/each}
     </div>

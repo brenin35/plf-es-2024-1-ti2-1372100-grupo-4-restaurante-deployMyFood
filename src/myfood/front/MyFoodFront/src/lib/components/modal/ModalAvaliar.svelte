@@ -9,12 +9,11 @@
 
   let estrelas: number;
   let comentario: string;
-  let produtoId: number;
+  export let produtoId: number;
   let clienteId: number = 1;
 
   async function submitAvaliacao() {
     const newAvaliacao: Avaliacao = {
-      id: Date.now(),
       produtoId,
       estrelas,
       comentario,
@@ -27,18 +26,13 @@
           "Content-Type": "application/json",
         },
         body: JSON.stringify(newAvaliacao),
+        
       });
 
-      if (response.ok) {
-        const addedAvaliacao = await response.json();
-        estrelas = 0;
-        comentario = "";
-      } else {
-        console.error("Failed to submit avaliacao");
-      }
     } catch (error) {
       console.error("Error:", error);
     }
+    console.log(newAvaliacao);
   }
 </script>
 
