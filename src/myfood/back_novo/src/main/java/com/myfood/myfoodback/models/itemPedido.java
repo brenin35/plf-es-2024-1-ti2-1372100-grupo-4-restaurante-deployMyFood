@@ -70,5 +70,5 @@ public class ItemPedido {
 
     public void setPedido(Pedido pedido) {
         this.pedido = pedido;
-    }
+    }    
 }
