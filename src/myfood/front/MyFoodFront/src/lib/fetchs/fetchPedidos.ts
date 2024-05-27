@@ -17,12 +17,8 @@ export async function postPedidos(clienteId: number) {
 
     const ItemsPedido = get(pedidoStore);
     const pedido = {
-      cliente: {
-        id: clienteId,
-      },
-      mesa: {
-        id: mesaId,
-      },
+      cliente: clienteId,
+      mesa: mesaId,
       statusPreparo: true,
       statusPagamento: false,
       precoTotalPedido: 0,

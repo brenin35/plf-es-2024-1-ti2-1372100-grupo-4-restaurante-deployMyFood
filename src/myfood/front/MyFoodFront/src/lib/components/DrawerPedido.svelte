@@ -12,6 +12,7 @@
   const dispatch = createEventDispatcher();
   let clienteId: number;
   let itemsPedido: ItemPedido[] = [];
+  let precoTotalPedido:number;
 
   const unsubscribe = pedidoStore.subscribe((value) => {
     itemsPedido = value;
@@ -86,7 +87,7 @@
         </ScrollArea>
       </div>
       <h1 class="text-xl text-center font-bold mt-2">
-        Preco total: <span class="text-lime-500">R$</span>
+        Preco total: <span class="text-lime-500">R${precoTotalPedido}</span>
       </h1>
     </div>
     <Drawer.Footer>

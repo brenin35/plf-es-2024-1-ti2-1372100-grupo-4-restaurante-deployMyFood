@@ -36,7 +36,7 @@
                     class="bg-white border border-gray-200 rounded shadow p-4 flex flex-col justify-between"
                   >
                     <h1 class="text-xl">
-                      <strong>Prato: {item.produto.id}</strong>
+                      <strong>Prato: {item.produto.nome}</strong>
                     </h1>
                     <p><strong>Quantidade: </strong>{item.quantidade}</p>
                   </div>
