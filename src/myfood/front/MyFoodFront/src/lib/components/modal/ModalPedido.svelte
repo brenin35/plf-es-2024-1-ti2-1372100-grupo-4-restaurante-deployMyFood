@@ -65,7 +65,7 @@
     <Dialog.Trigger>
       <Card.Root class="w-auto">
         <div class="row flex">
-          <div class="column w-7/12">
+          <div class="column w-7/12 max-w-xl h-60">
             <Card.Header>
               <Card.Title
                 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 "
@@ -106,7 +106,7 @@
               </div>
             </Card.Content>
           </div>
-          <div class="column w-5/12 max-h-52">
+          <div class="column w-5/12 max-h-60">
             <img
               src={imagem}
               alt=""
