@@ -65,7 +65,7 @@
                   <Rating total={5} rating={review.estrelas}>
                     <p
                       slot="text"
-                      class="ms-2 text-sm font-medium text-gray-500 dark:text-gray-400"
+                      class="ms-2 text-sm font-medium text-gray-500 "
                     >
                       {review.estrelas} de 5
                     </p>

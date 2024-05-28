@@ -63,7 +63,7 @@
           <div class="column w-7/12">
             <Card.Header>
               <Card.Title
-                class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+                class="mb-2 text-2xl font-bold tracking-tight text-gray-900 "
               >
                 {nome}
               </Card.Title>
@@ -95,7 +95,7 @@
                     </Rating>
                   </div>
                 {/if}
-                <p class="text-2xl font-bold text-gray-900 dark:text-white">
+                <p class="text-2xl font-bold text-gray-900 ">
                   R${preco}
                 </p>
               </div>

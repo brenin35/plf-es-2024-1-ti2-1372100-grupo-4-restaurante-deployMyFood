@@ -6,6 +6,8 @@
   import { type Prato, type Pedido } from "$lib/types";
   import type { PageData } from "./$types";
   import DrawerPedido from "$lib/components/DrawerPedido.svelte";
+  import { toast } from "svelte-sonner";
+  import Button from "$lib/components/ui/button/button.svelte";
 
   export let data: PageData;
 
@@ -38,3 +40,17 @@
   </div>
   {/await}
 </div>
+
+<Button
+  variant="outline"
+  on:click={() =>
+    toast.success("Event has been created", {
+      description: "Sunday, December 03, 2023 at 9:00 AM",
+      action: {
+        label: "Undo",
+        onClick: () => console.info("Undo")
+      }
+    })}
+>
+  Show Toast
+</Button>

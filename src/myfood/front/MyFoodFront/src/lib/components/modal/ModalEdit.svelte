@@ -84,14 +84,14 @@
           <div class="column w-7/12">
             <Card.Header>
               <Card.Title
-                class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+                class="text-2xl font-bold tracking-tight text-gray-900 "
                 >{nome}</Card.Title
               >
             </Card.Header>
             <Card.Content class="flex items-center">
               <div class="flex-grow">
                 <p
-                  class="mb-2 font-normal leading-tight text-gray-700 dark:text-gray-400"
+                  class="mb-2 font-normal leading-tight text-gray-700 "
                 >
                   Descricao: {descricao}
                 </p>
@@ -104,11 +104,11 @@
                       id="example-4"
                     >
                       <span
-                        class="w-1 h-1 mx-1.5 bg-gray-500 rounded-full dark:bg-gray-400"
+                        class="w-1 h-1 mx-1.5 bg-gray-500 rounded-full "
                       />
                       <a
                         href="/avaliacoes"
-                        class="text-sm font-medium text-gray-900 underline hover:no-underline dark:text-white"
+                        class="text-sm font-medium text-gray-900 underline hover:no-underline "
                       >
                         {#if avaliacao.filter((av) => av.produto.id === id).length == 1}
                           {avaliacao.filter((av) => av.produto.id === id)
@@ -124,7 +124,7 @@
                   </div>
                 {/if}
 
-                <p class="text-2xl font-bold text-gray-900 dark:text-white">
+                <p class="text-2xl font-bold text-gray-900 ">
                   R${preco}
                 </p>
               </div>
