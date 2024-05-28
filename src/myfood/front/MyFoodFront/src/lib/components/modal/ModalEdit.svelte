@@ -130,7 +130,7 @@
               </div>
             </Card.Content>
           </div>
-          <div class="column w-5/12 h-auto">
+          <div class="column w-5/12 max-h-52">
             <img
               src={imagem}
               alt=""
