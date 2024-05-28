@@ -37,23 +37,32 @@
   });
 
   async function postPedidosBtn() {
-    if (!clienteId) {
-      console.error("ClienteId not found.");
-      return;
-    }
-    try {
-      const response = await postPedidos(clienteId);
+    if (itemsPedido.length != 0) {
+      if (!clienteId) {
+        console.error("ClienteId not found.");
+        return;
+      }
+      try {
+        const response = await postPedidos(clienteId);
 
-      toast.success("Pedido finalizado com sucesso!", {
-        description: "Seu pedido foi enviado para o restaurante.",
-      });
+        toast.success("Pedido finalizado com sucesso!", {
+          description: "Seu pedido foi enviado para o restaurante.",
+        });
 
-      dispatch("pedidoCreated", response);
-    } catch (error) {
-      console.error("Failed to post pedido:", error);
-      toast.error("Erro ao finalizar o pedido", {
-        description:
-          "Ocorreu um erro ao tentar finalizar seu pedido. Tente novamente.",
+        itemsPedido = [];
+
+        dispatch("pedidoCreated", response);
+      } catch (error) {
+        console.error("Failed to post pedido:", error);
+        toast.error("Erro ao finalizar o pedido", {
+          description:
+            "Ocorreu um erro ao tentar finalizar seu pedido. Tente novamente.",
+        });
+      }
+    } else {
+      console.error("0 itens no pedido");
+      toast.error("Carrinho vazio", {
+        description: "O carrinho está vazio",
       });
     }
   }
@@ -78,8 +87,8 @@
     </Drawer.Header>
     <div class="mx-auto p-4">
       <h1 class="text-xl text-center font-bold mb-2">Produtos no carrinho:</h1>
-      <div class="flex flex-col md:flex-row">
-        <ScrollArea class="h-[300px] w-[auto] rounded-md border p-3">
+      <div class="flex flex-col ">
+        <ScrollArea class="h-[300px] w-[full] rounded-md border-2 p-3">
           {#if itemsPedido.length > 0}
             {#each itemsPedido as item}
               <div class="flex flex-col border rounded-lg p-2 mb-2">
@@ -91,7 +100,7 @@
               </div>
             {/each}
           {:else}
-            <p>Seu carrinho está vazio.</p>
+            <p class="text-center">Seu carrinho está vazio.</p>
           {/if}
         </ScrollArea>
       </div>
