@@ -2,17 +2,18 @@
   import * as Drawer from "$lib/components/ui/drawer";
   import Button from "./ui/button/button.svelte";
   import { postPedidos } from "$lib/fetchs/fetchPedidos";
-  import { Check,ShoppingBasket  } from "lucide-svelte";
+  import { Check, ShoppingBasket } from "lucide-svelte";
   import { onMount, createEventDispatcher } from "svelte";
   import { pedidoStore } from "$lib/stores/pedidoStore";
   import { get } from "svelte/store";
   import { ScrollArea } from "$lib/components/ui/scroll-area/index.js";
   import type { ItemPedido } from "$lib/types";
+  import { toast } from "svelte-sonner";
 
   const dispatch = createEventDispatcher();
   let clienteId: number;
   let itemsPedido: ItemPedido[] = [];
-  let precoTotalPedido:number;
+  let precoTotalPedido: number;
 
   const unsubscribe = pedidoStore.subscribe((value) => {
     itemsPedido = value;
@@ -43,9 +44,17 @@
     try {
       const response = await postPedidos(clienteId);
 
+      toast.success("Pedido finalizado com sucesso!", {
+        description: "Seu pedido foi enviado para o restaurante.",
+      });
+
       dispatch("pedidoCreated", response);
     } catch (error) {
       console.error("Failed to post pedido:", error);
+      toast.error("Erro ao finalizar o pedido", {
+        description:
+          "Ocorreu um erro ao tentar finalizar seu pedido. Tente novamente.",
+      });
     }
   }
 
@@ -91,7 +100,9 @@
       </h1>
     </div>
     <Drawer.Footer>
-      <Button variant="buttonAdd" on:click={postPedidosBtn}>Finalizar Pedido!</Button>
+      <Button variant="buttonAdd" on:click={postPedidosBtn}
+        >Finalizar Pedido!</Button
+      >
       <Drawer.Close>Cancelar</Drawer.Close>
     </Drawer.Footer>
   </Drawer.Content>
