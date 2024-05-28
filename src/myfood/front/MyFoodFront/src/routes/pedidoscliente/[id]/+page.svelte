@@ -2,6 +2,7 @@
   import type { Pedido } from "$lib/types.ts";
   import ModalAvaliar from "$lib/components/modal/ModalAvaliar.svelte";
   import type { PageData } from "./$types";
+  import { pedidoStore } from "$lib/stores/pedidoStore";
 
   export let data: PageData;
 
@@ -11,6 +12,12 @@
   const filteredPedidos = pedidos.filter(
     (pedido: Pedido) => pedido.cliente.id === clienteId.id
   );
+
+  let precoTotalPedido: number;
+
+  pedidoStore.precoTotalPedido.subscribe((value) => {
+    precoTotalPedido = value;
+  });
 </script>
 
 <!-- <pre>

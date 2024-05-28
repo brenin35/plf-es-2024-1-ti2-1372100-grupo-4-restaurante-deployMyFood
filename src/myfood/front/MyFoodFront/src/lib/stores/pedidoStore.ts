@@ -1,14 +1,19 @@
 import type { ItemPedido } from "$lib/types";
-import { writable, get } from "svelte/store";
+import { writable, derived } from "svelte/store";
 
 function createPedidoStore() {
   const baseStore = writable<ItemPedido[]>([]);
   const { subscribe, set, update } = baseStore;
 
+  const precoTotalPedido = derived(baseStore, $baseStore =>
+    $baseStore.reduce((total, item) => total + item.precoTotal, 0)
+  );
+
   return {
     subscribe,
     set,
     update,
+    precoTotalPedido,
     addItem: (item: ItemPedido) => {
       update((itensPedido) => {
         itensPedido.push(item);

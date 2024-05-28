@@ -19,6 +19,10 @@
     itemsPedido = value;
   });
 
+  pedidoStore.precoTotalPedido.subscribe(value => {
+    precoTotalPedido = value;
+  });
+
   onMount(async () => {
     localStorage.setItem("isAdmin", "false");
 

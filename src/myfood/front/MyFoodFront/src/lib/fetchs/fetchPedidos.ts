@@ -2,6 +2,12 @@ import { ENDPOINT_URL } from "$lib/constants";
 import { get } from "svelte/store";
 import { pedidoStore } from "../stores/pedidoStore";
 
+let precoTotalPedido: number;
+
+pedidoStore.precoTotalPedido.subscribe((value) => {
+  precoTotalPedido = value;
+});
+
 export async function postPedidos(clienteId: number) {
   try {
     const clienteResponse = await fetch(
@@ -25,7 +31,7 @@ export async function postPedidos(clienteId: number) {
       },
       statusPreparo: true,
       statusPagamento: false,
-      precoTotalPedido: 0,
+      precoTotalPedido: precoTotalPedido,
       itensPedido: ItemsPedido,
     };
 

@@ -53,8 +53,8 @@
     console.log(itemPedido);
 
     toast.success("Item adicionado ao pedido!", {
-        description: "O item foi adicionado ao pedido com sucesso!",
-      });
+      description: "O item foi adicionado ao pedido com sucesso!",
+    });
 
     pedidoStore.addItem(itemPedido);
   }
@@ -100,7 +100,7 @@
                     </Rating>
                   </div>
                 {/if}
-                <p class="text-2xl font-bold text-gray-900 ">
+                <p class="text-2xl font-bold text-gray-900">
                   R${preco}
                 </p>
               </div>
