@@ -7,6 +7,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 public class Avaliacao {
 
@@ -16,10 +18,12 @@ public class Avaliacao {
 
     @ManyToOne
     @JoinColumn(name = "cliente_id")
+    @JsonIgnoreProperties("avaliacoes")
     private Clientes cliente;
 
     @ManyToOne
     @JoinColumn(name = "produto_id")
+    @JsonIgnoreProperties("avaliacoes")
     private Produtos produto;
 
     private Integer estrelas;
