@@ -5,6 +5,7 @@
   import { Label } from "$lib/components/ui/label/index.js";
   import { Button, buttonVariants } from "$lib/components/ui/button";
   import { ENDPOINT_URL } from "$lib/constants";
+  import { toast } from "svelte-sonner";
 
   let nome = "";
   let descricao = "";
@@ -44,7 +45,6 @@ async function adicionarProduto() {
     let imagem = "";
     if (imagemFile) {
       imagem = await uploadImagem(imagemFile);
-      // Update the state variable with the URL
       imagemURL = imagem;
     }
 
@@ -70,6 +70,11 @@ async function adicionarProduto() {
 
     const data = await response.json();
     console.log("Produto adicionado com sucesso:", data);
+
+    toast.success("Produto criado com sucesso!", {
+        description: "Seu produto foi criado com sucesso.",
+      });
+
     window.location.reload();
   } catch (error) {
     console.error("Erro:", error);

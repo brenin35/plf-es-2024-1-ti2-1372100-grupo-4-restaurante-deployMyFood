@@ -6,6 +6,7 @@
   import { Button, buttonVariants } from "$lib/components/ui/button";
   import { ENDPOINT_URL } from "$lib/constants";
   import type { Avaliacao } from "$lib/types.ts";
+  import { toast } from "svelte-sonner";
 
   let estrelas: number;
   let comentario: string;
@@ -29,6 +30,10 @@
 
       const responseData = await response.json();
       console.log("Success:", responseData);
+
+      toast.success("Avaliacao enviada com sucesso!", {
+        description: "Sua avaliacao foi enviada para o restaurante.",
+      });
     } catch (error) {
       console.error("Fetch Error:", error);
     }

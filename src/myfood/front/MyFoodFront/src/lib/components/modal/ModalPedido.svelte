@@ -12,6 +12,7 @@
   } from "$lib/fetchs/fetchAvaliacao";
   import { type Avaliacao, type ItemPedido, type Prato } from "$lib/types";
   import { pedidoStore } from "../../stores/pedidoStore";
+  import { toast } from "svelte-sonner";
 
   export let id: number;
   export let nome: string;
@@ -50,6 +51,10 @@
       produto: { id: id, nome: nome },
     };
     console.log(itemPedido);
+
+    toast.success("Item adicionado ao pedido!", {
+        description: "O item foi adicionado ao pedido com sucesso!",
+      });
 
     pedidoStore.addItem(itemPedido);
   }

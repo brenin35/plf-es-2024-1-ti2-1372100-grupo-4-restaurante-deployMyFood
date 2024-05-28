@@ -11,6 +11,7 @@
   import { ENDPOINT_URL } from "$lib/constants";
   import { fetchAvaliacao, calculaMediaAvaliacao } from "$lib/fetchs/fetchAvaliacao";
   import { type Avaliacao } from "$lib/types";
+  import { toast } from "svelte-sonner";
 
   export let id: number;
   export let nome: string;
@@ -58,6 +59,9 @@
       });
       if (response.ok) {
         console.log("Produto deletado com sucesso");
+        toast.success("Produto editado com sucesso!", {
+        description: "Seu produto foi editado com sucesso.",
+      });
         window.location.reload();
       } else if (response.status === 404) {
         console.error("Produto não encontrado");
