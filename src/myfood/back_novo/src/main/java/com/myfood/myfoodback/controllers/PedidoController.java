@@ -40,4 +40,15 @@ public class PedidoController {
     public void deletePedido(@PathVariable Long id) {
         pedidoRepository.deleteById(id);
     }
+
+    @PutMapping("/{id}")
+    public Pedido updatePedido(@PathVariable Long id, @RequestBody Pedido updatedPedido) {
+        return pedidoRepository.findById(id)
+                .map(pedido -> {
+                    pedido.setStatusPreparo(updatedPedido.isStatusPreparo());
+                    pedido.setStatusPagamento(updatedPedido.isStatusPagamento());
+                    return pedidoRepository.save(pedido);
+                })
+                .orElseThrow(() -> new RuntimeException("Pedido not found with id " + id));
+    }
 }
