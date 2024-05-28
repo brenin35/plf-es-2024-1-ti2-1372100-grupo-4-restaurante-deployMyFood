@@ -9,7 +9,7 @@
   import { Rating } from "flowbite-svelte";
   import { onMount } from "svelte";
   import { ENDPOINT_URL } from "$lib/constants";
-  import { fetchAvaliacao } from "$lib/fetchs/fetchAvaliacao";
+  import { fetchAvaliacao, calculaMediaAvaliacao } from "$lib/fetchs/fetchAvaliacao";
   import { type Avaliacao } from "$lib/types";
 
   export let id: number;
@@ -20,26 +20,10 @@
   export let visibilidadeAvaliacao: boolean;
   export let avaliacao: Avaliacao[] = [];
 
-  function calculaMediaAvaliacao(
-    avaliacoes: { produtoId: number; estrelas: number }[],
-    produtoId: number
-  ) {
-    const avaliacoesProduto = avaliacoes.filter(
-      (avaliacao) => avaliacao.produtoId === produtoId
-    );
-    if (avaliacoesProduto.length === 0) {
-      return 0;
-    }
-    const totalStars = avaliacoesProduto.reduce(
-      (acc, avaliacao) => acc + avaliacao.estrelas,
-      0
-    );
-    return totalStars / avaliacoesProduto.length;
-  }
   let mediaAvaliacao = 0;
 
   onMount(async () => {
-    await fetchAvaliacao();
+    avaliacao = await fetchAvaliacao();
     mediaAvaliacao = calculaMediaAvaliacao(avaliacao, id);
   });
 
@@ -90,7 +74,6 @@
       await excluirProduto(id);
     }
   }
-
 </script>
 
 <main class="flex items-center justify-center">
@@ -127,11 +110,13 @@
                         href="/avaliacoes"
                         class="text-sm font-medium text-gray-900 underline hover:no-underline dark:text-white"
                       >
-                        {#if avaliacao.filter((av) => av.produtoId === id).length == 1}
-                          {avaliacao.filter((av) => av.produtoId === id).length}
+                        {#if avaliacao.filter((av) => av.produto.id === id).length == 1}
+                          {avaliacao.filter((av) => av.produto.id === id)
+                            .length}
                           avaliação
                         {:else}
-                          {avaliacao.filter((av) => av.produtoId === id).length}
+                          {avaliacao.filter((av) => av.produto.id === id)
+                            .length}
                           avaliações
                         {/if}
                       </a>
@@ -190,12 +175,7 @@
         </div>
         <div class="grid grid-cols-4 items-center gap-4">
           <Label for="imagem" class="text-right">Imagem</Label>
-          <Input
-            id="imagem"
-            type="file"
-            accept="image/*"
-            class="col-span-3"
-          />
+          <Input id="imagem" type="file" accept="image/*" class="col-span-3" />
         </div>
         <div class="grid grid-cols-4 items-center gap-4">
           <Label class="text-right">Visibilidade</Label>

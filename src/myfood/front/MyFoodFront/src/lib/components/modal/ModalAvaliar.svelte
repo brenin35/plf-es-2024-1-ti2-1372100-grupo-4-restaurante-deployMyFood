@@ -10,12 +10,11 @@
   let estrelas: number;
   let comentario: string;
   export let produtoId: number;
-  let clienteId: number = 1;
 
   async function submitAvaliacao() {
-    const newAvaliacao: Avaliacao = {
-      produtoId,
-      estrelas,
+    const newAvaliacao = {
+      produto: { id: produtoId },
+      estrelas: Number(estrelas),
       comentario,
     };
 
@@ -26,13 +25,13 @@
           "Content-Type": "application/json",
         },
         body: JSON.stringify(newAvaliacao),
-        
       });
 
+      const responseData = await response.json();
+      console.log("Success:", responseData);
     } catch (error) {
-      console.error("Error:", error);
+      console.error("Fetch Error:", error);
     }
-    console.log(newAvaliacao);
   }
 </script>
 

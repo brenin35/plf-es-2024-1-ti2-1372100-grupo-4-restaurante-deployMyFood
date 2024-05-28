@@ -1,51 +1,29 @@
 <script>
+  export let five;
+  export let four;
+  export let three;
+  export let two;
+  export let one;
+
+  export let total;
+
+  export let from;
 </script>
 
 <div class="flex items-center mb-2">
-  <svg
-    class="w-4 h-4 text-yellow-300 me-1"
-    aria-hidden="true"
-    xmlns="http://www.w3.org/2000/svg"
-    fill="currentColor"
-    viewBox="0 0 22 20"
-  >
-    <path
-      d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"
-    />
-  </svg>
-  <svg
-    class="w-4 h-4 text-yellow-300 me-1"
-    aria-hidden="true"
-    xmlns="http://www.w3.org/2000/svg"
-    fill="currentColor"
-    viewBox="0 0 22 20"
-  >
-    <path
-      d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"
-    />
-  </svg>
-  <svg
-    class="w-4 h-4 text-yellow-300 me-1"
-    aria-hidden="true"
-    xmlns="http://www.w3.org/2000/svg"
-    fill="currentColor"
-    viewBox="0 0 22 20"
-  >
-    <path
-      d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"
-    />
-  </svg>
-  <svg
-    class="w-4 h-4 text-yellow-300 me-1"
-    aria-hidden="true"
-    xmlns="http://www.w3.org/2000/svg"
-    fill="currentColor"
-    viewBox="0 0 22 20"
-  >
-    <path
-      d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"
-    />
-  </svg>
+  {#each Array.from({ length: 4 }) as _, index}
+    <svg
+      class="w-4 h-4 text-yellow-300 me-1"
+      aria-hidden="true"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="currentColor"
+      viewBox="0 0 22 20"
+    >
+      <path
+        d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"
+      />
+    </svg>
+  {/each}
   <svg
     class="w-4 h-4 text-gray-300 me-1 dark:text-gray-500"
     aria-hidden="true"
@@ -57,67 +35,58 @@
       d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"
     />
   </svg>
-  <p class="ms-1 text-sm font-medium text-gray-500 dark:text-gray-400">4.95</p>
   <p class="ms-1 text-sm font-medium text-gray-500 dark:text-gray-400">
-    out of
+    {from}
   </p>
+  <p class="ms-1 text-sm font-medium text-gray-500 dark:text-gray-400">de</p>
   <p class="ms-1 text-sm font-medium text-gray-500 dark:text-gray-400">5</p>
 </div>
 <p class="text-sm font-medium text-gray-500 dark:text-gray-400">
-  1,745 global ratings
+  {total} avaliações no total!
 </p>
+
 <div class="flex items-center mt-4">
-  <a
-    href="/"
-    class="text-sm font-medium text-blue-600 dark:text-blue-500 hover:underline"
-    >5 star</a
-  >
+  <p class="text-sm font-medium">5 estrelas</p>
   <div class="w-2/4 h-5 mx-4 bg-gray-200 rounded dark:bg-gray-700">
-    <div class="h-5 bg-yellow-300 rounded" style="width: 70%"></div>
+    <div class="h-5 bg-yellow-300 rounded" style="width: {five}%"></div>
   </div>
-  <span class="text-sm font-medium text-gray-500 dark:text-gray-400">70%</span>
+  <span class="text-sm font-medium text-gray-500 dark:text-gray-400"
+    >{five}%</span
+  >
 </div>
 <div class="flex items-center mt-4">
-  <a
-    href="/"
-    class="text-sm font-medium text-blue-600 dark:text-blue-500 hover:underline"
-    >4 star</a
-  >
+  <p class="text-sm font-medium">4 estrelas</p>
   <div class="w-2/4 h-5 mx-4 bg-gray-200 rounded dark:bg-gray-700">
-    <div class="h-5 bg-yellow-300 rounded" style="width: 17%"></div>
+    <div class="h-5 bg-yellow-300 rounded" style="width: {four}%"></div>
   </div>
-  <span class="text-sm font-medium text-gray-500 dark:text-gray-400">17%</span>
+  <span class="text-sm font-medium text-gray-500 dark:text-gray-400"
+    >{four}%</span
+  >
 </div>
 <div class="flex items-center mt-4">
-  <a
-    href="/"
-    class="text-sm font-medium text-blue-600 dark:text-blue-500 hover:underline"
-    >3 star</a
-  >
+  <p class="text-sm font-medium">3 estrelas</p>
   <div class="w-2/4 h-5 mx-4 bg-gray-200 rounded dark:bg-gray-700">
-    <div class="h-5 bg-yellow-300 rounded" style="width: 8%"></div>
+    <div class="h-5 bg-yellow-300 rounded" style="width: {three}%"></div>
   </div>
-  <span class="text-sm font-medium text-gray-500 dark:text-gray-400">8%</span>
+  <span class="text-sm font-medium text-gray-500 dark:text-gray-400"
+    >{three}%</span
+  >
 </div>
 <div class="flex items-center mt-4">
-  <a
-    href="/"
-    class="text-sm font-medium text-blue-600 dark:text-blue-500 hover:underline"
-    >2 star</a
-  >
+  <p class="text-sm font-medium">2 estrelas</p>
   <div class="w-2/4 h-5 mx-4 bg-gray-200 rounded dark:bg-gray-700">
-    <div class="h-5 bg-yellow-300 rounded" style="width: 4%"></div>
+    <div class="h-5 bg-yellow-300 rounded" style="width: {two}%"></div>
   </div>
-  <span class="text-sm font-medium text-gray-500 dark:text-gray-400">4%</span>
+  <span class="text-sm font-medium text-gray-500 dark:text-gray-400"
+    >{two}%</span
+  >
 </div>
 <div class="flex items-center mt-4">
-  <a
-    href="/"
-    class="text-sm font-medium text-blue-600 dark:text-blue-500 hover:underline"
-    >1 star</a
-  >
+  <p class="text-sm font-medium">1 estrela &nbsp;</p>
   <div class="w-2/4 h-5 mx-4 bg-gray-200 rounded dark:bg-gray-700">
-    <div class="h-5 bg-yellow-300 rounded" style="width: 1%"></div>
+    <div class="h-5 bg-yellow-300 rounded" style="width: {one}%"></div>
   </div>
-  <span class="text-sm font-medium text-gray-500 dark:text-gray-400">1%</span>
+  <span class="text-sm font-medium text-gray-500 dark:text-gray-400"
+    >{one}%</span
+  >
 </div>

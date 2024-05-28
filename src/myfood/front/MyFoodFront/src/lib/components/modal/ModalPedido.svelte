@@ -6,7 +6,10 @@
   import { Rating } from "flowbite-svelte";
   import { onMount } from "svelte";
   import { ENDPOINT_URL } from "$lib/constants";
-  import { fetchAvaliacao } from "$lib/fetchs/fetchAvaliacao";
+  import {
+    fetchAvaliacao,
+    calculaMediaAvaliacao,
+  } from "$lib/fetchs/fetchAvaliacao";
   import { type Avaliacao, type ItemPedido, type Prato } from "$lib/types";
   import { pedidoStore } from "../../stores/pedidoStore";
 
@@ -17,7 +20,6 @@
   export let imagem: string;
   export let visibilidadeAvaliacao: boolean;
   export let avaliacao: Avaliacao[] = [];
-  //export let clienteId: number;
 
   let quantidade = 1;
   let itemPreco = preco;
@@ -35,25 +37,8 @@
     }
   }
 
-  function calculaMediaAvaliacao(
-    avaliacoes: { produtoId: number; estrelas: number }[],
-    produtoId: number
-  ) {
-    const avaliacoesProduto = avaliacoes.filter(
-      (avaliacao) => avaliacao.produtoId === produtoId
-    );
-    if (avaliacoesProduto.length === 0) {
-      return 0;
-    }
-    const totalStars = avaliacoesProduto.reduce(
-      (acc, avaliacao) => acc + avaliacao.estrelas,
-      0
-    );
-    return totalStars / avaliacoesProduto.length;
-  }
-
   onMount(async () => {
-    await fetchAvaliacao();
+    avaliacao = await fetchAvaliacao();
     mediaAvaliacao = calculaMediaAvaliacao(avaliacao, id);
   });
 
@@ -97,11 +82,13 @@
                     >
                       <span class="w-1 h-1 mx-1.5 bg-gray-500 rounded-full" />
                       <p class="text-sm font-medium text-gray-900">
-                        {#if avaliacao.filter((av) => av.produtoId === id).length == 1}
-                          {avaliacao.filter((av) => av.produtoId === id).length}
+                        {#if avaliacao.filter((av) => av.produto.id === id).length == 1}
+                          {avaliacao.filter((av) => av.produto.id === id)
+                            .length}
                           avaliação
                         {:else}
-                          {avaliacao.filter((av) => av.produtoId === id).length}
+                          {avaliacao.filter((av) => av.produto.id === id)
+                            .length}
                           avaliações
                         {/if}
                       </p>

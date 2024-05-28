@@ -19,7 +19,7 @@ export function calculaMediaAvaliacao(
   produtoId: number
 ): number {
   const avaliacoesProduto = avaliacoes.filter(
-    (avaliacao) => avaliacao.produtoId === produtoId
+    (avaliacao) => avaliacao.produto.id === produtoId
   );
   if (avaliacoesProduto.length === 0) {
     return 0;
@@ -39,7 +39,9 @@ export function contadorPercentAvaliacao(avaliacoes: Avaliacao[]): number[] {
   });
   const totalRatings = avaliacoes.length;
 
-  return ratings.map((rating) => (rating / totalRatings) * 100);
+  return ratings.map((rating) =>
+    parseFloat(((rating / totalRatings) * 100).toFixed(1))
+  );
 }
 
 export function calculaMediaAvaliacaoTotal(avaliacoes: Avaliacao[]): number {

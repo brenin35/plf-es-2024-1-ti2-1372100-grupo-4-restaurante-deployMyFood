@@ -20,10 +20,16 @@ export type Prato = {
   pedidoId: number;
 };
 export type Avaliacao = {
-  produtoId: number;
+  id: number;
+  produto: {
+    id: number;
+    nome: string;
+    descricao: string;
+  };
   estrelas: number;
   comentario: string;
 };
+
 
 export type Pedido = {
   id?: number;
