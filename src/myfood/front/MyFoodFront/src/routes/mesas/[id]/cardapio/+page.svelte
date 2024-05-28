@@ -13,7 +13,22 @@
   let pratos: Prato[] = [];
   pratos = data.produtos;
   let promise = pratos;
+  let clienteId: number;
 
+  onMount(async () => {
+    const storedClienteId = localStorage.getItem("clienteId");
+
+    if (storedClienteId) {
+      clienteId = parseInt(storedClienteId, 10);
+      if (!isNaN(clienteId)) {
+        console.log("Cliente ID:", clienteId);
+      } else {
+        console.error("Cliente ID is not a valid number");
+      }
+    } else {
+      console.error("Cliente não registrado");
+    }
+  });
 </script>
 
 <div class="py-4">
@@ -27,15 +42,18 @@
       <Diamonds size="60" color="#FF3E00" unit="px" duration="1s" />
     </div>
   {:then}
-  <div>
-    <Cardapio>
-      {#each pratos as item}
-        <ModalPedido {...item} />
-      {/each}
-    </Cardapio>
-    <div class="fixed bottom-0 right-0 flex flex-col items-end mr-10 mb-10">
-      <DrawerPedido />
-    </div>    
-  </div>
+    <div>
+      <Cardapio>
+        {#each pratos as item}
+          <ModalPedido {...item} />
+        {/each}
+      </Cardapio>
+      <div class="fixed bottom-0 right-0 flex items-end mr-10 mb-10 gap-4">
+        <a href="/pedidoscliente/{clienteId}">
+          <Button variant="buttonAdd">Avaliar pedido!</Button>
+        </a>
+        <DrawerPedido />
+      </div>
+    </div>
   {/await}
 </div>
