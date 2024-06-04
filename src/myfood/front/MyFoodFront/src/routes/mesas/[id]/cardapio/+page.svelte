@@ -50,7 +50,7 @@
       </Cardapio>
       <div class="fixed bottom-0 right-0 flex items-end mr-10 mb-10 gap-4">
         <a href="/pedidoscliente/{clienteId}">
-          <Button variant="buttonAdd">Avaliar pedido!</Button>
+          <Button variant="buttonAdd">Avaliar pedido e realizar pagamento!</Button>
         </a>
         <DrawerPedido />
       </div>

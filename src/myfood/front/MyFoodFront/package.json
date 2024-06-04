@@ -29,6 +29,8 @@
   },
   "type": "module",
   "dependencies": {
+    "@mercadopago/sdk-js": "^0.0.3",
+    "@stripe/stripe-js": "^3.4.1",
     "bits-ui": "^0.21.9",
     "clsx": "^2.1.1",
     "express": "^4.19.2",

@@ -1,11 +1,20 @@
 <script lang="ts">
+  import { toast } from "svelte-sonner";
+  import { onMount } from "svelte";
+  import { loadStripe } from "@stripe/stripe-js";
   import type { Pedido } from "$lib/types.ts";
   import ModalAvaliar from "$lib/components/modal/ModalAvaliar.svelte";
   import type { PageData } from "./$types";
   import { pedidoStore } from "$lib/stores/pedidoStore";
+  import Button from "$lib/components/ui/button/button.svelte";
+  import * as Dialog from "$lib/components/ui/dialog/index.js";
+  import { Input } from "$lib/components/ui/input/index.js";
+  import { Label } from "$lib/components/ui/label/index.js";
+  import { ENDPOINT_URL } from "$lib/constants";
 
   export let data: PageData;
 
+  let stripe;
   let clienteId = data.clienteId;
   let pedidos = data.pedidos;
 
@@ -14,15 +23,42 @@
   );
 
   let precoTotalPedido: number;
-
   pedidoStore.precoTotalPedido.subscribe((value) => {
     precoTotalPedido = value;
   });
-</script>
 
-<!-- <pre>
-  {JSON.stringify(pedidos,null,2)}
-</pre> -->
+  onMount(async () => {
+    stripe = await loadStripe(
+      "pk_test_51PNExaFK72ovkSt8je6WKkEbVPo3elT8UNSGhn9UDoPEhePTefYBOUHJc2PSJcxc42iiMEdB0ppNT4KNP0BMu7nN00kHfuRIlO"
+    );
+  });
+
+  async function handlePayment(pedido) {
+    const response = await fetch(
+      `${ENDPOINT_URL}/api/payment/create-checkout-session`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ amount: pedido.precoTotalPedido * 100 }), // Amount in cents
+      }
+    );
+
+    if (response.ok) {
+      const { id } = await response.json();
+      stripe.redirectToCheckout({ sessionId: id });
+    } else {
+      console.error("Failed to create checkout session");
+    }
+  }
+
+  function notify() {
+    toast.success("Vá até o caixa", {
+      description: "Vá até o caixa para realizar o pagamento com o atendente!",
+    });
+  }
+</script>
 
 {#each filteredPedidos as pedido}
   <div class="p-4">
@@ -66,6 +102,33 @@
           <ModalAvaliar produtoId={itemPedido.produto.id} />
         </div>
       {/each}
+    </div>
+    <div class="mt-10">
+      <Dialog.Root>
+        <Dialog.Trigger>
+          <Button variant="buttonAdd">Escolher forma de pagamento</Button>
+        </Dialog.Trigger>
+        <Dialog.Content class="sm:max-w-[600px]">
+          <Dialog.Header>
+            <Dialog.Title>Escolha a forma de pagamento</Dialog.Title>
+            <Dialog.Description>Escolha!</Dialog.Description>
+          </Dialog.Header>
+          <div class="grid gap-4 py-4">
+            <div class="grid grid-cols-4 items-center gap-4">
+              <Button variant="buttonAdd" class="w-full" on:click={notify}>Dinheiro</Button>
+              <Button variant="buttonAdd" class="w-full" on:click={() => handlePayment(pedido)}>Cartão</Button>
+              <a href="/pagamentopix/{pedido.id}" class="w-full">
+                <Button class="w-full" variant="buttonAdd">Pix</Button>
+              </a>
+            </div>
+          </div>
+          <!-- <Dialog.Footer>
+            <Dialog.Close>
+              <Button variant="buttonAdd" type="submit">Avaliar</Button>
+            </Dialog.Close>
+          </Dialog.Footer> -->
+        </Dialog.Content>
+      </Dialog.Root>
     </div>
   </div>
 {/each}
