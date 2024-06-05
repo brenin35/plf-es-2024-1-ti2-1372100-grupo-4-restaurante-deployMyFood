@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { LayoutData } from "../$types";
+  import type { PageData } from "./$types";
   import { Diamonds } from "svelte-loading-spinners";
   import { Button } from "$lib/components/ui/button/index.js";
   import * as Card from "$lib/components/ui/card/index.js";
@@ -7,7 +7,7 @@
   import { Label } from "$lib/components/ui/label/index.js";
   import { ENDPOINT_URL } from "$lib/constants";
 
-  export let data: LayoutData;
+  export let data: PageData;
 
   let mesa = data.mesas;
   let cliente = data.clientes;

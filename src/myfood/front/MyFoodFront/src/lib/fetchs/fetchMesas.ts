@@ -6,14 +6,6 @@ type Mesa = {
   id: number;
 };
 
-export async function getMesas() {
-  const response = await fetch(`${ENDPOINT_URL}/mesas`);
-  if (!response.ok) {
-    throw new Error("Failed to fetch mesas");
-  }
-  return await response.json();
-}
-
 export async function criarMesa() {
   const response = await fetch(`${ENDPOINT_URL}/mesas`, {
     method: "POST",

@@ -8,10 +8,12 @@
     API_URL,
     SIZE,
   } from "$lib/constants";
-  import { getMesas, criarMesa, deleteMesa } from "$lib/fetchs/fetchMesas";
+  import { criarMesa, deleteMesa } from "$lib/fetchs/fetchMesas";
+  import type { PageData } from "./$types";
 
+  export let data: PageData;
   let cardapioMesa = `${DEPLOY_FRONT_URL}/mesas`;
-  let mesas: Mesa[] = [];
+  let mesas: Mesa[] = data.mesas;
   let qrLinks: string[] = [];
   let promise = fetch(`${ENDPOINT_URL}/mesas`);
 
@@ -20,7 +22,7 @@
   };
 
   onMount(async () => {
-    mesas = await getMesas();
+    await mesas;
     qrLinks = mesas.map((mesa) => gerarQRCode(mesa.id));
   });
 
@@ -31,7 +33,7 @@
   async function handleDeleteMesa(id: number) {
     try {
       await deleteMesa(id);
-      await getMesas();
+      await mesas;
       window.location.reload();
     } catch (error) {
       console.error("Erro deletando mesa:", error);
@@ -41,7 +43,7 @@
   async function handleCreateMesa() {
     try {
       await criarMesa();
-      mesas = await getMesas();
+      await mesas;
     } catch (error) {
       console.error("Erro criando mesa:", error);
     }
