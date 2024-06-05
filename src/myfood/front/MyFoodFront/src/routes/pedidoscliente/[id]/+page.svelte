@@ -114,9 +114,15 @@
             <Dialog.Description>Escolha!</Dialog.Description>
           </Dialog.Header>
           <div class="grid gap-4 py-4">
-            <div class="grid grid-cols-4 items-center gap-4">
-              <Button variant="buttonAdd" class="w-full" on:click={notify}>Dinheiro</Button>
-              <Button variant="buttonAdd" class="w-full" on:click={() => handlePayment(pedido)}>Cartão</Button>
+            <div class="grid grid-cols-3 items-center gap-4 w-full">
+              <Button variant="buttonAdd" class="w-full" on:click={notify}
+                >Dinheiro</Button
+              >
+              <Button
+                variant="buttonAdd"
+                class="w-full"
+                on:click={() => handlePayment(pedido)}>Cartão</Button
+              >
               <a href="/pagamentopix/{pedido.id}" class="w-full">
                 <Button class="w-full" variant="buttonAdd">Pix</Button>
               </a>
