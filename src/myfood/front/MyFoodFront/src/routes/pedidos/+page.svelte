@@ -32,6 +32,30 @@
       console.error("Error:", error);
     }
   }
+
+  async function pedidoPago(pedido: Pedido) {
+    try {
+      const response = await fetch(`${ENDPOINT_URL}/pedidos/${pedido.id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ ...pedido, statusPagamento: true }),
+      });
+
+      if (response.ok) {
+        pedidos.update((pedidos) => {
+          return pedidos.map((p) =>
+            p.id === pedido.id ? { ...p, statusPagamento: true } : p
+          );
+        });
+      } else {
+        console.error("Failed to finalize pedido");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  }
 </script>
 
 <main class="p-4">
@@ -133,6 +157,7 @@
                     </div>
                   {/each}
                 </div>
+                <Button class="mt-2" on:click={() => pedidoPago(pedido)}>pedido pago</Button>
               </div>
             </div>
           {/if}
