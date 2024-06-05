@@ -16,14 +16,6 @@ export async function createItemPedido(pedidoId: number, itemPedido: any) {
   return await response.json();
 }
 
-export async function getItemPedidos() {
-  const response = await fetch(`${ENDPOINT_URL}/itempedidos`);
-  if (!response.ok) {
-    throw new Error("Failed to fetch itemPedidos");
-  }
-  return await response.json();
-}
-
 export async function updateItemPedido(id: number, itemPedido: any) {
   const response = await fetch(`${ENDPOINT_URL}/itempedidos/${id}`, {
     method: "PUT",
