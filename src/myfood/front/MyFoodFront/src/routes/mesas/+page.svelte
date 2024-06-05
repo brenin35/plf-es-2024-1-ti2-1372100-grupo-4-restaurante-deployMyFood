@@ -9,9 +9,6 @@
     SIZE,
   } from "$lib/constants";
   import { getMesas, criarMesa, deleteMesa } from "$lib/fetchs/fetchMesas";
-  import type { LayoutData } from "./$types";
-
-  //export let data: LayoutData;
 
   let cardapioMesa = `${DEPLOY_FRONT_URL}/mesas`;
   let mesas: Mesa[] = [];
