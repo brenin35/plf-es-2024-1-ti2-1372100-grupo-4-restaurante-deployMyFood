@@ -85,7 +85,7 @@
 }
 
   async function handleDelete() {
-    if (confirm("Are you sure you want to delete this produto?")) {
+    if (confirm("Tem certeza que quer deletar esse produto?")) {
       await excluirProduto(id);
     }
   }
