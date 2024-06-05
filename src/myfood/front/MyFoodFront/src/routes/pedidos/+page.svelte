@@ -63,7 +63,7 @@
   {#if $pedidos.length === 0}
     <p class="text-center">Nenhum pedido encontrado.</p>
   {:else}
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
       <div>
         <h2 class="text-xl font-semibold mb-2 text-center">
           Pedidos pendentes
@@ -82,7 +82,7 @@
                     >
                   </h1>
                   <p class="text-right text-xl">
-                    <strong>Valor total:</strong> R${pedido.precoTotalPedido}
+                    <strong>Total:</strong> R${pedido.precoTotalPedido}
                   </p>
                 </div>
                 <div
@@ -135,7 +135,7 @@
                     >
                   </h1>
                   <p class="text-right text-xl">
-                    <strong>Valor total:</strong> R${pedido.precoTotalPedido}
+                    <strong>Total:</strong> R${pedido.precoTotalPedido}
                   </p>
                 </div>
                 <div
@@ -157,7 +157,9 @@
                     </div>
                   {/each}
                 </div>
-                <Button class="mt-2" on:click={() => pedidoPago(pedido)}>pedido pago</Button>
+                <div class=" flex flex-col justify-between mt-2">
+                  <Button variant="buttonAdd" on:click={() => pedidoPago(pedido)}>Pago em dinheiro</Button>
+                </div>
               </div>
             </div>
           {/if}
