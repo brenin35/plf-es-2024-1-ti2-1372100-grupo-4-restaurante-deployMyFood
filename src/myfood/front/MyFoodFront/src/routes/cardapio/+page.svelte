@@ -13,7 +13,7 @@ type Prato = {
   preco: number;
   descricao: string;
   imagem: string;
-  avaliacao: Avaliacao[];
+  avaliacoes: Avaliacao[];
 };
 
   let pratos: Prato[] = [];

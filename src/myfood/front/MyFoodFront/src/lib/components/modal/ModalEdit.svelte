@@ -1,3 +1,12 @@
+<script context="module">
+  export const load = async () => {
+    const responseAvaliacao = await fetch(`${ENDPOINT_URL}/avaliacao`).then(
+      (res) => res.json()
+    );
+    return { props: { avaliacoes: responseAvaliacao } };
+  };
+</script>
+
 <script lang="ts">
   import { Textarea } from "$lib/components/ui/textarea/index.js";
   import * as Dialog from "$lib/components/ui/dialog/index.js";
@@ -9,23 +18,22 @@
   import { Rating } from "flowbite-svelte";
   import { onMount } from "svelte";
   import { ENDPOINT_URL } from "$lib/constants";
-  import { fetchAvaliacao, calculaMediaAvaliacao } from "$lib/fetchs/fetchAvaliacao";
+  import { calculaMediaAvaliacao } from "$lib/fetchs/fetchAvaliacao";
   import { type Avaliacao } from "$lib/types";
   import { toast } from "svelte-sonner";
 
+  export let avaliacoes: Avaliacao[];
   export let id: number;
   export let nome: string;
   export let preco: number;
   export let descricao: string;
   export let imagem: string;
   export let visibilidadeAvaliacao: boolean;
-  export let avaliacao: Avaliacao[] = [];
 
   let mediaAvaliacao = 0;
 
   onMount(async () => {
-    avaliacao = await fetchAvaliacao();
-    mediaAvaliacao = calculaMediaAvaliacao(avaliacao, id);
+    mediaAvaliacao = calculaMediaAvaliacao(avaliacoes, id);
   });
 
   const atualizarProduto = () => {
@@ -60,8 +68,8 @@
       if (response.ok) {
         console.log("Produto deletado com sucesso");
         toast.success("Produto editado com sucesso!", {
-        description: "Seu produto foi editado com sucesso.",
-      });
+          description: "Seu produto foi editado com sucesso.",
+        });
         window.location.reload();
       } else if (response.status === 404) {
         console.error("Produto não encontrado");
@@ -94,9 +102,7 @@
             </Card.Header>
             <Card.Content class="flex items-center">
               <div class="flex-grow">
-                <p
-                  class="mb-2 font-normal leading-tight text-gray-700 "
-                >
+                <p class="mb-2 font-normal leading-tight text-gray-700">
                   Descricao: {descricao}
                 </p>
 
@@ -107,19 +113,17 @@
                       rating={parseFloat(mediaAvaliacao.toFixed(1))}
                       id="example-4"
                     >
-                      <span
-                        class="w-1 h-1 mx-1.5 bg-gray-500 rounded-full "
-                      />
+                      <span class="w-1 h-1 mx-1.5 bg-gray-500 rounded-full" />
                       <a
                         href="/avaliacoes"
-                        class="text-sm font-medium text-gray-900 underline hover:no-underline "
+                        class="text-sm font-medium text-gray-900 underline hover:no-underline"
                       >
-                        {#if avaliacao.filter((av) => av.produto.id === id).length == 1}
-                          {avaliacao.filter((av) => av.produto.id === id)
+                        {#if avaliacoes.filter((av) => av.produto.id === id).length == 1}
+                          {avaliacoes.filter((av) => av.produto.id === id)
                             .length}
                           avaliação
                         {:else}
-                          {avaliacao.filter((av) => av.produto.id === id)
+                          {avaliacoes.filter((av) => av.produto.id === id)
                             .length}
                           avaliações
                         {/if}
@@ -128,7 +132,7 @@
                   </div>
                 {/if}
 
-                <p class="text-2xl font-bold text-gray-900 ">
+                <p class="text-2xl font-bold text-gray-900">
                   R${preco}
                 </p>
               </div>
