@@ -22,6 +22,7 @@
   import { type Avaliacao } from "$lib/types";
   import { toast } from "svelte-sonner";
   import CardCardapio from "../cards/CardCardapio.svelte";
+  import { produtos } from "$lib/stores/produtoStore";
 
   export let avaliacoes: Avaliacao[];
   export let id: number;
@@ -59,28 +60,29 @@
   };
 
   async function excluirProduto(id: number) {
-    try {
-      const response = await fetch(`${ENDPOINT_URL}/produtos/delete/${id}`, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
+  try {
+    const response = await fetch(`${ENDPOINT_URL}/produtos/delete/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    if (response.ok) {
+      console.log("Produto deletado com sucesso");
+      toast.success("Produto deletado com sucesso!", {
+        description: "Seu produto foi deletado com sucesso.",
       });
-      if (response.ok) {
-        console.log("Produto deletado com sucesso");
-        toast.success("Produto deletado com sucesso!", {
-          description: "Seu produto foi deletado com sucesso.",
-        });
-        window.location.reload();
-      } else if (response.status === 404) {
-        console.error("Produto não encontrado");
-      } else {
-        console.error("Falha ao deletar");
-      }
-    } catch (error) {
-      console.error("Error deletar produto:", error);
+
+      produtos.update((current) => current.filter((produto) => produto.id !== id));
+    } else if (response.status === 404) {
+      console.error("Produto não encontrado");
+    } else {
+      console.error("Falha ao deletar");
     }
+  } catch (error) {
+    console.error("Error deletar produto:", error);
   }
+}
 
   async function handleDelete() {
     if (confirm("Are you sure you want to delete this produto?")) {

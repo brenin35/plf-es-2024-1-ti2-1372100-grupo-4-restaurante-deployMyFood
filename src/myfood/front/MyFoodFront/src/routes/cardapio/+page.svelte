@@ -9,11 +9,16 @@
   import { Button, buttonVariants } from "$lib/components/ui/button";
   import { ENDPOINT_URL } from "$lib/constants";
   import { toast } from "svelte-sonner";
+  import { produtos } from "$lib/stores/produtoStore";
+  import { onMount } from "svelte";
 
   export let data: PageData;
+  let isLoaded = false;
 
-  let produtos: Prato[] = [];
-  $: ({ produtos } = data);
+  onMount(() => {
+    produtos.set(data.produtos);
+    isLoaded = false;
+  });
   let imagemURL = "";
   export let imagemFile: File | null = null;
 
@@ -85,7 +90,7 @@
         description: "Seu produto foi criado com sucesso.",
       });
 
-      produtos = [data, ...produtos];
+      produtos.update((current) => [data, ...current]);
 
       return data;
     } catch (error) {
@@ -170,20 +175,19 @@
       </Dialog.Root>
     </div>
   </div>
-
-  {#if produtos.length === 0}
-    <div class="flex justify-center items-center mt-40">
-      <h1 class="text-xl text-center">
-        Nenhum produto adicionado ao cardápio!
-      </h1>
-    </div>
-  {:else}
-    <div
-      class="grid grid-cols-1 gap-5 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-3"
-    >
-      {#each produtos as item}
-        <ModalEdit {...item} {avaliacoes} />
-      {/each}
-    </div>
-  {/if}
+    {#if !$produtos.length && isLoaded}
+      <div class="flex justify-center items-center mt-40">
+        <h1 class="text-xl text-center">
+          Nenhum produto adicionado ao cardápio!
+        </h1>
+      </div>
+    {:else}
+      <div
+        class="grid grid-cols-1 gap-5 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-3"
+      >
+        {#each $produtos as item}
+          <ModalEdit {...item} {avaliacoes} />
+        {/each}
+      </div>
+    {/if}
 </div>
