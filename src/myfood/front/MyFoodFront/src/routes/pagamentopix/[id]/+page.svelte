@@ -117,7 +117,7 @@
         </div>
         <div class="content bg-white shadow rounded-lg p-6">
           <div class="mb-4">
-            <p><strong>Cliente ID:</strong> {pedido.cliente.id}</p>
+            <p><strong>Cliente:</strong> {pedido.cliente.nomeCliente}</p>
             <p><strong>Mesa ID:</strong> {pedido.mesa.id}</p>
             <p>
               <strong>Status de Preparo:</strong>
