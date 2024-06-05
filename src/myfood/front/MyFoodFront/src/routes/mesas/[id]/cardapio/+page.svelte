@@ -2,17 +2,25 @@
   import { onMount } from "svelte";
   import ModalPedido from "$lib/components/modal/ModalPedido.svelte";
   import { Diamonds } from "svelte-loading-spinners";
-  import Cardapio from "$lib/components/Cardapio.svelte";
-  import { type Prato, type Pedido } from "$lib/types";
+  import type { Avaliacao } from "$lib/types";
   import type { PageData } from "./$types";
   import DrawerPedido from "$lib/components/DrawerPedido.svelte";
   import Button from "$lib/components/ui/button/button.svelte";
 
   export let data: PageData;
 
+  type Prato = {
+    visibilidadeAvaliacao: boolean;
+    id: number;
+    nome: string;
+    preco: number;
+    descricao: string;
+    imagem: string;
+    avaliacoes: Avaliacao[];
+  };
+
   let pratos: Prato[] = [];
   pratos = data.produtos;
-  let promise = pratos;
   let clienteId: number;
 
   onMount(async () => {
@@ -37,23 +45,29 @@
       Cardapio restaurante
     </h1>
   </div>
-  {#await promise}
-    <div class="flex items-center justify-center mt-20">
-      <Diamonds size="60" color="#FF3E00" unit="px" duration="1s" />
-    </div>
-  {:then}
-    <div>
-      <Cardapio>
+  <div>
+    {#if pratos.length === 0}
+      <div class="flex justify-center items-center mt-40">
+        <h1 class="text-xl text-center">
+          Nenhum produto adicionado ao cardápio!
+        </h1>
+      </div>
+    {:else}
+      <div
+        class="grid grid-cols-1 gap-5 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-3"
+      >
         {#each pratos as item}
           <ModalPedido {...item} />
         {/each}
-      </Cardapio>
-      <div class="fixed bottom-0 right-0 flex items-end mr-10 mb-10 gap-4">
-        <a href="/pedidoscliente/{clienteId}">
-          <Button variant="buttonAdd">Avaliar pedido e realizar pagamento!</Button>
-        </a>
-        <DrawerPedido />
       </div>
+    {/if}
+
+    <div class="fixed bottom-0 right-0 flex items-end mr-10 mb-10 gap-4">
+      <a href="/pedidoscliente/{clienteId}">
+        <Button variant="buttonAdd">Avaliar pedido e realizar pagamento!</Button
+        >
+      </a>
+      <DrawerPedido />
     </div>
-  {/await}
+  </div>
 </div>

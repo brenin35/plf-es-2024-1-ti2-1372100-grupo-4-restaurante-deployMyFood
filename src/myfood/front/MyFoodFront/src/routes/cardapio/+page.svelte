@@ -1,26 +1,24 @@
 <script lang="ts">
   import ModalCriar from "$lib/components/modal/ModalCriar.svelte";
   import ModalEdit from "$lib/components/modal/ModalEdit.svelte";
-  import { onMount } from "svelte";
-  import Cardapio from "$lib/components/Cardapio.svelte";
-  import { getProdutos } from "$lib/fetchs/fetchProdutos";
-  import { type Avaliacao } from "$lib/types";
+  import type { Avaliacao } from "$lib/types";
+  import type { PageData } from "./$types";
 
-type Prato = {
-  visibilidadeAvaliacao: boolean;
-  id: number;
-  nome: string;
-  preco: number;
-  descricao: string;
-  imagem: string;
-  avaliacoes: Avaliacao[];
-};
+  export let data: PageData;
 
-  let pratos: Prato[] = [];
+  let produtos = data.produtos;
 
-  onMount(async () => {
-    pratos = await getProdutos();
-  });
+  type Prato = {
+    visibilidadeAvaliacao: boolean;
+    id: number;
+    nome: string;
+    preco: number;
+    descricao: string;
+    imagem: string;
+    avaliacoes: Avaliacao[];
+  };
+
+  let pratos: Prato[] = produtos;
 </script>
 
 <div class="py-4">
@@ -34,9 +32,20 @@ type Prato = {
       <ModalCriar />
     </div>
   </div>
-  <Cardapio>
-    {#each pratos as item}
-      <ModalEdit {...item} />
-    {/each}
-  </Cardapio>
+
+  {#if produtos.length === 0}
+    <div class="flex justify-center items-center mt-40">
+      <h1 class="text-xl text-center">
+        Nenhum produto adicionado ao cardápio!
+      </h1>
+    </div>
+  {:else}
+    <div
+      class="grid grid-cols-1 gap-5 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-3"
+    >
+      {#each pratos as item}
+        <ModalEdit {...item} />
+      {/each}
+    </div>
+  {/if}
 </div>

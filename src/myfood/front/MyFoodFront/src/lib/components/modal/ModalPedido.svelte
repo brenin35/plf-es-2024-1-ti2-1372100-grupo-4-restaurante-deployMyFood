@@ -22,13 +22,13 @@
   import { pedidoStore } from "../../stores/pedidoStore";
   import { toast } from "svelte-sonner";
 
+  export let avaliacoes: Avaliacao[];
   export let id: number;
   export let nome: string;
   export let preco: number;
   export let descricao: string;
   export let imagem: string;
   export let visibilidadeAvaliacao: boolean;
-  export let avaliacoes: Avaliacao[];
 
   let quantidade = 1;
   let itemPreco = preco;
