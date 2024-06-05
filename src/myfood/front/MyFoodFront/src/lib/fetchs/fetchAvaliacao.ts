@@ -1,18 +1,4 @@
-import { ENDPOINT_URL } from "$lib/constants";
 import { type Avaliacao } from "../types";
-
-export async function fetchAvaliacao(): Promise<Avaliacao[]> {
-  try {
-    const response = await fetch(`${ENDPOINT_URL}/avaliacao`);
-    if (!response.ok) {
-      throw new Error("Failed to fetch evaluations");
-    }
-    return await response.json();
-  } catch (error) {
-    console.error(error);
-    return [];
-  }
-}
 
 export function calculaMediaAvaliacao(
   avaliacoes: Avaliacao[],

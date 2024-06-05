@@ -1,3 +1,12 @@
+<script context="module">
+  export const load = async () => {
+    const responseAvaliacao = await fetch(`${ENDPOINT_URL}/avaliacao`).then(
+      (res) => res.json()
+    );
+    return { props: { avaliacoes: responseAvaliacao } };
+  };
+</script>
+
 <script lang="ts">
   import * as Dialog from "$lib/components/ui/dialog/index.js";
   import * as Card from "$lib/components/ui/card";
@@ -7,7 +16,6 @@
   import { onMount } from "svelte";
   import { ENDPOINT_URL } from "$lib/constants";
   import {
-    fetchAvaliacao,
     calculaMediaAvaliacao,
   } from "$lib/fetchs/fetchAvaliacao";
   import { type Avaliacao, type ItemPedido, type Prato } from "$lib/types";
@@ -20,7 +28,7 @@
   export let descricao: string;
   export let imagem: string;
   export let visibilidadeAvaliacao: boolean;
-  export let avaliacao: Avaliacao[] = [];
+  export let avaliacoes: Avaliacao[];
 
   let quantidade = 1;
   let itemPreco = preco;
@@ -39,8 +47,7 @@
   }
 
   onMount(async () => {
-    avaliacao = await fetchAvaliacao();
-    mediaAvaliacao = calculaMediaAvaliacao(avaliacao, id);
+    mediaAvaliacao = calculaMediaAvaliacao(avaliacoes, id);
   });
 
   function adicionarProdutoAoPedido() {
@@ -87,12 +94,12 @@
                     >
                       <span class="w-1 h-1 mx-1.5 bg-gray-500 rounded-full" />
                       <p class="text-sm font-medium text-gray-900">
-                        {#if avaliacao.filter((av) => av.produto.id === id).length == 1}
-                          {avaliacao.filter((av) => av.produto.id === id)
+                        {#if avaliacoes.filter((av) => av.produto.id === id).length == 1}
+                          {avaliacoes.filter((av) => av.produto.id === id)
                             .length}
                           avaliação
                         {:else}
-                          {avaliacao.filter((av) => av.produto.id === id)
+                          {avaliacoes.filter((av) => av.produto.id === id)
                             .length}
                           avaliações
                         {/if}
