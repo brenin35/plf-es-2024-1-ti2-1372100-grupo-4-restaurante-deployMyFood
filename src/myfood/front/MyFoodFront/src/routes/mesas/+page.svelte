@@ -21,7 +21,6 @@
   };
 
   onMount(async () => {
-    await mesas;
     qrLinks = mesas.map((mesa) => gerarQRCode(mesa.id));
   });
 
@@ -32,7 +31,6 @@
   async function handleDeleteMesa(id: number) {
     try {
       await deleteMesa(id);
-      
       mesas = mesas.filter(mesa => mesa.id !== id);
     } catch (error) {
       console.error("Erro deletando mesa:", error);

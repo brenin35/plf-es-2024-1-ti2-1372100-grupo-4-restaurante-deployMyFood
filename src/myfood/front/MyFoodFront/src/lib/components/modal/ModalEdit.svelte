@@ -68,8 +68,8 @@
       });
       if (response.ok) {
         console.log("Produto deletado com sucesso");
-        toast.success("Produto editado com sucesso!", {
-          description: "Seu produto foi editado com sucesso.",
+        toast.success("Produto deletado com sucesso!", {
+          description: "Seu produto foi deletado com sucesso.",
         });
         window.location.reload();
       } else if (response.status === 404) {

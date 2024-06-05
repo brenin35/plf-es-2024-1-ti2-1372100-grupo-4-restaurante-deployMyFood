@@ -34,7 +34,6 @@ export async function deleteMesa(id: number) {
     }
     console.log(`Mesa ID ${id} foi deletada`);
     mesas = mesas.filter((mesa) => mesa.id !== id);
-    window.location.reload();
   } catch (error) {
     console.error("Error:", error);
   }
