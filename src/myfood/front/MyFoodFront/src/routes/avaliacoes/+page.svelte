@@ -2,35 +2,22 @@
   import Reviews from "$lib/components/Reviews.svelte";
   import { onMount } from "svelte";
   import { Rating, AdvancedRating } from "flowbite-svelte";
-  import { Diamonds } from "svelte-loading-spinners";
-  import { ENDPOINT_URL } from "$lib/constants";
-  import { getProdutos } from "$lib/fetchs/fetchProdutos";
   import {
-    fetchAvaliacao,
-    calculaMediaAvaliacao,
     contadorPercentAvaliacao,
     calculaMediaAvaliacaoTotal,
   } from "$lib/fetchs/fetchAvaliacao";
   import type { Avaliacao, Prato } from "$lib/types";
+  import type { PageData } from "./$types";
 
-  let pratos: Prato[] = [];
-  let avaliacoes: Avaliacao[] = [];
+  export let data: PageData;
+  let pratos: Prato[] = data.produtos;
+  let avaliacoes: Avaliacao[] = data.avaliacoes;
   let starRatings: number[] = [];
   let mediaAvaliacaoTotal = 0;
 
-  let promise = fetch(`${ENDPOINT_URL}/produtos`);
-
   onMount(async () => {
-    avaliacoes = await fetchAvaliacao();
     starRatings = contadorPercentAvaliacao(avaliacoes);
     mediaAvaliacaoTotal = calculaMediaAvaliacaoTotal(avaliacoes);
-
-    const response = await fetch(`${ENDPOINT_URL}/produtos`);
-    if (!response.ok) {
-      console.error("Erro ao buscar produtos:", response.status);
-      return;
-    }
-    pratos = await getProdutos();
   });
 </script>
 
@@ -43,11 +30,6 @@
         </h1>
       </div>
     </div>
-    {#await promise}
-      <div class="flex items-center justify-center mt-20">
-        <Diamonds size="60" color="#FF3E00" unit="px" duration="1s" />
-      </div>
-    {:then}
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {#each pratos as prato}
           <div class="bg-white rounded-lg shadow-md p-4 text-center border">
@@ -77,7 +59,6 @@
           </div>
         {/each}
       </div>
-    {/await}
     <div class="mt-10">
       <h1 class="text-xl mb-3">Avaliações totais!</h1>
       <div>
