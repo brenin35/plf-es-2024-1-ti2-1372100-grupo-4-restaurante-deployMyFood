@@ -53,7 +53,7 @@
     }
   }
 
-  function notify() {
+  function pagamentoDinheiro() {
     toast.success("Vá até o caixa", {
       description: "Vá até o caixa para realizar o pagamento com o atendente!",
     });
@@ -115,7 +115,7 @@
           </Dialog.Header>
           <div class="grid gap-4 py-4">
             <div class="grid grid-cols-3 items-center gap-4 w-full">
-              <Button variant="buttonAdd" class="w-full" on:click={notify}
+              <Button variant="buttonAdd" class="w-full" on:click={pagamentoDinheiro}
                 >Dinheiro</Button
               >
               <Button
