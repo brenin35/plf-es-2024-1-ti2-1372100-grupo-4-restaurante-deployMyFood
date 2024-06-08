@@ -77,11 +77,13 @@
   <span class="text-sm font-medium text-gray-500">{one}%</span>
 </div>
 
-<div class="flex items-center mt-4">
-  <p class="text-sm font-medium">Percentual de Avaliações Positivas</p>
-  <div class="w-2/4 h-5 mx-4 bg-gray-200 rounded">
-    <div class="h-5 bg-yellow-300 rounded" style="width: {five + four}%"></div>
+<div class="flex flex-col items-start mt-10">
+  <p class="text-lg font-medium mb-2">Percentual de Avaliações Positivas (avaliacoes com 4 e 5 estrelas)</p>
+  <div class="w-full flex gap-3"> 
+    <div class="w-2/4 h-5 bg-gray-200 rounded">
+      <div class="h-5 bg-yellow-300 rounded" style="width: {five + four}%"></div>
+    </div>
+    <span class="text-sm font-medium text-gray-500">{five + four}%</span>
   </div>
-  <span class="text-sm font-medium text-gray-500">{five + four}%</span>
 </div>
 
