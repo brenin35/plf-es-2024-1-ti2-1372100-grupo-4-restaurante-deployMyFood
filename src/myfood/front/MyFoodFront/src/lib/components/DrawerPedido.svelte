@@ -24,8 +24,6 @@
   });
 
   onMount(async () => {
-    localStorage.setItem("isAdmin", "false");
-
     const storedClienteId = localStorage.getItem("clienteId");
 
     if (storedClienteId) {
