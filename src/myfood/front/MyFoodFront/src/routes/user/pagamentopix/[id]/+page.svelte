@@ -202,7 +202,7 @@
                 <Button type="submit" class="btn w-full">Ver QRCode</Button>
               </div>
               {#if loading}
-                <p class="text-center mt-4">Loading, please wait...</p>
+                <p class="text-center mt-4">Gerando QRCode, aguarde...</p>
               {/if}
               <div class="form-group mt-4">
                 <a

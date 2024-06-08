@@ -123,7 +123,7 @@
                 class="w-full"
                 on:click={() => handlePayment(pedido)}>Cartão</Button
               >
-              <a href="/pagamentopix/{pedido.id}" class="w-full">
+              <a href="/user/pagamentopix/{pedido.id}" class="w-full">
                 <Button class="w-full" variant="buttonAdd">Pix</Button>
               </a>
             </div>

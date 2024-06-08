@@ -42,7 +42,7 @@
 
         localStorage.setItem("clienteId", data.id);
 
-        window.location.href = `/mesas/${clienteData.mesaId}/cardapio`;
+        window.location.href = `/user/mesa/${clienteData.mesaId}/cardapio`;
       } else {
         const errorMessage = await response.text();
         console.error("Falha ao adicionar cliente:", errorMessage);
