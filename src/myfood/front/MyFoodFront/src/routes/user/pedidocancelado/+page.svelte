@@ -3,13 +3,13 @@
 
   let clienteId: number;
 
-  onMount(() => {
+  onMount(async () => {
     const storedClienteId = localStorage.getItem("clienteId");
 
     if (storedClienteId) {
       clienteId = parseInt(storedClienteId, 10);
       if (!isNaN(clienteId)) {
-        alertUser();
+        console.log("Cliente ID:", clienteId);
       } else {
         console.error("Cliente ID is not a valid number");
       }
@@ -17,12 +17,10 @@
       console.error("Cliente não registrado");
     }
   });
-
-  function alertUser() {
-    const message =
-      "Seu pagamento foi cancelado. Clique OK para retornar à pagina de pagamento!";
-    if (window.confirm(message)) {
-      window.location.href = `/user/pedidoscliente/${clienteId}`;
-    }
-  }
 </script>
+
+<h1 class="text-center text-xl">
+  Seu pagamento foi cancelado, clique <a class="text-primary no-underline hover:underline" href="/user/pedidoscliente/{clienteId}"
+    >aqui</a
+  > para retornar à pagina de pagamento!
+</h1>
