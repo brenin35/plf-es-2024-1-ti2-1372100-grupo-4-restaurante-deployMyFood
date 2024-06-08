@@ -21,7 +21,7 @@
 <div class="flex items-center mb-2">
   {#each stars as filled, index}
     <svg
-      class="w-4 h-4 {filled ? 'text-yellow-300' : 'text-gray-300'} me-1"
+      class="w-4 h-4 {filled ? 'text-primary' : 'text-gray-300'} me-1"
       aria-hidden="true"
       xmlns="http://www.w3.org/2000/svg"
       fill="currentColor"
@@ -44,35 +44,35 @@
 <div class="flex items-center mt-4">
   <p class="text-sm font-medium">5 estrelas</p>
   <div class="w-2/4 h-5 mx-4 bg-gray-200 rounded">
-    <div class="h-5 bg-yellow-300 rounded" style="width: {five}%"></div>
+    <div class="h-5 animated-gradient rounded" style="width: {five}%"></div>
   </div>
   <span class="text-sm font-medium text-gray-500">{five}%</span>
 </div>
 <div class="flex items-center mt-4">
   <p class="text-sm font-medium">4 estrelas</p>
   <div class="w-2/4 h-5 mx-4 bg-gray-200 rounded">
-    <div class="h-5 bg-yellow-300 rounded" style="width: {four}%"></div>
+    <div class="h-5 animated-gradient rounded" style="width: {four}%"></div>
   </div>
   <span class="text-sm font-medium text-gray-500">{four}%</span>
 </div>
 <div class="flex items-center mt-4">
   <p class="text-sm font-medium">3 estrelas</p>
   <div class="w-2/4 h-5 mx-4 bg-gray-200 rounded">
-    <div class="h-5 bg-yellow-300 rounded" style="width: {three}%"></div>
+    <div class="h-5 animated-gradient rounded" style="width: {three}%"></div>
   </div>
   <span class="text-sm font-medium text-gray-500">{three}%</span>
 </div>
 <div class="flex items-center mt-4">
   <p class="text-sm font-medium">2 estrelas</p>
   <div class="w-2/4 h-5 mx-4 bg-gray-200 rounded">
-    <div class="h-5 bg-yellow-300 rounded" style="width: {two}%"></div>
+    <div class="h-5 animated-gradient rounded" style="width: {two}%"></div>
   </div>
   <span class="text-sm font-medium text-gray-500">{two}%</span>
 </div>
 <div class="flex items-center mt-4">
   <p class="text-sm font-medium">1 estrela &nbsp;</p>
   <div class="w-2/4 h-5 mx-4 bg-gray-200 rounded">
-    <div class="h-5 bg-yellow-300 rounded" style="width: {one}%"></div>
+    <div class="h-5 animated-gradient rounded" style="width: {one}%"></div>
   </div>
   <span class="text-sm font-medium text-gray-500">{one}%</span>
 </div>
@@ -81,7 +81,7 @@
   <p class="text-lg font-medium mb-2">Percentual de Avaliações Positivas (avaliacoes com 4 e 5 estrelas)</p>
   <div class="w-full flex gap-3"> 
     <div class="w-2/4 h-5 bg-gray-200 rounded">
-      <div class="h-5 bg-yellow-300 rounded" style="width: {five + four}%"></div>
+      <div class="h-5 animated-gradient rounded" style="width: {five + four}%"></div>
     </div>
     <span class="text-sm font-medium text-gray-500">{five + four}%</span>
   </div>
