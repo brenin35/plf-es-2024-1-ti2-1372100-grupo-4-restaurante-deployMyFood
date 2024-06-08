@@ -37,6 +37,10 @@
       console.error("Cliente não registrado");
     }
   });
+  
+  function redirect() {
+    window.location.href = `/user/pedidoscliente/${clienteId}`;
+  }
 </script>
 
 <div class="py-4">
@@ -62,11 +66,8 @@
       </div>
     {/if}
 
-    <div class="fixed bottom-0 left-50 flex  items-end mr-10 mb-10 gap-4">
-      <a href="/user/pedidoscliente/{clienteId}">
-        <Button variant="buttonAdd">Avaliar e pagar!</Button
-        >
-      </a>
+    <div class="fixed bottom-0 left-50 flex items-end mr-10 mb-10 gap-4">
+      <Button on:click={redirect} variant="buttonAdd">Avaliar e pagar!</Button>
       <DrawerPedido />
     </div>
   </div>
