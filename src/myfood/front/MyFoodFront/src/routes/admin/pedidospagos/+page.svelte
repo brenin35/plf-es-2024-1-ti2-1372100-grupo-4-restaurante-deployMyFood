@@ -8,37 +8,42 @@
 
   let taxa = (pedidos.length / allPedidos.length) * 100;
 
-  const filteredPreco = allPedidos.filter(pedido => pedido.precoTotalPedido > 50);
+  const filteredPreco = allPedidos.filter(
+    (pedido) => pedido.precoTotalPedido > 50
+  );
   let taxaPreco = (filteredPreco.length / allPedidos.length) * 100;
   console.log(taxaPreco);
 </script>
 
-<div class="flex justify-between mb-4">
-  <div class="flex flex-col items-start">
-    <p class="text-lg font-medium mb-2">Taxa de Pedidos com Preço Total acima de 50</p>
-    <div class="w-full flex gap-3">
-      <div class="w-3/4 h-5 bg-gray-200 rounded">
-        <div class="h-5 bg-primary rounded" style="width: {taxaPreco}%"></div>
-      </div>
-      <span class="text-sm font-medium text-gray-500">{taxaPreco}%</span>
-    </div>
-  </div>
-
-  <div class="flex flex-col items-start">
-    <p class="text-lg font-medium mb-2">Taxa de Pedidos Completados</p>
-    <div class="w-full flex gap-3">
-      <div class="w-3/4 h-5 bg-gray-200 rounded">
-        <div class="h-5 bg-primary rounded" style="width: {taxa}%"></div>
-      </div>
-      <span class="text-sm font-medium text-gray-500">{taxa}%</span>
-    </div>
-  </div>
-</div>
-
-<div class="flex justify-between mb-4">
+<div class="flex justify-between mb-4 items-center">
   <h1 class="text-3xl font-bold text-center">Pedidos pagos</h1>
+  <div>
+    <div class="flex flex-col items-start">
+      <p class="text-lg font-medium mb-2">Taxa de Pedidos Completados</p>
+      <div class="w-full flex gap-3">
+        <div class="w-72 h-5 bg-gray-200 rounded">
+          <div
+            class="h-5 bg-primary rounded animated-gradient"
+            style="width: {taxa}%"
+          ></div>
+        </div>
+        <span class="text-sm font-medium text-gray-500">{taxa}%</span>
+      </div>
+    </div>
+    <div class="flex flex-col items-start">
+      <p class="text-lg font-medium mb-2">Taxa de Pedidos acima de R$50</p>
+      <div class="w-full flex gap-3">
+        <div class="w-72 h-5 bg-gray-200 rounded">
+          <div
+            class="h-5 bg-primary rounded animated-gradient"
+            style="width: {taxaPreco}%"
+          ></div>
+        </div>
+        <span class="text-sm font-medium text-gray-500">{taxaPreco}%</span>
+      </div>
+    </div>
+  </div>
 </div>
-
 
 {#if pedidos.length === 0}
   <p class="text-center">Nenhum pedido encontrado.</p>

@@ -79,3 +79,31 @@
     @apply bg-background text-foreground;
   }
 }
+
+.animated-gradient {
+  background: repeating-linear-gradient(to right, red 0%, #ff8800 50%, red 100%);
+  width: 100%;
+  background-size: 200% auto;
+  background-position: 0 100%;
+  animation: gradient 2s infinite;
+  animation-fill-mode: forwards;
+  animation-timing-function: linear;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.testBG:hover {
+  background: repeating-linear-gradient(to right, red 0%, #ff8800 50%, red 100%);
+  background-size: 200% auto;
+  animation: gradient 1.5s infinite;
+  animation-fill-mode: forwards;
+  animation-timing-function: linear;
+  box-shadow: 0 4px 8px rgb(255, 0, 0);
+}

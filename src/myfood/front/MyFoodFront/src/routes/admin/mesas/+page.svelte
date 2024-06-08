@@ -87,7 +87,7 @@
               >
             </Button>
           </div>
-          <Button href="/user/mesa/{mesa.id}">Direcionar para mesa</Button>
+          <Button href="/user/mesa/{mesa.id}" variant="buttonAdd">Direcionar para mesa</Button>
         </div>
       {/each}
     </div>

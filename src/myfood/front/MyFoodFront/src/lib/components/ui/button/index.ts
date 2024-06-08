@@ -13,9 +13,9 @@ const buttonVariants = tv({
 			secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
 			ghost: "hover:bg-accent hover:text-accent-foreground",
 			link: "text-primary underline-offset-4 hover:underline",
-			buttonAdd: "bg-primary text-white hover:bg-secondary hover:text-orange-500 transition ease-in-out",
-			buttonDD: "bg-primary text-white hover:bg-secondary hover:text-orange-500 transition ease-in-out w-full",
-			buttonBasket: "bg-primary text-white hover:bg-secondary hover:text-orange-500 transition ease-in-out w-16 h-16",
+			buttonAdd: "bg-primary text-white transition ease-in-out testBG hover:shadow-primary ",
+			buttonDD: "bg-primary text-white  transition ease-in-out w-full testBG hover:shadow-primary ",
+			buttonBasket: "bg-primary text-white  transition ease-in-out w-16 h-16 testBG hover:shadow-primary ",
 		},
 		size: {
 			default: "h-10 px-4 py-2",
