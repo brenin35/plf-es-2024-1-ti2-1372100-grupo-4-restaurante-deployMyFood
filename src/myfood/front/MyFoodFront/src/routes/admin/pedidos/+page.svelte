@@ -63,7 +63,7 @@
   {#if $pedidos.length === 0}
     <p class="text-center">Nenhum pedido encontrado.</p>
   {:else}
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
       <div>
         <h2 class="text-xl font-semibold mb-2 text-center">
           Pedidos pendentes
@@ -118,11 +118,9 @@
       </div>
 
       <div>
-        <h2 class="text-xl font-semibold mb-2 text-center">
-          Pedidos prontos!
-        </h2>
+        <h2 class="text-xl font-semibold mb-2 text-center">Pedidos prontos!</h2>
         {#each $pedidos as pedido (pedido.id)}
-          {#if !pedido.statusPreparo}
+          {#if !pedido.statusPreparo && !pedido.statusPagamento}
             <div
               class="bg-white border border-gray-200 rounded shadow p-4 mb-4 justify-between"
             >
@@ -158,7 +156,10 @@
                   {/each}
                 </div>
                 <div class=" flex flex-col justify-between mt-2">
-                  <Button variant="buttonAdd" on:click={() => pedidoPago(pedido)}>Pago em dinheiro</Button>
+                  <Button
+                    variant="buttonAdd"
+                    on:click={() => pedidoPago(pedido)}>Pago em dinheiro</Button
+                  >
                 </div>
               </div>
             </div>
