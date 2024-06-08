@@ -88,7 +88,6 @@
         <div
           class="flex flex-col items-center justify-center gap-4 border p-4 rounded"
         >
-          <p><strong>Produto ID:</strong> {itemPedido.produto.id}</p>
           {#if itemPedido.produto.nome}
             <p><strong>Nome do Produto:</strong> {itemPedido.produto.nome}</p>
           {/if}
