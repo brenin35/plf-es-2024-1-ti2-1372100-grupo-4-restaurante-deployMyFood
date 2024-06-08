@@ -1,5 +1,5 @@
 <script>
-    import "../app.pcss";
+    import "../../app.pcss"
     import Navbar from "$lib/components/navbar/Navbar.svelte";
     import { Toaster } from "$lib/components/ui/sonner";
   

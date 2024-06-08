@@ -1,6 +1,6 @@
 <script>
     import NavbarCliente from "$lib/components/navbar/NavbarCliente.svelte";
-    import "../app.pcss";
+    import "../../app.pcss"
     import { Toaster } from "$lib/components/ui/sonner";
   
   </script>

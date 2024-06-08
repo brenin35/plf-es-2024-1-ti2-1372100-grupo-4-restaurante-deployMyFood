@@ -24,7 +24,7 @@
       restaurante.
     </p>
     <div class="mb-12">
-      <Button href={"/cardapio"} variant="buttonAdd"
+      <Button href={"/admin/cardapio"} variant="buttonAdd"
         >Comece agora adicionando produtos</Button
       >
     </div>
