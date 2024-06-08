@@ -5,14 +5,6 @@
   import { onMount } from "svelte";
   import { Toaster } from "$lib/components/ui/sonner";
 
-  let isAdmin = true;
-
-  onMount(() => {
-    if (typeof localStorage !== "undefined") {
-      isAdmin = localStorage.getItem("isAdmin") === "true";
-      console.log(isAdmin);
-    }
-  });
 </script>
 
 <div class="app">
