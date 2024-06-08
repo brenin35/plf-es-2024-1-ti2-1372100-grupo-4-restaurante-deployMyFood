@@ -1,8 +1,23 @@
 <script lang="ts">
   import ButtonNav from "$lib/components/navbar/ButtonNav.svelte";
   import { SquareMenu, Receipt, Utensils, Star } from "lucide-svelte";
-  import type { ComponentType } from "svelte";
+  import { onMount, type ComponentType } from "svelte";
   import type { Icon } from "lucide-svelte";
+
+  let clienteId: number = 1;
+
+  onMount(() => {
+    const storedClienteId = localStorage.getItem("clienteId");
+    if (storedClienteId) {
+      clienteId = parseInt(storedClienteId, 10);
+      itens = itens.map((item) => {
+        if (item.label === "Pedidos") {
+          return { ...item, href: `/user/pedidoscliente/${clienteId}` };
+        }
+        return item;
+      });
+    }
+  });
 
   let itens: {
     label: string;
@@ -10,7 +25,11 @@
     icon: ComponentType<Icon>;
   }[] = [
     { label: "Cardapio", href: "/user/mesa/1", icon: SquareMenu },
-    { label: "Pedidos", href: "/user/pedidoscliente/1", icon: Receipt },
+    {
+      label: "Pedidos",
+      href: `/user/pedidoscliente/1`,
+      icon: Receipt,
+    },
   ];
   let navmobile: HTMLElement;
 
