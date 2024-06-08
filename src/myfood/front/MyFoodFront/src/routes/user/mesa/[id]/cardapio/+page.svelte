@@ -6,25 +6,18 @@
   import type { PageData } from "./$types";
   import DrawerPedido from "$lib/components/DrawerPedido.svelte";
   import Button from "$lib/components/ui/button/button.svelte";
+  import Loading from "$lib/components/Loading.svelte";
+  import { loading } from "$lib/stores/loading";
+  import { produtos } from "$lib/stores/produtoStore";
 
   export let data: PageData;
 
-  type Prato = {
-    visibilidadeAvaliacao: boolean;
-    id: number;
-    nome: string;
-    preco: number;
-    descricao: string;
-    imagem: string;
-    avaliacoes: Avaliacao[];
-  };
-
-  let pratos: Prato[] = [];
-  pratos = data.produtos;
   let clienteId: number;
+  let avaliacoes: Avaliacao[] = [];
 
   onMount(async () => {
     const storedClienteId = localStorage.getItem("clienteId");
+    loading.set(true);
 
     if (storedClienteId) {
       clienteId = parseInt(storedClienteId, 10);
@@ -36,8 +29,10 @@
     } else {
       console.error("Cliente não registrado");
     }
+    produtos.set(data.produtos);
+    loading.set(false);
   });
-  
+
   function redirect() {
     window.location.href = `/user/pedidoscliente/${clienteId}`;
   }
@@ -50,7 +45,13 @@
     </h1>
   </div>
   <div>
-    {#if pratos.length === 0}
+    {#if $loading}
+      <div
+        class="grid grid-cols-1 gap-5 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-3"
+      >
+        <Loading />
+      </div>
+    {:else if !$produtos.length}
       <div class="flex justify-center items-center mt-40">
         <h1 class="text-xl text-center">
           Nenhum produto adicionado ao cardápio!
@@ -60,8 +61,8 @@
       <div
         class="grid grid-cols-1 gap-5 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-3"
       >
-        {#each pratos as item}
-          <ModalPedido {...item} />
+        {#each $produtos as item}
+          <ModalPedido {...item} {avaliacoes} />
         {/each}
       </div>
     {/if}

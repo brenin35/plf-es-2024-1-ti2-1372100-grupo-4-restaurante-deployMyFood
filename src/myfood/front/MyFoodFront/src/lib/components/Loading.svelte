@@ -1,8 +1,9 @@
 <script lang="ts">
   import SkeletonCard from "./cards/SkeletonCard.svelte";
-  import { produtos } from "$lib/stores/produtoStore";
+
+  let items = Array.from({ length: 9 });
 </script>
 
-{#each $produtos as i}
+{#each items as _, index}
   <SkeletonCard />
 {/each}

@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { loading } from "$lib/stores/loading";
   import type { Prato, Avaliacao } from "$lib/types";
   import ModalEdit from "$lib/components/modal/ModalEdit.svelte";
   import type { PageData } from "./$types";
@@ -14,12 +15,13 @@
   import Loading from "$lib/components/Loading.svelte";
 
   export let data: PageData;
-  let isLoaded = false;
 
   onMount(() => {
+    loading.set(true);
     produtos.set(data.produtos);
-    isLoaded = true;
+    loading.set(false);
   });
+
   let imagemURL = "";
   export let imagemFile: File | null = null;
 
@@ -176,7 +178,13 @@
       </Dialog.Root>
     </div>
   </div>
-  {#if !$produtos.length && isLoaded}
+  {#if $loading}
+    <div
+      class="grid grid-cols-1 gap-5 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-3"
+    >
+      <Loading />
+    </div>
+  {:else if !$produtos.length}
     <div class="flex justify-center items-center mt-40">
       <h1 class="text-xl text-center">
         Nenhum produto adicionado ao cardápio!
@@ -186,7 +194,6 @@
     <div
       class="grid grid-cols-1 gap-5 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-3"
     >
-      <Loading />
       {#each $produtos as item}
         <ModalEdit {...item} {avaliacoes} />
       {/each}
