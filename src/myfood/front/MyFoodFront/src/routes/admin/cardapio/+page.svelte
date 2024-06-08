@@ -11,13 +11,14 @@
   import { toast } from "svelte-sonner";
   import { produtos } from "$lib/stores/produtoStore";
   import { onMount } from "svelte";
+  import Loading from "$lib/components/Loading.svelte";
 
   export let data: PageData;
   let isLoaded = false;
 
   onMount(() => {
     produtos.set(data.produtos);
-    isLoaded = false;
+    isLoaded = true;
   });
   let imagemURL = "";
   export let imagemFile: File | null = null;
@@ -175,19 +176,20 @@
       </Dialog.Root>
     </div>
   </div>
-    {#if !$produtos.length && isLoaded}
-      <div class="flex justify-center items-center mt-40">
-        <h1 class="text-xl text-center">
-          Nenhum produto adicionado ao cardápio!
-        </h1>
-      </div>
-    {:else}
-      <div
-        class="grid grid-cols-1 gap-5 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-3"
-      >
-        {#each $produtos as item}
-          <ModalEdit {...item} {avaliacoes} />
-        {/each}
-      </div>
-    {/if}
+  {#if !$produtos.length && isLoaded}
+    <div class="flex justify-center items-center mt-40">
+      <h1 class="text-xl text-center">
+        Nenhum produto adicionado ao cardápio!
+      </h1>
+    </div>
+  {:else}
+    <div
+      class="grid grid-cols-1 gap-5 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-3"
+    >
+      <Loading />
+      {#each $produtos as item}
+        <ModalEdit {...item} {avaliacoes} />
+      {/each}
+    </div>
+  {/if}
 </div>
