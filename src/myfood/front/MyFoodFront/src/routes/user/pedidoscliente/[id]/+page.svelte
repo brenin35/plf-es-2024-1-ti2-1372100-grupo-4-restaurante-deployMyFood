@@ -60,80 +60,90 @@
   }
 </script>
 
-{#each filteredPedidos as pedido}
-  <div class="p-4">
-    <h1 class="text-2xl font-bold mb-4">Detalhes do Pedido #{pedido.id}</h1>
-    <div class="mb-4">
-      <p><strong>Cliente ID:</strong> {pedido.cliente.id}</p>
-      <p><strong>Mesa ID:</strong> {pedido.mesa.id}</p>
-      <p>
-        <strong>Status de Preparo:</strong>
-        {pedido.statusPreparo ? "Em Preparo" : "Pedido pronto"}
-      </p>
-      <p>
-        <strong>Status de Pagamento:</strong>
-        {pedido.statusPagamento ? "Pago" : "Não Pago"}
-      </p>
-      <p>
-        <strong>Preço Total do Pedido:</strong>
-        R${pedido.precoTotalPedido.toFixed(2)}
-      </p>
-    </div>
-
-    <h2 class="text-xl font-semibold mb-3">Itens do Pedido</h2>
-    <div
-      class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"
-    >
-      {#each pedido.itensPedido as itemPedido}
-        <div
-          class="flex flex-col items-center justify-center gap-4 border p-4 rounded"
-        >
-          {#if itemPedido.produto.nome}
-            <p><strong>Nome do Produto:</strong> {itemPedido.produto.nome}</p>
-          {/if}
-          <p><strong>Quantidade:</strong> {itemPedido.quantidade}</p>
-          <p>
-            <strong>Preço Item:</strong> R${itemPedido.precoItem.toFixed(2)}
-          </p>
-          <p>
-            <strong>Preço Total:</strong> R${itemPedido.precoTotal.toFixed(2)}
-          </p>
-          <ModalAvaliar produtoId={itemPedido.produto.id} />
-        </div>
-      {/each}
-    </div>
-    <div class="mt-10">
-      <Dialog.Root>
-        <Dialog.Trigger>
-          <Button variant="buttonAdd">Escolher forma de pagamento</Button>
-        </Dialog.Trigger>
-        <Dialog.Content class="sm:max-w-[600px]">
-          <Dialog.Header>
-            <Dialog.Title>Escolha a forma de pagamento</Dialog.Title>
-            <Dialog.Description>Escolha!</Dialog.Description>
-          </Dialog.Header>
-          <div class="grid gap-4 py-4">
-            <div class="grid grid-cols-3 items-center gap-4 w-full">
-              <Button variant="buttonAdd" class="w-full" on:click={pagamentoDinheiro}
-                >Dinheiro</Button
-              >
-              <Button
-                variant="buttonAdd"
-                class="w-full"
-                on:click={() => handlePayment(pedido)}>Cartão</Button
-              >
-              <a href="/user/pagamentopix/{pedido.id}" class="w-full">
-                <Button class="w-full" variant="buttonAdd">Pix</Button>
-              </a>
-            </div>
-          </div>
-          <!-- <Dialog.Footer>
-            <Dialog.Close>
-              <Button variant="buttonAdd" type="submit">Avaliar</Button>
-            </Dialog.Close>
-          </Dialog.Footer> -->
-        </Dialog.Content>
-      </Dialog.Root>
-    </div>
+{#if filteredPedidos.length === 0}
+  <div class="flex justify-center items-center mt-40">
+    <h1 class="text-xl text-center">
+      O cliente <span class="text-primary underline">{clienteId.nomeCliente}</span> não possui nenhum pedido
+    </h1>
   </div>
-{/each}
+{:else}
+  {#each filteredPedidos as pedido}
+    <div class="p-4">
+      <h1 class="text-2xl font-bold mb-4">Detalhes do Pedido #{pedido.id}</h1>
+      <div class="mb-4">
+        <p><strong>Cliente ID:</strong> {pedido.cliente.id}</p>
+        <p><strong>Mesa ID:</strong> {pedido.mesa.id}</p>
+        <p>
+          <strong>Status de Preparo:</strong>
+          {pedido.statusPreparo ? "Em Preparo" : "Pedido pronto"}
+        </p>
+        <p>
+          <strong>Status de Pagamento:</strong>
+          {pedido.statusPagamento ? "Pago" : "Não Pago"}
+        </p>
+        <p>
+          <strong>Preço Total do Pedido:</strong>
+          R${pedido.precoTotalPedido.toFixed(2)}
+        </p>
+      </div>
+
+      <h2 class="text-xl font-semibold mb-3">Itens do Pedido</h2>
+      <div
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"
+      >
+        {#each pedido.itensPedido as itemPedido}
+          <div
+            class="flex flex-col items-center justify-center gap-4 border p-4 rounded"
+          >
+            {#if itemPedido.produto.nome}
+              <p><strong>Nome do Produto:</strong> {itemPedido.produto.nome}</p>
+            {/if}
+            <p><strong>Quantidade:</strong> {itemPedido.quantidade}</p>
+            <p>
+              <strong>Preço Item:</strong> R${itemPedido.precoItem.toFixed(2)}
+            </p>
+            <p>
+              <strong>Preço Total:</strong> R${itemPedido.precoTotal.toFixed(2)}
+            </p>
+            <ModalAvaliar produtoId={itemPedido.produto.id} />
+          </div>
+        {/each}
+      </div>
+      <div class="mt-10">
+        <Dialog.Root>
+          <Dialog.Trigger>
+            <Button variant="buttonAdd">Escolher forma de pagamento</Button>
+          </Dialog.Trigger>
+          <Dialog.Content class="sm:max-w-[600px]">
+            <Dialog.Header>
+              <Dialog.Title>Escolha a forma de pagamento</Dialog.Title>
+              <Dialog.Description>Escolha!</Dialog.Description>
+            </Dialog.Header>
+            <div class="grid gap-4 py-4">
+              <div class="grid grid-cols-3 items-center gap-4 w-full">
+                <Button
+                  variant="buttonAdd"
+                  class="w-full"
+                  on:click={pagamentoDinheiro}>Dinheiro</Button
+                >
+                <Button
+                  variant="buttonAdd"
+                  class="w-full"
+                  on:click={() => handlePayment(pedido)}>Cartão</Button
+                >
+                <a href="/user/pagamentopix/{pedido.id}" class="w-full">
+                  <Button class="w-full" variant="buttonAdd">Pix</Button>
+                </a>
+              </div>
+            </div>
+            <!-- <Dialog.Footer>
+               <Dialog.Close>
+                 <Button variant="buttonAdd" type="submit">Avaliar</Button>
+               </Dialog.Close>
+             </Dialog.Footer> -->
+          </Dialog.Content>
+        </Dialog.Root>
+      </div>
+    </div>
+  {/each}
+{/if}
