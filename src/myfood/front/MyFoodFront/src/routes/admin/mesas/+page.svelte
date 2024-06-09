@@ -73,7 +73,7 @@
         <div class="w-full border shadow-lg p-5 flex flex-col gap-2 rounded-lg">
           <h2 class="text-center text-xl">Mesa {mesa.id}</h2>
           <img src={qrLinks[index]} alt="QR Code" /><br />
-          <div class="flex gap-2 flex-col xl:flex-row">
+          <div class="flex gap-2 flex-col 2xl:flex-row">
             <Button
               variant="buttonDD"
               on:click={() => handleDeleteMesa(mesa.id)}>Deletar mesa</Button
