@@ -41,6 +41,7 @@
     try {
       const newMesa = await criarMesa();
       mesas = [...mesas, newMesa];
+      qrLinks = mesas.map((mesa) => gerarQRCode(mesa.id));
     } catch (error) {
       console.error("Erro criando mesa:", error);
     }
