@@ -16,5 +16,5 @@
 | Back end       | Spring Boot+Maven |
 | Deploy         | Vercel+Render    |
 |Bibliotecas|Lucide+Shadcn|
-|APIs|Mercado Pago+Stripe+S3+|
+|APIs|Mercado Pago+Stripe+S3|
 
