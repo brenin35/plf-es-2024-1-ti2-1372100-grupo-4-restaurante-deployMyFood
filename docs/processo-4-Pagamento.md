@@ -2,7 +2,7 @@
 
 _O processo do pagamento permite o pagamento dos pedidos diretamente no sistema, sem a necessidade de um funcionario, onde o cliente consegue selecionar o metodo que deseja e inserir as informações diretamente pelo celular_
 
-![diagram_processo_4_TI](https://github.com/ICEI-PUC-Minas-PPLES-TI/plf-es-2024-1-ti2-1372100-grupo-4-restaurante/assets/129969591/dfbdccf7-1baf-4617-8c31-3fbba319ef19)
+![diagram_processo_4_TI](https://github.com/ICEI-PUC-Minas-PPLES-TI/plf-es-2024-1-ti2-1372100-grupo-4-restaurante/assets/129969591/f87d749f-3e20-413f-91a5-2e54749876ed)
 
 
 #### Detalhamento das atividades

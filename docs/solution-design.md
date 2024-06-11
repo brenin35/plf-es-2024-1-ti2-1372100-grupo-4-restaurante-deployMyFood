@@ -10,9 +10,11 @@
 
 | **Dimensão**   | **Tecnologia**  |
 | ---            | ---             |
-| SGBD           | PostgreSQL           |
+| SGBD           | PgAdmin           |
+| BD           | PostgreSQL           |
 |Front end Framework | Svelte |
 | Back end       | Spring Boot+Maven |
-| Deploy         | Vercel    |
+| Deploy         | Vercel+Render    |
 |Bibliotecas|Lucide+Shadcn|
+|APIs|Mercado Pago+Stripe+S3|
 
