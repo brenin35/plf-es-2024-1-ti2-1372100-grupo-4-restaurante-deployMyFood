@@ -13,6 +13,7 @@
   let amount = pedido.precoTotalPedido;
 
   let payerFirstName = pedido.cliente.nomeCliente;
+  let telefone = pedido.cliente.telefone
   let payerLastName = "";
   let payerEmail = "";
   let identificationType = "CPF";
@@ -49,7 +50,7 @@
 
     const paymentData = {
       transactionAmount: Number(amount),
-      description: "Some book",
+      description: telefone,
       payer: {
         firstName: payerFirstName,
         lastName: payerLastName,
@@ -199,7 +200,7 @@
                 </div>
               </div>
               <div class="form-group mt-6">
-                <Button type="submit" class="btn w-full">Ver QRCode</Button>
+                <Button type="submit" class="btn w-full" variant="buttonAdd">Ver QRCode</Button>
               </div>
               {#if loading}
                 <p class="text-center mt-4">Gerando QRCode, aguarde...</p>

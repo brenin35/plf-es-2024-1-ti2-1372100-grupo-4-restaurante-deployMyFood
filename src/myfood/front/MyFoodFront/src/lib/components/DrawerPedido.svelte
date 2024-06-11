@@ -7,8 +7,8 @@
   import { pedidoStore } from "$lib/stores/pedidoStore";
   import { get } from "svelte/store";
   import { ScrollArea } from "$lib/components/ui/scroll-area/index.js";
-  import type { ItemPedido } from "$lib/types";
   import { toast } from "svelte-sonner";
+  import type { ItemPedido } from "$lib/types";
 
   const dispatch = createEventDispatcher();
   let clienteId: number;
@@ -19,7 +19,7 @@
     itemsPedido = value;
   });
 
-  pedidoStore.precoTotalPedido.subscribe(value => {
+  pedidoStore.precoTotalPedido.subscribe((value) => {
     precoTotalPedido = value;
   });
 
@@ -52,8 +52,10 @@
         });
 
         itemsPedido = [];
+        precoTotalPedido = 0;
 
         dispatch("pedidoCreated", response);
+
       } catch (error) {
         console.error("Failed to post pedido:", error);
         toast.error("Erro ao finalizar o pedido", {
@@ -89,7 +91,7 @@
     </Drawer.Header>
     <div class="mx-auto p-4">
       <h1 class="text-xl text-center font-bold mb-2">Produtos no carrinho:</h1>
-      <div class="flex flex-col ">
+      <div class="flex flex-col">
         <ScrollArea class="h-[300px] w-[full] rounded-md border-2 p-3">
           {#if itemsPedido.length > 0}
             {#each itemsPedido as item}

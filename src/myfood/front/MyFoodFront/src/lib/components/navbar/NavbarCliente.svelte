@@ -5,14 +5,21 @@
   import type { Icon } from "lucide-svelte";
 
   let clienteId: number = 1;
+  let mesaId: number = 1;
 
   onMount(() => {
     const storedClienteId = localStorage.getItem("clienteId");
-    if (storedClienteId) {
+    const storedMesaId = localStorage.getItem("mesaId");
+
+    if (storedClienteId && storedMesaId) {
       clienteId = parseInt(storedClienteId, 10);
+      mesaId = parseInt(storedMesaId, 10);
       itens = itens.map((item) => {
         if (item.label === "Pedidos") {
           return { ...item, href: `/user/pedidoscliente/${clienteId}` };
+        }
+        if (item.label === "Cardapio") {
+          return { ...item, href: `/user/mesa/${mesaId}/cardapio` };
         }
         return item;
       });
@@ -70,7 +77,7 @@
   aria-label="Sidebar"
 >
   <div class="h-full overflow-y-auto border bg-gray-100 px-3 py-4">
-    <a href="/" class="mb-5 flex items-center">
+    <a href="/user/mesa/{mesaId}/cardapio" class="mb-5 flex items-center">
       <img
         class="self-center whitespace-nowrap text-xl font-semibold"
         src="/logoTIAW.png"

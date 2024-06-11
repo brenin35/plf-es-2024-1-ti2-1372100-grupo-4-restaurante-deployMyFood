@@ -41,6 +41,7 @@
         console.log("Cliente adicionado com sucesso:", data);
 
         localStorage.setItem("clienteId", data.id);
+        localStorage.setItem("mesaId",clienteData.mesaId)
 
         window.location.href = `/user/mesa/${clienteData.mesaId}/cardapio`;
       } else {
