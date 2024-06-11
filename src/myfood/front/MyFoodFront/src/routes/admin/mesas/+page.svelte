@@ -12,7 +12,7 @@
   import type { PageData } from "./$types";
 
   export let data: PageData;
-  let cardapioMesa = `${DEPLOY_FRONT_URL}/mesas`;
+  let cardapioMesa = `${DEPLOY_FRONT_URL}/user/mesa`;
   let mesas: Mesa[] = data.mesas;
   let qrLinks: string[] = [];
 
