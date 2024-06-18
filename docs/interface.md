@@ -48,6 +48,10 @@ _Avaliações_
 
 _Nesta tela o cliente poderá visualizar o cardápio cadastrado do restaurante. Ele poderá selecionar os pratos que deseja adicionar ao seu pedido, ajustando a quantidade dos itens antes de efetuar sua inclusão. Depois de feita a inclusão de todos os itens desejato, ele poderá rever o seu pedido feito e efetuar o pedido. Nesta tela o cliente poderá tambem transitar para seu historico de pedido através da navbar lateral ou pelo botão de avaliações._
 
+![8cliente cadastrocliente](https://github.com/ICEI-PUC-Minas-PPLES-TI/plf-es-2024-1-ti2-1372100-grupo-4-restaurante/assets/129969591/c7876493-795f-4847-b028-5d91a711408a)
+
+_Cadastro cliente_
+
 ![9cliente cardapio](https://github.com/ICEI-PUC-Minas-PPLES-TI/plf-es-2024-1-ti2-1372100-grupo-4-restaurante/assets/129969591/4551a5bd-23af-41d2-b36c-fc4b62b0b32c)
 
 _Cardápio_
