@@ -20,9 +20,14 @@ _Nesta tela o gerente do restaurante pode visualizar os pratos atualmente cadast
 
 _Cardápio_
 
+![2admin cardapio addprato](https://github.com/ICEI-PUC-Minas-PPLES-TI/plf-es-2024-1-ti2-1372100-grupo-4-restaurante/assets/129969591/16c91919-bcc9-4f27-8848-62f6b4d73ff0)
+
+_Cadastro de prato_
+
+
 ![3admin cardapio editprato](https://github.com/ICEI-PUC-Minas-PPLES-TI/plf-es-2024-1-ti2-1372100-grupo-4-restaurante/assets/129969591/dc9aaa63-d8a0-4456-b123-3ad792956a9b)
 
-_Item selecionado no cardápio_
+_Item selecionado no cardápio para editar_
 
 _Nesta tela o gerente do restaurante pode visualizar as mesas atualmente cadastradas no restaurante, além de poder adicionar novas mesas, excluir mesas cadastradas, ou transitar para outras telas do sistema pela navbar lateral._
 
