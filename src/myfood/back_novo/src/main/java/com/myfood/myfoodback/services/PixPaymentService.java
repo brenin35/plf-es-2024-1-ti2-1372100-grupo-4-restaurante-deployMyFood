@@ -20,7 +20,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class PixPaymentService {
-    @Value("${mercado_pago_sample_access_token}")
+    @Value("TEST-4196162605742054-060320-2399707642c77743572439c0f545d397-1529328833")
     private String mercadoPagoAccessToken;
 
     private final List<PixPaymentResponseDTO> paymentDatabase = new ArrayList<>();
