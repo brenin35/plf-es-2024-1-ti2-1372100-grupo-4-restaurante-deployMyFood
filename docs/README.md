@@ -108,7 +108,7 @@ A sessão a seguir apresenta a descrição do produto de software desenvolvido.
 
 A implementação do sistema de cardápio digital automatizado demonstrou ser uma solução eficaz para problemas comuns em restaurantes, como erros na anotação de pedidos e lentidão no atendimento. O novo sistema reduzirá significativamente esses problemas, aumentando a agilidade e a satisfação dos clientes. A funcionalidade de avaliação dos pratos fornecerá informações valiosas para melhorias contínuas.
 
-Os indicadores de desempenho é um excelente meio para o gerente identificar melhorias no tempo de atendimento e na precisão dos pedidos. Em suma, o sistema cumpriu seus objetivos, mostrando-se uma solução moderna e eficiente para a gestão de pedidos em restaurantes.
+Os indicadores de desempenho são um excelente meio para o gerente identificar melhorias no tempo de atendimento e na precisão dos pedidos. Em suma, o sistema cumpriu seus objetivos, mostrando-se uma solução moderna e eficiente para a gestão de pedidos em restaurantes.
 
 
 # REFERÊNCIAS
