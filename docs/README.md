@@ -3,7 +3,6 @@
 
 * Arthur George Souza Cardenas
 * Breno de Oliveira Brandão
-* Daniel Pena Baeta
 * Leonardo Vieira Machado
 * Nicolas Almeida Prado da Silva
 * Pedro Henrique de Vasconcellos Franco
