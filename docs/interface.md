@@ -32,12 +32,14 @@ _Mesas_
 
 _Nesta tela o gerente do restaurante pode visualizar o status dos pedidos feitos, assim como a taxa de pedidos concluidos, e a taxa de pedidos feitos com valor acima de R$50,00._
 
-[`Tela da atividade 2`](images/)
+![5admin pedidos](https://github.com/ICEI-PUC-Minas-PPLES-TI/plf-es-2024-1-ti2-1372100-grupo-4-restaurante/assets/129969591/5f0696a5-4571-4c31-b933-693a05ae5e7f)
+
 _Pedidos_
 
 _Nesta tela o gerente do restaurante pode visualizar as avaliações dos pedidos feitos pelos clientes, junto com porcentagem de avaliações positivas._
 
-![5admin pedidos](https://github.com/ICEI-PUC-Minas-PPLES-TI/plf-es-2024-1-ti2-1372100-grupo-4-restaurante/assets/129969591/cc2296aa-26d9-4c4c-9028-9acec257dba9)
+![7admin avaliacoes](https://github.com/ICEI-PUC-Minas-PPLES-TI/plf-es-2024-1-ti2-1372100-grupo-4-restaurante/assets/129969591/4a9e39db-f2cb-4b7d-94ea-2c80d6042d98)
+
 
 _Avaliações_
 
