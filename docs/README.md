@@ -3,7 +3,6 @@
 
 * Arthur George Souza Cardenas
 * Breno de Oliveira Brandão
-* Daniel Pena Baeta
 * Leonardo Vieira Machado
 * Nicolas Almeida Prado da Silva
 * Pedro Henrique de Vasconcellos Franco
@@ -106,7 +105,10 @@ A sessão a seguir apresenta a descrição do produto de software desenvolvido.
 
 ## 7. Conclusão
 
-_Apresente aqui a conclusão do seu trabalho. Discussão dos resultados obtidos no trabalho, onde se verifica as observações pessoais de cada aluno. Poderá também apresentar sugestões de novas linhas de estudo._
+A implementação do sistema de cardápio digital automatizado demonstrou ser uma solução eficaz para problemas comuns em restaurantes, como erros na anotação de pedidos e lentidão no atendimento. O novo sistema reduzirá significativamente esses problemas, aumentando a agilidade e a satisfação dos clientes. A funcionalidade de avaliação dos pratos fornecerá informações valiosas para melhorias contínuas.
+
+Os indicadores de desempenho são um excelente meio para o gerente identificar melhorias no tempo de atendimento e na precisão dos pedidos. Em suma, o sistema cumpriu seus objetivos, mostrando-se uma solução moderna e eficiente para a gestão de pedidos em restaurantes.
+
 
 # REFERÊNCIAS
 
@@ -120,9 +122,9 @@ _Atualizar os links e adicionar novos links para que a estrutura do código este
 
 ## Apêndice A - Código fonte
 
-[Código do front-end](../src/front) -- repositório do código do front-end
+[Código do front-end](../src/myfood/front/MyFoodFront) -- repositório do código do front-end
 
-[Código do back-end](../src/back)  -- repositório do código do back-end
+[Código do back-end](../src/myfood/back_novo)  -- repositório do código do back-end
 
 
 ## Apêndice B - Apresentação final
