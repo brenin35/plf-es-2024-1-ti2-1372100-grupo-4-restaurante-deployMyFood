@@ -35,6 +35,7 @@
   let mediaAvaliacao = 0;
 
   onMount(async () => {
+    console.log(avaliacoes); 
     mediaAvaliacao = calculaMediaAvaliacao(avaliacoes, id);
   });
 
@@ -59,29 +60,31 @@
   };
 
   async function excluirProduto(id: number) {
-  try {
-    const response = await fetch(`${ENDPOINT_URL}/produtos/delete/${id}`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    if (response.ok) {
-      console.log("Produto deletado com sucesso");
-      toast.success("Produto deletado com sucesso!", {
-        description: "Seu produto foi deletado com sucesso.",
+    try {
+      const response = await fetch(`${ENDPOINT_URL}/produtos/delete/${id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
       });
+      if (response.ok) {
+        console.log("Produto deletado com sucesso");
+        toast.success("Produto deletado com sucesso!", {
+          description: "Seu produto foi deletado com sucesso.",
+        });
 
-      produtos.update((current) => current.filter((produto) => produto.id !== id));
-    } else if (response.status === 404) {
-      console.error("Produto não encontrado");
-    } else {
-      console.error("Falha ao deletar");
+        produtos.update((current) =>
+          current.filter((produto) => produto.id !== id)
+        );
+      } else if (response.status === 404) {
+        console.error("Produto não encontrado");
+      } else {
+        console.error("Falha ao deletar");
+      }
+    } catch (error) {
+      console.error("Error deletar produto:", error);
     }
-  } catch (error) {
-    console.error("Error deletar produto:", error);
   }
-}
 
   async function handleDelete() {
     if (confirm("Tem certeza que quer deletar esse produto?")) {

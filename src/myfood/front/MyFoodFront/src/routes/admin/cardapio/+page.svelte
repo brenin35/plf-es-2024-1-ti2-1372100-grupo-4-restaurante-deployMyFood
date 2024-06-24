@@ -29,7 +29,7 @@
   let descricao = "";
   let preco = 0;
   let visibilidadeAvaliacao = true;
-  let avaliacoes: Avaliacao[] = [];
+  let avaliacoes: Avaliacao[] = data.responseAvaliacao;
 
   function handleFileChange(event: any) {
     imagemFile = event.target.files[0];
