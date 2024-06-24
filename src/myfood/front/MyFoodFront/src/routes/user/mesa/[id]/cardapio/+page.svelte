@@ -13,7 +13,7 @@
   export let data: PageData;
 
   let clienteId: number;
-  let avaliacoes: Avaliacao[] = [];
+  let avaliacoes: Avaliacao[] = data.responseAvaliacao;
 
   onMount(async () => {
     const storedClienteId = localStorage.getItem("clienteId");

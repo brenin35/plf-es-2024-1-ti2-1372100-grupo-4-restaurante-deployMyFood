@@ -6,5 +6,9 @@ export const load = (async () => {
     res.json()
   );
 
-  return { produtos: response };
+  const responseAvaliacao = await fetch(`${ENDPOINT_URL}/avaliacao`).then((res) =>
+    res.json()
+  );
+
+  return { produtos: response, responseAvaliacao };
 }) satisfies PageServerLoad;
