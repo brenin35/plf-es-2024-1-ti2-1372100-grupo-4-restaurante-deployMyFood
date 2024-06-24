@@ -9,10 +9,11 @@
     href: string;
     icon: ComponentType<Icon>;
   }[] = [
-    { label: "Cardapio", href: "/cardapio", icon: SquareMenu },
-    { label: "Pedidos", href: "/pedidos", icon: Receipt },
-    { label: "Mesas", href: "/mesas", icon: Utensils },
-    { label: "Avaliacoes", href: "/avaliacoes", icon: Star },
+    { label: "Cardapio", href: "/admin/cardapio", icon: SquareMenu },
+    { label: "Pedidos", href: "/admin/pedidos", icon: Receipt },
+    { label: "Pedidos Pagos", href: "/admin/pedidospagos", icon: Receipt },
+    { label: "Mesas", href: "/admin/mesas", icon: Utensils  },
+    { label: "Avaliacoes", href: "/admin/avaliacoes", icon: Star  },
   ];
 
   let navmobile: HTMLElement;

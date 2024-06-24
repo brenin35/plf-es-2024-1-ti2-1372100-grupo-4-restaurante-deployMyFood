@@ -27,7 +27,7 @@
             style="width: {taxa}%"
           ></div>
         </div>
-        <span class="text-sm font-medium text-gray-500">{taxa}%</span>
+        <span class="text-sm font-medium text-gray-500">{taxa.toFixed(1)}%</span>
       </div>
     </div>
     <div class="flex flex-col items-start">
