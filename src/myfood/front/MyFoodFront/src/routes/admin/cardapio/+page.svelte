@@ -71,7 +71,6 @@
         preco,
         imagem,
         visibilidadeAvaliacao,
-        avaliacoes,
       };
 
       const response = await fetch(`${ENDPOINT_URL}/produtos`, {
@@ -84,6 +83,7 @@
 
       if (!response.ok) {
         throw new Error("Failed to add product");
+        toast.error(error)
       }
 
       const data = await response.json();
@@ -98,6 +98,7 @@
       return data;
     } catch (error) {
       console.error("Erro:", error);
+      toast.error(error)
     }
   }
 </script>
